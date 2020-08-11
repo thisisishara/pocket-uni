@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class SignupActivity extends AppCompatActivity {
     Spinner spinSemester;
     Button btnSignup;
     TextView btnSignin;
+    ProgressBar progressBar;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -38,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
         //batch = this.findViewById(R.id.editTextBatch);
         btnSignup = this.findViewById(R.id.buttonSignup);
         btnSignin = this.findViewById(R.id.textViewSignin);
+        progressBar = this.findViewById(R.id.progressBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -93,6 +96,10 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
+                //progressbar
+                progressBar.setVisibility(View.VISIBLE);
+
+
                 //registration
                 firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -102,6 +109,7 @@ public class SignupActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
                             showToast("ERROR OCCURRED! " + task.getException().getMessage());
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -112,12 +120,12 @@ public class SignupActivity extends AppCompatActivity {
         btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(), SigninActivity.class));
             }
         });
     }
 
     private void showToast (String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SignupActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 }
