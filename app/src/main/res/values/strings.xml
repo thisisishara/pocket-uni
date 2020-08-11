@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PocketUni</string>
+    <string name="app_logo_name">PocketUni_Logo_White</string>
+    <string name="username_placeholder">SLIIT Email</string>
+    <string name="username_hint">Your SLIIT Email</string>
+    <string name="password_placeholder">Password</string>
+    <string name="password_hint">PocketUni Password</string>
 </resources>
