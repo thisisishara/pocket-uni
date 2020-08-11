@@ -1,8 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#191717"
-    tools:context=".SignupActivity"/>
+    android:background="#181818"
+    tools:context=".SignupActivity" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="120dp">
+
+
+        <Button
+            android:id="@+id/buttonSignup"
+            android:layout_width="132dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/signup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerSemester" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="236dp"
+            android:layout_height="117dp"
+            android:contentDescription="@string/app_logo_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.172"
+            app:srcCompat="@drawable/logotextwhite" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="@string/password_hint"
+            android:backgroundTint="@color/edittext_line"
+            android:ems="10"
+            android:hint="@string/password_placeholder"
+            android:inputType="textPassword"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColorHint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="@string/password_hint"
+            android:backgroundTint="@color/edittext_line"
+            android:ems="10"
+            android:hint="@string/confpassword_placeholder"
+            android:inputType="textPassword"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColorHint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
+        <EditText
+            android:id="@+id/editTextEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="@color/edittext_line"
+            android:ems="10"
+            android:hint="@string/username_hint"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColorHint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/edittext_line"
+            android:ems="10"
+            android:hint="@string/name_hint"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColorHint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+
+        <TextView
+            android:id="@+id/textViewSignin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textIsSelectable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSignup"
+            tools:text="@string/gotosignin" />
+
+        <Spinner
+            android:id="@+id/spinnerSemester"
+            android:layout_width="211dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:entries="@array/semester"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

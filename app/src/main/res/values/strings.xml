@@ -3,6 +3,33 @@
     <string name="app_logo_name">PocketUni_Logo_White</string>
     <string name="username_placeholder">SLIIT Email</string>
     <string name="username_hint">Your SLIIT Email</string>
+    <string name="name_hint">Full Name</string>
     <string name="password_placeholder">Password</string>
+    <string name="confpassword_placeholder">Confirm Password</string>
     <string name="password_hint">PocketUni Password</string>
+    <string name="confpassword_hint">PocketUni Password</string>
+    <string name="year_placeholder">Year</string>
+    <string name="sem_placeholder">Semester</string>
+    <string name="signin">Sign in</string>
+    <string name="signup">Sign up</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="devteam">XCoders</string>
+    <string name="gotosignup">Don\'t have an Account yet?\nSign up now</string>
+    <string name="gotosignin">Already have an Account?\nPlease sign in.</string>
+    <string name="email_regex">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[mM][yY]\.[sS][lL][iI][Ii][tT]\.[Ll][Kk]</string>
+    <string name="wrong_email_domain_error">Enter a valid SLIIT Email Address</string>
+
+    <string-array name="semester">
+        <item>Year 1 Semester 1</item>
+        <item>Year 1 Semester 2</item>
+        <item>Year 2 Semester 1</item>
+        <item>Year 2 Semester 2</item>
+        <item>Year 3 Semester 1</item>
+        <item>Year 3 Semester 2</item>
+        <item>Year 4 Semester 1</item>
+        <item>Year 4 Semester 2</item>
+    </string-array>
+
+
+
 </resources>
