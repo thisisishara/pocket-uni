@@ -1,34 +1,26 @@
 package com.example.pocketuni;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.sql.Time;
-
-public class MainActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private Context context = MainActivity.this;
-    private static final int ACTIVITY_NUMBER = 0;
+    private Context context = ProfileActivity.this;
+    private static final int ACTIVITY_NUMBER = 4;
     FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -38,8 +30,18 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
+    }
 
+    public void signout(View view) {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("com.example.pocketuni.ACTION_SIGNOUT");
+        sendBroadcast(broadcastIntent);
+
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(),SigninActivity.class));
+        finish();
     }
 }
