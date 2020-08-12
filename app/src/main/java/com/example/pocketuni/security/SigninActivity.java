@@ -74,7 +74,11 @@ public class SigninActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             showToast("SIGNED IN SUCCESSFULLY");
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            progressBar.setVisibility(View.INVISIBLE);
                         } else {
                             showToast("SIGN IN FAILED! " + task.getException().getMessage());
                             progressBar.setVisibility(View.INVISIBLE);

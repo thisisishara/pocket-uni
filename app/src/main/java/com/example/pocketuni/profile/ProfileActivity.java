@@ -40,12 +40,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void signout(View view) {
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("com.example.pocketuni.ACTION_SIGNOUT");
-        sendBroadcast(broadcastIntent);
-
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),SigninActivity.class));
-        finish();
+        Intent intent = new Intent(getApplicationContext(),SigninActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

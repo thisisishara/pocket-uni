@@ -146,6 +146,7 @@ public class SignupActivity extends AppCompatActivity {
                             });
 
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            progressBar.setVisibility(View.INVISIBLE);
                         } else {
                             showToast("ERROR. " + task.getException().getMessage());
                             progressBar.setVisibility(View.INVISIBLE);
