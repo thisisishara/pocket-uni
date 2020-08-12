@@ -1,4 +1,4 @@
-package com.example.pocketuni;
+package com.example.pocketuni.results;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.pocketuni.util.BottomNavigationHelper;
+import com.example.pocketuni.R;
+import com.example.pocketuni.security.SigninActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -19,6 +22,7 @@ public class ResultsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(0,0);
         setContentView(R.layout.activity_results);
 
         firebaseAuth = FirebaseAuth.getInstance();

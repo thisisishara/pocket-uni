@@ -1,4 +1,4 @@
-package com.example.pocketuni;
+package com.example.pocketuni.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,12 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 
+import com.example.pocketuni.R;
+import com.example.pocketuni.messenger.ChatActivity;
+import com.example.pocketuni.profile.ProfileActivity;
+import com.example.pocketuni.reminder.ReminderActivity;
+import com.example.pocketuni.results.ResultsActivity;
+import com.example.pocketuni.timeline.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavigationHelper {

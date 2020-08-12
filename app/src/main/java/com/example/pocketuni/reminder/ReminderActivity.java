@@ -1,26 +1,29 @@
-package com.example.pocketuni;
+package com.example.pocketuni.reminder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
+import com.example.pocketuni.util.BottomNavigationHelper;
+import com.example.pocketuni.R;
+import com.example.pocketuni.security.SigninActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ReminderActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private Context context = ProfileActivity.this;
-    private static final int ACTIVITY_NUMBER = 4;
+    private Context context = ReminderActivity.this;
+    private static final int ACTIVITY_NUMBER = 2;
     FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        overridePendingTransition(0,0);
+        setContentView(R.layout.activity_reminder);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -30,18 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
         }
 
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
-    }
-
-    public void signout(View view) {
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("com.example.pocketuni.ACTION_SIGNOUT");
-        sendBroadcast(broadcastIntent);
-
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),SigninActivity.class));
-        finish();
     }
 }
