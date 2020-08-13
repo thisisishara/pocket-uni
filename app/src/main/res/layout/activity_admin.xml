@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".reminder.ReminderActivity">
+    android:background="@color/darkbg"
+    tools:context=".admin.timeline.AdminActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -27,12 +28,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="92dp"
-                    android:layout_marginTop="196dp"
-                    android:text="Reminder Stuff"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="304dp"
+                    android:text="Admin Timeline Stuff"
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/buttonSignOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="384dp"
+                    android:text="Sign out"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.829"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -51,5 +64,4 @@
             app:menu="@menu/menu" />
 
     </FrameLayout>
-
 </RelativeLayout>

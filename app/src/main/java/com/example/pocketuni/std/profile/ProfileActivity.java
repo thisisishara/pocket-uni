@@ -1,4 +1,4 @@
-package com.example.pocketuni.profile;
+package com.example.pocketuni.std.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.pocketuni.util.BottomNavigationHelper;
+import com.example.pocketuni.util.StdBottomNavigationHelper;
 import com.example.pocketuni.R;
 import com.example.pocketuni.security.SigninActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        BottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
+        StdBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
     }
 
     public void signout(View view) {

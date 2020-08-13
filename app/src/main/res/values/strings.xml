@@ -17,6 +17,8 @@
     <string name="gotosignup">Don\'t have an Account yet?\nSign up now</string>
     <string name="gotosignin">Already have an Account?\nPlease sign in.</string>
     <string name="email_regex">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[mM][yY]\.[sS][lL][iI][Ii][tT]\.[Ll][Kk]</string>
+    <string name="student_email_regex">^[A-Za-z]{2}[0-9]{1,}@[mM][yY]\.[sS][lL][iI][Ii][tT]\.[Ll][Kk]</string>
+    <string name="admin_email">admin@my.sliit.lk</string>
     <string name="wrong_email_domain_error">Enter a valid SLIIT Email Address</string>
 
     <string-array name="semester">
@@ -30,7 +32,7 @@
         <item>Year 4 Semester 2</item>
     </string-array>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="organizer_title">Organizer</string>
 
 
 </resources>

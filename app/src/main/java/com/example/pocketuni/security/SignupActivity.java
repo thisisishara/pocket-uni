@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pocketuni.R;
-import com.example.pocketuni.timeline.MainActivity;
+import com.example.pocketuni.std.timeline.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -136,6 +136,7 @@ public class SignupActivity extends AppCompatActivity {
                             user.put("academic_year", year);
                             user.put("semester", semester);
                             user.put("batch", "");
+                            user.put("userType", "STDNT"); //types: ADMIN/STDNT
 
                             DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

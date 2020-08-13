@@ -5,4 +5,5 @@
     <color name="colorAccent">#FFC107</color>
     <color name="edittext_line">#FFB300</color>
     <color name="white">#FFFFFF</color>
+    <color name="darkbg">#181818</color>
 </resources>

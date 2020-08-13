@@ -8,16 +8,19 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 
 import com.example.pocketuni.R;
-import com.example.pocketuni.messenger.ChatActivity;
-import com.example.pocketuni.profile.ProfileActivity;
-import com.example.pocketuni.reminder.ReminderActivity;
-import com.example.pocketuni.results.ResultsActivity;
-import com.example.pocketuni.timeline.MainActivity;
+import com.example.pocketuni.std.messenger.ChatActivity;
+import com.example.pocketuni.std.profile.ProfileActivity;
+import com.example.pocketuni.std.organizer.OrganizerActivity;
+import com.example.pocketuni.std.results.ResultsActivity;
+import com.example.pocketuni.std.timeline.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class BottomNavigationHelper {
+public class StdBottomNavigationHelper {
 
-    private static final String TAG = "BottomNavigationViewHelper";
+    private static final String TAG = "StdBottomNavigationViewHelper";
+
 
     public static void enableNavigation (final Context context, BottomNavigationView bottomNavigationView, int ACTIVITY_NUMBER) {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,7 +35,7 @@ public class BottomNavigationHelper {
                         intent = new Intent(context, ChatActivity.class);
                         break;
                     case R.id.navigation_reminder:
-                        intent = new Intent(context, ReminderActivity.class);
+                        intent = new Intent(context, OrganizerActivity.class);
                         break;
                     case R.id.navigation_results:
                         intent = new Intent(context, ResultsActivity.class);

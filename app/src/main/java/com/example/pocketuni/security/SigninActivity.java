@@ -13,7 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pocketuni.R;
-import com.example.pocketuni.timeline.MainActivity;
+import com.example.pocketuni.admin.timeline.AdminActivity;
+import com.example.pocketuni.std.timeline.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -42,14 +43,18 @@ public class SigninActivity extends AppCompatActivity {
 
         //redirect if already logged in
         if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            if (firebaseAuth.getCurrentUser().getEmail().equals(getResources().getString(R.string.admin_email)) == true) {
+                startActivity(new Intent(getApplicationContext(), AdminActivity.class));
+            } else {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
             finish();
         }
 
         btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = txtEmail.getText().toString().trim();
+                final String email = txtEmail.getText().toString().trim();
                 String password = txtPassword.getText().toString();
 
                 if(email.matches(getResources().getString(R.string.email_regex)) == false){
@@ -74,12 +79,21 @@ public class SigninActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             showToast("SIGNED IN SUCCESSFULLY");
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                            Intent intent = null;
+
+                            if (email.equals(getResources().getString(R.string.admin_email))) {
+                                intent = new Intent(getApplicationContext(), AdminActivity.class);
+                            } else {
+                                intent = new Intent(getApplicationContext(), MainActivity.class);
+                            }
+
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             progressBar.setVisibility(View.INVISIBLE);
+
                         } else {
                             showToast("SIGN IN FAILED! " + task.getException().getMessage());
                             progressBar.setVisibility(View.INVISIBLE);

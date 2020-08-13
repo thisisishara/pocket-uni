@@ -1,4 +1,4 @@
-package com.example.pocketuni.messenger;
+package com.example.pocketuni.std.timeline;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,24 +6,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.pocketuni.util.BottomNavigationHelper;
+import com.example.pocketuni.util.StdBottomNavigationHelper;
 import com.example.pocketuni.R;
 import com.example.pocketuni.security.SigninActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ChatActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private Context context = ChatActivity.this;
-    private static final int ACTIVITY_NUMBER = 1;
+    private Context context = MainActivity.this;
+    private static final int ACTIVITY_NUMBER = 0;
     FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(0,0);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -34,7 +34,7 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        BottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
+        StdBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
 
     }
 }

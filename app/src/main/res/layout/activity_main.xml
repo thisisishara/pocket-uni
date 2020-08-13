@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#181818"
-    tools:context=".timeline.MainActivity">
+    android:background="@color/darkbg"
+    tools:context=".std.timeline.MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

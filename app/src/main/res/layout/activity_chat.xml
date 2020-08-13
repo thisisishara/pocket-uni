@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".messenger.ChatActivity">
+    android:background="@color/darkbg"
+    tools:context=".std.messenger.ChatActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -11,10 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".reminder.ReminderActivity"></activity>
-        <activity android:name=".results.ResultsActivity" />
-        <activity android:name=".messenger.ChatActivity" />
-        <activity android:name=".profile.ProfileActivity" />
+        <activity android:name=".admin.results.AdminResultsActivity"></activity>
+        <activity android:name=".admin.organizer.AdminOrganizerActivity" />
+        <activity android:name=".admin.messenger.AdminChatActivity" />
+        <activity android:name=".admin.profile.AdminProfileActivity" />
+        <activity android:name=".admin.timeline.AdminActivity" />
+        <activity android:name=".std.organizer.OrganizerActivity" />
+        <activity android:name=".std.results.ResultsActivity" />
+        <activity android:name=".std.messenger.ChatActivity" />
+        <activity android:name=".std.profile.ProfileActivity" />
         <activity android:name=".security.SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".security.SignupActivity" />
-        <activity android:name=".timeline.MainActivity">
+        <activity android:name=".std.timeline.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
