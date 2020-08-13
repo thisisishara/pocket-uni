@@ -7,6 +7,53 @@
     <string name="password_placeholder">Password</string>
     <string name="confpassword_placeholder">Confirm Password</string>
     <string name="password_hint">PocketUni Password</string>
+
+    //shamikh start
+    <string name="cumulative_credits">Cumulative \nCredits</string>
+    <string name="cumulative_grade_points">Cumulative \nGrade Points</string>
+    <string name="cumulative_gpa">Cumulative \nGPA</string>
+    <string name="cumulative_credits_d">60</string>
+    <string name="cumulative_grade_points_d">171.3</string>
+    <string name="cumulative_gpa_d">3.75</string>
+
+    <string name="ca_period_prompt">Choose CA Period</string>
+
+    <string-array name="ca_period_array">
+        <item>Jan-Jun</item>
+        <item>Jun-Dec</item>
+    </string-array>
+    //shamikh end
+
+    <string name="group1">Group 1</string>
+    <string name="group2">Group 2</string>
+    <string name="group3">Group 3</string>
+    <string name="group4">Group 4</string>
+    <string name="group5">Group 5</string>
+    <string-array name="group1">
+        <item>Item 1</item>
+    </string-array>
+    <string-array name="group2">
+        <item>Item 1</item>
+        <item>Item 2</item>
+    </string-array>
+    <string-array name="group3">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+    </string-array>
+    <string-array name="group4">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+    </string-array>
+    <string-array name="group5">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+        <item>Item 5</item>
+    </string-array>
     <string name="confpassword_hint">PocketUni Password</string>
     <string name="year_placeholder">Year</string>
     <string name="sem_placeholder">Semester</string>

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin.results.AdminResultsActivity"></activity>
+        <activity android:name=".admin.results.AdminResultsDisplay"></activity>
+        <activity android:name=".admin.results.AdminResultsActivity" />
         <activity android:name=".admin.organizer.AdminOrganizerActivity" />
         <activity android:name=".admin.messenger.AdminChatActivity" />
         <activity android:name=".admin.profile.AdminProfileActivity" />

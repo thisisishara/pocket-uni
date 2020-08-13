@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "582806379148-6hcco76gg8hiflrja6hmuas1bsqfu5ql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pocketuni",
+            "certificate_hash": "913cf6cd939d3269e3869e4f2cf6d96dc02010e1"
+          }
+        },
+        {
           "client_id": "582806379148-f0tmk9j944lolri76bm4oh73bqppgdvi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
