@@ -8,14 +8,12 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 
 import com.example.pocketuni.R;
-import com.example.pocketuni.std.messenger.ChatActivity;
-import com.example.pocketuni.std.profile.ProfileActivity;
-import com.example.pocketuni.std.organizer.OrganizerActivity;
-import com.example.pocketuni.std.results.ResultsActivity;
-import com.example.pocketuni.std.timeline.MainActivity;
+import com.example.pocketuni.messenger.std.ChatActivity;
+import com.example.pocketuni.profile.std.ProfileActivity;
+import com.example.pocketuni.organizer.std.OrganizerActivity;
+import com.example.pocketuni.results.std.ResultsActivity;
+import com.example.pocketuni.timeline.std.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class StdBottomNavigationHelper {
 
