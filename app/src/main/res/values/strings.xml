@@ -43,8 +43,19 @@
         <item>Data Science</item>
     </string-array>
 
+    <string-array name="day">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
     <!--Organizer String Resources-->
     <!--IT19069432-->
+    <!--Organizer Main Activity String Resources-->
     <string name="organizer_title">Organizer</string>
     <string name="admin_organizer_description">Add Semester Timetables, Publish Deadlines or Broadcast Notices in a snap.</string>
     <string name="std_organizer_description">Get semester timetable updates, Notices and Keep track on deadlines.</string>
@@ -57,27 +68,42 @@
     <string name="organizer_notices_header">Notices</string>
     <string name="admin_organizer_notices_description">NoticesDesc</string>
     <string name="std_organizer_notices_description">NoticesDesc</string>
-
+    <!--Organizer Timetable Activity String Resources-->
     <string name="timetable_name_common">{Timetable Name}</string>
     <string name="timetable_title">Timetables</string>
     <string name="admin_timetable_description">Manage all semester timetables quicker. Publish in realtime.</string>
     <string name="std_timetable_description">Get Timetables, Timetable Updates and set Notifications.</string>
-
+    <!--Organizer Deadlines  Activity String Resources-->
     <string name="deadlines_title">Deadlines</string>
     <string name="admin_deadlines_description">Keep undergraduates up-to-date on upcoming deadlines.</string>
     <string name="std_deadlines_description">All upcoming deadlines of your course.</string>
-
+    <!--Organizer Notices Activity String Resources-->
     <string name="notices_title">Notices</string>
     <string name="admin_notices_description">Send notices in seconds. </string>
     <string name="std_notices_description">Get notified when there are new notices and stay up-to-date.</string>
-
-    <!--Organizer dialogs-->
-    <string name="admin_add_timetable">Add Timetable</string>
+    <!--Organizer dialogs common resources-->
     <string name="dialog_close">Close</string>
     <string name="dialog_add">Add</string>
-    <string name="dialog_batch_number">Batch Number</string>
+    <string name="dialog_save">Save</string>
+    <!--Organizer dialogs add timetable dialog resources-->
+    <string name="admin_add_timetable">Add Timetable</string>
+    <string name="dialog_batch_number_hint">Batch Number</string>
     <string name="dialog_batch_number_invalid_error">An Invalid Batch Number has been Entered</string>
     <string name="dialog_batch_number_empty_error">Batch Number cannot be Empty</string>
+    <!--Organizer dialogs add time slot dialog resources-->
+    <string name="textview_start_time">Start Time:</string>
+    <string name="textview_end_time">End Time:</string>
+    <string name="dialog_add_slot_title">Add Timetable Slot</string>
+    <string name="dialog_subject_code">Subsject Code</string>
+    <string name="dialog_subject_name_hint">Subject Name (Optional)</string>
+    <string name="dialog_start_time_hint">Start Time</string>
+    <string name="dialog_end_time_hint">End Time</string>
+    <string name="dialog_lec_in_charge_hint">Lecturer In Charge (Optional)</string>
+    <!--Organizer dialogs add timetable reminder dialog resources-->
+    <string name="timetable_reminder_title">Timetable Reminder Settings</string>
+    <string name="textview_timetable_timepicker">Remind Me Before:</string>
+    <string name="reminder_dialog_description_text">Set Reminders to get timetable reminder notifications. Specify how many hours and minutes before you should be notified. Maximum allowed is 24 Hours.</string>
+    <string name="reminder_switch">Enable Reminders</string>
 
 
     <!--Timeline String Resources-->

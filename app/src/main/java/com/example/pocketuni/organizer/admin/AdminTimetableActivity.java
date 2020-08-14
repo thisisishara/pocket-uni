@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AdminTimetableActivity extends AppCompatActivity implements AddTimetableDialog.AddTimetableDialogListener {
     FloatingActionButton addTimetable;
-    TextView t1;
+    TextView t1; //temp
 
     String yearSemester;
     String course;
@@ -35,11 +35,6 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
             public void onClick(View v) {
                 //show add timetable dialog
                 showAddTimetableDialog();
-
-                //showToast(yearSemester + course + batch);
-                //if firestore success, show timetable
-                //Intent intent = new Intent(getApplicationContext(), AdminViewTimetableActivity.class);
-                //startActivity(intent);
             }
         });
     }
@@ -55,6 +50,11 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
         this.course = courseSpinner;
         this.batch = batch;
         t1.setText(yearSemester + course + batch);
+        //if firestore success, show timetable
+        //showToast(yearSemester + course + batch);
+
+        Intent intent = new Intent(getApplicationContext(), AdminViewTimetableActivity.class);
+        startActivity(intent);
     }
 
     private void showToast (String message) {
