@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="240sp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="0dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/dialogBg"
+                android:paddingBottom="10dp">
+
+                <EditText
+                    android:id="@+id/editTextBatch"
+                    android:layout_width="211dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/edittext_line"
+                    android:ems="10"
+                    android:hint="@string/dialog_batch_number"
+                    android:inputType="number"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerCourse" />
+
+                <Spinner
+                    android:id="@+id/spinnerSemester"
+                    android:layout_width="211dp"
+                    android:layout_height="41dp"
+                    android:layout_marginTop="32dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:entries="@array/semester"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerCourse"
+                    android:layout_width="211dp"
+                    android:layout_height="41dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:entries="@array/course"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerSemester" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="34dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="92dp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/editTextName"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="invisible" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

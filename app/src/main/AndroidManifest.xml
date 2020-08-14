@@ -11,15 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin.results.AdminResultsActivity"></activity>
-        <activity android:name=".admin.organizer.AdminOrganizerActivity" />
-        <activity android:name=".admin.messenger.AdminChatActivity" />
-        <activity android:name=".admin.profile.AdminProfileActivity" />
-        <activity android:name=".admin.timeline.AdminActivity" />
-        <activity android:name=".std.organizer.OrganizerActivity" />
-        <activity android:name=".std.results.ResultsActivity" />
-        <activity android:name=".std.messenger.ChatActivity" />
-        <activity android:name=".std.profile.ProfileActivity" />
+        <activity android:name=".organizer.std.ViewTimetableActivity"></activity>
+        <activity android:name=".organizer.admin.AdminViewTimetableActivity" />
+        <activity android:name=".organizer.admin.AdminNoticesActivity" />
+        <activity android:name=".organizer.admin.AdminDeadlinesActivity" />
+        <activity android:name=".organizer.admin.AdminTimetableActivity" />
+        <activity android:name=".results.admin.AdminResultsActivity" />
+        <activity android:name=".organizer.admin.AdminOrganizerActivity" />
+        <activity android:name=".messenger.admin.AdminChatActivity" />
+        <activity android:name=".profile.admin.AdminProfileActivity" />
+        <activity android:name=".timeline.admin.AdminActivity" />
+        <activity android:name=".organizer.std.OrganizerActivity" />
+        <activity android:name=".results.std.ResultsActivity" />
+        <activity android:name=".messenger.std.ChatActivity" />
+        <activity android:name=".profile.std.ProfileActivity" />
         <activity android:name=".security.SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".security.SignupActivity" />
-        <activity android:name=".std.timeline.MainActivity">
+        <activity android:name=".timeline.std.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

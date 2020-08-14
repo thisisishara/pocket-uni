@@ -1,4 +1,5 @@
 <resources>
+    <!--Sign in, Sign out String resources-->
     <string name="app_name">PocketUni</string>
     <string name="app_logo_name">PocketUni_Logo_White</string>
     <string name="username_placeholder">SLIIT Email</string>
@@ -32,7 +33,60 @@
         <item>Year 4 Semester 2</item>
     </string-array>
 
+    <string-array name="course">
+        <item>Software Engineering</item>
+        <item>Information Technology</item>
+        <item> Information Systems Engineering</item>
+        <item>Computer Systems &amp; Network</item>
+        <item>Cyber Security</item>
+        <item>Interactive Media</item>
+        <item>Data Science</item>
+    </string-array>
+
+    <!--Organizer String Resources-->
+    <!--IT19069432-->
     <string name="organizer_title">Organizer</string>
+    <string name="admin_organizer_description">Add Semester Timetables, Publish Deadlines or Broadcast Notices in a snap.</string>
+    <string name="std_organizer_description">Get semester timetable updates, Notices and Keep track on deadlines.</string>
+    <string name="organizer_timetable_header">Timetables</string>
+    <string name="admin_organizer_timetable_description">Manage Semester Timetables and send updates in realtime.</string>
+    <string name="std_organizer_timetable_description">Manage Semester Timetables and send updates in realtime.</string>
+    <string name="organizer_deadlines_header">Deadlines</string>
+    <string name="admin_organizer_deadlines_description">DeadlinesDesc</string>
+    <string name="std_organizer_deadlines_description">DeadlinesDesc</string>
+    <string name="organizer_notices_header">Notices</string>
+    <string name="admin_organizer_notices_description">NoticesDesc</string>
+    <string name="std_organizer_notices_description">NoticesDesc</string>
+
+    <string name="timetable_name_common">{Timetable Name}</string>
+    <string name="timetable_title">Timetables</string>
+    <string name="admin_timetable_description">Manage all semester timetables quicker. Publish in realtime.</string>
+    <string name="std_timetable_description">Get Timetables, Timetable Updates and set Notifications.</string>
+
+    <string name="deadlines_title">Deadlines</string>
+    <string name="admin_deadlines_description">Keep undergraduates up-to-date on upcoming deadlines.</string>
+    <string name="std_deadlines_description">All upcoming deadlines of your course.</string>
+
+    <string name="notices_title">Notices</string>
+    <string name="admin_notices_description">Send notices in seconds. </string>
+    <string name="std_notices_description">Get notified when there are new notices and stay up-to-date.</string>
+
+    <!--Organizer dialogs-->
+    <string name="admin_add_timetable">Add Timetable</string>
+    <string name="dialog_close">Close</string>
+    <string name="dialog_add">Add</string>
+    <string name="dialog_batch_number">Batch Number</string>
+    <string name="dialog_batch_number_invalid_error">An Invalid Batch Number has been Entered</string>
+    <string name="dialog_batch_number_empty_error">Batch Number cannot be Empty</string>
+
+
+    <!--Timeline String Resources-->
+
+    <!--Messenger String Resources-->
+
+    <!--Exams/Results String Resources-->
+
+    <!--Profile String Resources-->
 
 
 </resources>

@@ -8,16 +8,12 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 
 import com.example.pocketuni.R;
-import com.example.pocketuni.admin.messenger.AdminChatActivity;
-import com.example.pocketuni.admin.profile.AdminProfileActivity;
-import com.example.pocketuni.admin.organizer.AdminOrganizerActivity;
-import com.example.pocketuni.admin.results.AdminResultsActivity;
-import com.example.pocketuni.admin.timeline.AdminActivity;
-import com.example.pocketuni.std.messenger.ChatActivity;
-import com.example.pocketuni.std.profile.ProfileActivity;
-import com.example.pocketuni.std.organizer.OrganizerActivity;
-import com.example.pocketuni.std.results.ResultsActivity;
-import com.example.pocketuni.std.timeline.MainActivity;
+import com.example.pocketuni.messenger.admin.AdminChatActivity;
+import com.example.pocketuni.profile.admin.AdminProfileActivity;
+import com.example.pocketuni.organizer.admin.AdminOrganizerActivity;
+import com.example.pocketuni.results.admin.AdminResultsActivity;
+import com.example.pocketuni.timeline.admin.AdminActivity;
+import com.example.pocketuni.organizer.std.OrganizerActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminBottomNavigationHelper {
@@ -37,7 +33,7 @@ public class AdminBottomNavigationHelper {
                         intent = new Intent(context, AdminChatActivity.class);
                         break;
                     case R.id.navigation_reminder:
-                        intent = new Intent(context, com.example.pocketuni.admin.organizer.AdminOrganizerActivity.class);
+                        intent = new Intent(context, AdminOrganizerActivity.class);
                         break;
                     case R.id.navigation_results:
                         intent = new Intent(context, AdminResultsActivity.class);
