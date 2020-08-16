@@ -1,63 +1,606 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkbg"
-    tools:context=".messenger.std.ChatActivity">
+    android:background="#474444"
+    android:clickable="false">
 
-    <ImageView
-        android:id="@+id/organizer_background"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg" />
+        android:layout_height="119dp">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container"
-        >
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="#FDAB63"
 
-        <androidx.core.widget.NestedScrollView
+            android:paddingEnd="20px"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/Logo"
+                android:layout_width="200dp"
+                android:layout_height="108dp"
+                android:layout_gravity="left"
+                android:background="@drawable/logotextblack" />
+
+            <ImageView
+                android:id="@+id/chatSettings"
+                android:layout_width="60dp"
+                android:layout_height="59dp"
+                android:layout_gravity="center|right"
+                android:layout_marginBottom="15px"
+                android:background="@drawable/settings_chat"
+                android:clickable="true"
+                android:paddingRight="20px" />
+
+            <ImageView
+                android:id="@+id/addChat"
+                android:layout_width="69dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center|right"
+                android:layout_marginRight="205px"
+                android:layout_marginBottom="0px"
+                android:adjustViewBounds="false"
+                android:background="@drawable/add_chat"
+                android:clickable="true" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="56dp"
-            android:fillViewport="true">
+            android:background="#000000">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="56dp">
+        </FrameLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="92dp"
-                    android:layout_marginTop="196dp"
-                    android:text="Chat Stuff"
-                    android:textSize="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="739dp"
+        android:background="#080808"
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        //bottom navigation
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
-            app:menu="@menu/menu" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </FrameLayout>
+            <SearchView
+                android:id="@+id/simpleSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="#74000000"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search..." />
 
-</RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="556dp"
+        android:layout_gravity="bottom|center_vertical|end"
+        android:animationCache="false"
+        android:background="#232222"
+        android:isScrollContainer="true"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <!--user 1 card-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profile_image1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/fm2"
+            android:paddingLeft="40px"
+            app:layout_constraintBottom_toTopOf="@+id/hr1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/ooStatus1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/notifred"
+                android:paddingLeft="40px"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardForegroundColor="#FFFFFF"
+                app:checkedIconTint="#FFFFFF"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/star1"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/star"
+            android:paddingLeft="40px"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardForegroundColor="#FFFFFF"
+            app:checkedIconTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="6dp">
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/userC1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/chat_user_name_1" />
+
+        <TextView
+            android:id="@+id/message1"
+            android:layout_width="55dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image1"
+            app:layout_constraintTop_toBottomOf="@+id/userC1"
+            tools:text="@string/message_1" />
+
+        <TextView
+            android:id="@+id/time1"
+            android:layout_width="62dp"
+            android:layout_height="26dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/hr1"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/message_time_1" />
+
+        <View
+            android:id="@+id/hr1"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="111dp" />
+        <!--user 1 card ends-->
+        <!--user 2 card-->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/star2"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="9dp"
+            android:background="@drawable/star"
+            android:paddingLeft="40px"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardForegroundColor="#FFFFFF"
+            app:checkedIconTint="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/messageCount2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hr1"
+            tools:ignore="MissingConstraints">
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/UserC2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image2"
+            app:layout_constraintTop_toBottomOf="@+id/hr1"
+            tools:text="@string/chat_user_name_2" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profile_image2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/fm1"
+            android:paddingLeft="40px"
+            app:layout_constraintBottom_toTopOf="@+id/hr2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hr1"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/ooStatus2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/notifgreen"
+                android:paddingLeft="40px"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardForegroundColor="#FFFFFF"
+                app:checkedIconTint="#FFFFFF"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/time2"
+            android:layout_width="65dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="5dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/hr2"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/message_time_2" />
+
+        <TextView
+            android:id="@+id/message2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image2"
+            app:layout_constraintTop_toBottomOf="@+id/UserC2"
+            tools:text="@string/message_2" />
+
+        <View
+            android:id="@+id/hr2"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="215dp" />
+
+        <!--user 2 card ends-->
+
+        <!--user 3 card-->
+
+        <TextView
+            android:id="@+id/messageCount2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="#FD7C07"
+            android:text="@string/message_count_1"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/time2"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/userC3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image3"
+            app:layout_constraintTop_toBottomOf="@+id/hr2"
+            tools:text="@string/chat_user_name_3" />
+
+        <TextView
+            android:id="@+id/message3"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image3"
+            app:layout_constraintTop_toBottomOf="@+id/userC3"
+            tools:text="@string/message_3" />
+
+        <TextView
+            android:id="@+id/messageCount1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="12dp"
+            android:background="#FD7C07"
+            android:text="@string/message_count_2"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hr2" />
+
+        <TextView
+            android:id="@+id/time3"
+            android:layout_width="66dp"
+            android:layout_height="25dp"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/message_time_3"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/hr3"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profile_image3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/m4"
+            android:paddingLeft="40px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hr2"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/ooStatus3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/notifred"
+                android:paddingLeft="40px"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardForegroundColor="#FFFFFF"
+                app:checkedIconTint="#FFFFFF"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="51dp"
+                tools:layout_editor_absoluteY="210dp">
+
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:id="@+id/hr3"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="319dp" />
+
+        <!--user 3 card ends-->
+
+        <!--user 4 card-->
+
+        <TextView
+            android:id="@+id/userC4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image4"
+            app:layout_constraintTop_toBottomOf="@+id/hr3"
+            tools:text="@string/chat_user_name_4" />
+
+        <TextView
+            android:id="@+id/message4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image4"
+            app:layout_constraintTop_toBottomOf="@+id/userC4"
+            tools:text="@string/message_4" />
+
+        <TextView
+            android:id="@+id/time4"
+            android:layout_width="60dp"
+            android:layout_height="24dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/hr4"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/message_time_4" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profile_image4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/m3"
+            android:paddingLeft="40px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hr3"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/ooStatus4"
+                android:layout_width="60dp"
+                android:layout_height="64dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/notifgreen"
+                android:paddingLeft="40px"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardForegroundColor="#FFFFFF"
+                app:checkedIconTint="#FFFFFF"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="35dp"
+                tools:layout_editor_absoluteY="335dp">
+
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/messageCount3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="12dp"
+            android:background="#FD7C07"
+            android:text="@string/message_count_3"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hr3" />
+
+        <View
+            android:id="@+id/hr4"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="424dp" />
+
+        <!--user 4 card ends-->
+
+        <!--user 5 card-->
+
+        <TextView
+            android:id="@+id/time5"
+            android:layout_width="58dp"
+            android:layout_height="23dp"
+            android:layout_marginBottom="1dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/hr5"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/message_time_5" />
+
+        <TextView
+            android:id="@+id/message5"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#8E8E8E"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image5"
+            app:layout_constraintTop_toBottomOf="@+id/userC5"
+            tools:text="@string/message_5" />
+
+        <TextView
+            android:id="@+id/userC5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/profile_image5"
+            app:layout_constraintTop_toBottomOf="@+id/hr4"
+            tools:text="@string/chat_user_name_5" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profile_image5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/fm5"
+            android:paddingLeft="40px"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="451dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/ooStatus5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/notifred"
+                android:paddingLeft="40px"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardForegroundColor="#FFFFFF"
+                app:checkedIconTint="#FFFFFF"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:id="@+id/hr5"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="v?android:attr/listDivider?android:attr/listDivider?android:attr/listDivider"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-2dp"
+            tools:layout_editor_absoluteY="539dp" />
+        <!--user 5 card ends-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

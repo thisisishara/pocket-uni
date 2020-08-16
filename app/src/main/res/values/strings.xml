@@ -108,9 +108,65 @@
 
     <!--Timeline String Resources-->
 
+
+    <!--IT19075754-->
+    <!--Jayasinghe D.T-->
     <!--Messenger String Resources-->
 
+    <string name="chat_user_name_1">Michel Kingen</string>
+    <string name="message_1">🙌😁</string>
+    <string name="message_time_1">9:41pm</string>
+    <string name="chat_user_name_2">Jane Smith</string>
+    <string name="message_2">Can you send me the note?</string>
+    <string name="message_time_2">10:32pm</string>
+    <string name="message_count_1">2</string>
+    <string name="chat_user_name_3">Rovy Ronaldo</string>
+    <string name="message_3">yes</string>
+    <string name="message_time_3">10:31pm</string>
+    <string name="message_count_2">4</string>
+    <string name="chat_user_name_4">Sky Tenson</string>
+    <string name="message_4">Really, that’s awesome</string>
+    <string name="message_time_4">9:46pm</string>
+    <string name="message_count_3">1</string>
+    <string name="chat_user_name_5">Selina Mozon</string>
+    <string name="message_5">😊🤝</string>
+    <string name="message_time_5">5:27pm</string>
+    <string name="chat_user_name_6">Brent Logel</string>
+    <string name="chat_user_name_7">Tara Mandigon</string>
+    <string name="chat_user_name_8">Will Hooden</string>
+    <string name="chat_user_name_9">Lele Krish</string>
+
+    <string name="missed_call">missed call</string>
+    <string name="incoming_call">incoming call</string>
+    <string name="outgoing_call">outgoing call</string>
+
+    <string name="chat_title">Chats</string>
+    <string name="chats_search">Search Chats</string>
+    <string name="default_chat_sender1">John Doe</string>
+    <string name="default_chat_preview1">Hey I got the results this week. How a…</string>
+    <string name="default_chat_sender2">Alison White</string>
+    <string name="default_chat_preview2">Yeah..the lecture is starting at…</string>
+    <string name="default_chat_sender3">Hannah Baker</string>
+    <string name="default_chat_preview3">No new tapes!</string>
+    <string name="default_chat_sender4">Clay</string>
+    <string name="default_chat_preview4">Sounds Good.</string>
+    <string name="message_online_status">Online</string>
+    <string name="message_typing">Typing…</string>
+    <string name="sample_incoming_msg">Hey there.</string>
+    <string name="sample_incoming_msg2">I won\'t be able to come today.</string>
+    <string name="sample_incoming_msg3">Oh its fine. I can send you the notes later. you can see new deadlines on PocketUni anyways. awesome right? </string>
+    <string name="delete_msg_confirmation_message">Delete the selected Message from\nJohn Doe?</string>
+    <string name="delete_chat_confirmation_message">Delete the selected chat along with all messages from <b>John Doe?</b></string>
+    <string name="dialog_delete_chat_title">Delete Chat</string>
+    <string name="dialog_delete_chat">Delete Chat</string>
+    <string name="dialog_delete_chat_success_msg">Chat Deleted</string>
+    <string name="dialog_delete_msg_title">Delete Message</string>
+    <string name="dialog_delete_msg">Delete Message</string>
+    <string name="dialog_delete_msg_success_msg">Message Message</string>
+
+
     <!--Exams/Results String Resources-->
+
 
     <!--Profile String Resources-->
 

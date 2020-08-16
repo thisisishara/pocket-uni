@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="#FDAB63"
+
+            android:paddingEnd="20px"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/Logo"
+                android:layout_width="200dp"
+                android:layout_height="108dp"
+                android:layout_gravity="left"
+                android:background="@drawable/logotextblack" />
+
+            <ImageView
+                android:id="@+id/addCall"
+                android:layout_width="50dp"
+                android:layout_height="59dp"
+                android:layout_gravity="center|right"
+                android:layout_marginRight="6px"
+                android:layout_marginBottom="0px"
+                android:background="@drawable/add_call"
+                android:clickable="true"
+                android:paddingRight="24px" />
+
+            <ImageView
+                android:id="@+id/addVideoCall"
+                android:layout_width="69dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center|right"
+                android:layout_marginRight="180px"
+                android:layout_marginBottom="0px"
+                android:adjustViewBounds="false"
+                android:background="@drawable/add_video_call"
+                android:clickable="true" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000">
+
+        </FrameLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="391dp"
+        android:layout_height="592dp"
+        android:background="#191919"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_image1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/fm1"
+                android:paddingLeft="40px"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="11dp">
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_image2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/fm1"
+                android:paddingLeft="40px"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="107dp">
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_image3"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="23dp"
+                android:background="@drawable/m1"
+                android:paddingLeft="40px"
+                app:layout_constraintEnd_toStartOf="@+id/callmessage3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hrd2"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/call_time1"
+                android:layout_width="0dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="41dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="44dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FB0006"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/hrd1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/message_time_2" />
+
+            <TextView
+                android:id="@+id/call_time2"
+                android:layout_width="0dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="43dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#8BC34A"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/hrd2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hrd1"
+                tools:text="@string/message_time_3" />
+
+            <TextView
+                android:id="@+id/call_time3"
+                android:layout_width="0dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="40dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FF0000"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/hrd3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hrd2"
+                tools:text="@string/message_time_4" />
+
+            <TextView
+                android:id="@+id/call_time4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="43dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#03A9F4"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/hrd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hrd3"
+                tools:text="@string/message_time_1" />
+
+            <TextView
+                android:id="@+id/call_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="53dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FF0000"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hrd"
+                tools:text="@string/message_time_5" />
+
+            <TextView
+                android:id="@+id/callmessage1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FB0006"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/profile_image1"
+                app:layout_constraintTop_toBottomOf="@+id/UserCall1"
+                tools:text="@string/missed_call" />
+
+            <TextView
+                android:id="@+id/callmessage2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#8BC34A"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/profile_image2"
+                app:layout_constraintTop_toBottomOf="@+id/UserCall2"
+                tools:text="@string/incoming_call" />
+
+            <TextView
+                android:id="@+id/callmessage3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FF0000"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/profile_image3"
+                app:layout_constraintTop_toBottomOf="@+id/UserCall3"
+                tools:text="@string/missed_call" />
+
+            <TextView
+                android:id="@+id/callmessage4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#03A9F4"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/profile_image4"
+                app:layout_constraintTop_toBottomOf="@+id/UserCall4"
+                tools:text="@string/outgoing_call" />
+
+            <TextView
+                android:id="@+id/callmessage5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FF0000"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/profile_image5"
+                app:layout_constraintTop_toBottomOf="@+id/UserCall5"
+                tools:text="@string/missed_call" />
+
+            <TextView
+                android:id="@+id/UserCall1"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="20dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FF0000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/message1"
+                app:layout_constraintStart_toEndOf="@+id/profile_image1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/chat_user_name_2" />
+
+            <TextView
+                android:id="@+id/UserCall2"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="27dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#8BC34A"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/callmessage2"
+                app:layout_constraintStart_toEndOf="@+id/profile_image2"
+                app:layout_constraintTop_toBottomOf="@+id/hrd1"
+                tools:text="@string/chat_user_name_2" />
+
+            <TextView
+                android:id="@+id/UserCall3"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="27dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FB0006"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/callmessage3"
+                app:layout_constraintStart_toEndOf="@+id/profile_image3"
+                app:layout_constraintTop_toBottomOf="@+id/hrd2"
+                tools:text="@string/chat_user_name_6" />
+
+            <TextView
+                android:id="@+id/UserCall4"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginBottom="7dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#2196F3"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/callmessage4"
+                app:layout_constraintStart_toEndOf="@+id/profile_image4"
+                app:layout_constraintTop_toBottomOf="@+id/hrd3"
+                tools:text="@string/chat_user_name_7" />
+
+            <TextView
+                android:id="@+id/UserCall5"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginBottom="6dp"
+                android:lineSpacingExtra="8sp"
+                android:textColor="#FF0000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/callmessage5"
+                app:layout_constraintStart_toEndOf="@+id/profile_image5"
+                app:layout_constraintTop_toBottomOf="@+id/hrd"
+                tools:text="@string/chat_user_name_8" />
+
+            <View
+                android:id="@+id/hrd1"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="13dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/profile_image2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image1" />
+
+            <View
+                android:id="@+id/hrd2"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
+
+            <View
+                android:id="@+id/hrd3"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="13dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/profile_image4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
+
+            <View
+                android:id="@+id/hrd"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="15dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/profile_image5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_image4"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/fm4"
+                android:paddingLeft="40px"
+                app:layout_constraintBottom_toTopOf="@+id/hrd"
+                app:layout_constraintEnd_toStartOf="@+id/callmessage4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hrd3"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_image5"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="19dp"
+                android:background="@drawable/m2"
+                android:paddingLeft="40px"
+                app:layout_constraintBottom_toTopOf="@+id/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/callsOIcon"
+                android:layout_width="220dp"
+                android:layout_height="39dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/calls_orange"
+                android:paddingLeft="40px"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/chatsAIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/chatsAIcon"
+                android:layout_width="220dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/chats_ash"
+                android:paddingLeft="40px"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="389dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="1dp"
+                android:background="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/divider3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="2dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="546dp"
+                android:background="#FFEAEA"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/callsOIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
