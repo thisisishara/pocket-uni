@@ -21,6 +21,7 @@
         <activity android:name=".messenger.admin.AdminChatActivity" />
         <activity android:name=".profile.admin.AdminProfileActivity" />
         <activity android:name=".timeline.admin.AdminActivity" />
+        <activity android:name=".timeline.AddPostActivity" />
         <activity android:name=".organizer.std.OrganizerActivity" />
         <activity android:name=".results.std.ResultsActivity" />
         <activity android:name=".messenger.std.ChatActivity" />

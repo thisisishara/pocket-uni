@@ -107,6 +107,25 @@
 
 
     <!--Timeline String Resources-->
+    <string name="timeline_search">Search Posts</string>
+    <string name="timeline_title">Timeline</string>
+    <string name="timeline_notices">General Notices</string>
+    <string name="timeline_posts">Posts</string>
+    <string name="default_post_owner">John Doe</string>
+    <string name="default_post_time">0 hours ago</string>
+    <string name="default_post_itnumber">IT19000000</string>
+    <string name="post_delete">Delete</string>
+    <string name="post_comment">Comment...</string>
+    <string name="default_post_content">Post Contents</string>
+    <string name="default_username">Me</string>
+    <string name="post_edit">Edit</string>
+    <string name="delete_post_dialog_title">Delete Post</string>
+    <string name="dialog_delete">Delete</string>
+    <string name="delete_confirmation_message">Are you sure you want to delete this post?\n You cannot recover a deleted post.</string>
+    <string name="post_delete_confirmation_toast">Post Deleted</string>
+    <string name="add_post_confirmation_toast">Post Added</string>
+    <string name="add_post_button_text">Add Post</string>
+    <string name="cancel_post_button_text">Cancel</string>
 
     <!--Messenger String Resources-->
 
