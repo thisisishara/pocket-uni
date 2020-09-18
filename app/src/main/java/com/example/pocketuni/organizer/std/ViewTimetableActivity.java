@@ -38,13 +38,13 @@ public class ViewTimetableActivity extends AppCompatActivity implements Timetabl
         viewPager = findViewById(R.id.timetableViewPager);
 
         TimetablePagerAdapter timetablePagerAdapter = new TimetablePagerAdapter(getSupportFragmentManager());
-        timetablePagerAdapter.addFragment(new MondayFragment(), "MON");
-        timetablePagerAdapter.addFragment(new TuesdayFragment(), "TUE");
-        timetablePagerAdapter.addFragment(new WednesdayFragment(), "WED");
-        timetablePagerAdapter.addFragment(new ThursdayFragment(), "THU");
-        timetablePagerAdapter.addFragment(new FridayFragment(), "FRI");
-        timetablePagerAdapter.addFragment(new SaturdayFragment(), "SAT");
-        timetablePagerAdapter.addFragment(new SundayFragment(), "SUN");
+        timetablePagerAdapter.addFragment(new MondayFragment(null), "MON");
+        timetablePagerAdapter.addFragment(new TuesdayFragment(null), "TUE");
+        timetablePagerAdapter.addFragment(new WednesdayFragment(null), "WED");
+        timetablePagerAdapter.addFragment(new ThursdayFragment(null), "THU");
+        timetablePagerAdapter.addFragment(new FridayFragment(null), "FRI");
+        timetablePagerAdapter.addFragment(new SaturdayFragment(null), "SAT");
+        timetablePagerAdapter.addFragment(new SundayFragment(null), "SUN");
 
         viewPager.setAdapter(timetablePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

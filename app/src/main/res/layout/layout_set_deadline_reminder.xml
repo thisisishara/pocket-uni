@@ -105,7 +105,7 @@
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/edittext_line"
                     android:ems="10"
-                    android:hint="@string/dialog_lec_in_charge_hint"
+                    android:hint="@string/dialog_lec_hint"
                     android:inputType="text"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
                     android:textColorHint="@color/colorPrimaryDark"

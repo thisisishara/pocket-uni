@@ -1,7 +1,6 @@
 package com.example.pocketuni.organizer.admin;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +21,7 @@ import com.example.pocketuni.model.CurrentUser;
 import com.example.pocketuni.model.Timetable;
 import com.example.pocketuni.model.TimetableItem;
 import com.example.pocketuni.organizer.common.TimetableListAdapter;
+import com.example.pocketuni.organizer.common.TimetableSlotListAdapter;
 import com.example.pocketuni.security.SigninActivity;
 import com.example.pocketuni.timeline.std.MainActivity;
 import com.example.pocketuni.util.StdBottomNavigationHelper;
@@ -33,7 +33,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -45,16 +47,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 public class AdminTimetableActivity extends AppCompatActivity implements AddTimetableDialog.AddTimetableDialogListener {
     private FloatingActionButton addTimetable;
     private TextView textViewInfo;
     private RecyclerView recyclerViewTimetables;
-    private String yearSemester;
-    private String course;
-    private String batch;
-    private String year;
-    private String semester;
+    private String yearSemester, course, batch, year, semester;
     private FirebaseAuth firebaseAuth;
+    private List<Timetable> timetables = new ArrayList<Timetable>();
+    private TimetableListAdapter timetableListAdapter;
     private FirebaseFirestore firebaseFirestore;
 
     @Override
@@ -71,7 +73,8 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
         addTimetable = findViewById(R.id.addTimetablesFloatingActionButton);
         textViewInfo = findViewById(R.id.textView);
         recyclerViewTimetables = findViewById(R.id.timetablesRecyclerView);
-        recyclerViewTimetables.setVisibility(View.GONE);
+        recyclerViewTimetables.hasFixedSize();
+        recyclerViewTimetables.setLayoutManager(new LinearLayoutManager(AdminTimetableActivity.this));
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -127,7 +130,7 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
                 }
                 else{
                     documentReference.set(newTimetable).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        private static final String TAG = "ADDTIMETABLE";
+                        private static final String TAG = "ADD_TIMETABLE";
 
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -197,28 +200,35 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
     private void getAvailableTimeTables(){
         //show currently available timetables
         CollectionReference collectionReference = firebaseFirestore.collection("timetables");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        collectionReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            private static final String TAG = "GET_ALL_TIMETABLE";
+
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if(!queryDocumentSnapshots.isEmpty()) {
+            public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
+
+                if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
+                    Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
                     textViewInfo.setText(getResources().getString(R.string.admin_timetable_description));
                     recyclerViewTimetables.setVisibility(View.VISIBLE);
-
-                    List<Timetable> timetables = new ArrayList<Timetable>();
+                    timetables.clear();
 
                     for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                        //putting into the recycler view
+                        //putting into a list of slots
                         Timetable timetable = documentSnapshot.toObject(Timetable.class);
                         timetables.add(timetable);
+
+                        timetableListAdapter = new TimetableListAdapter(AdminTimetableActivity.this, timetables);
+                        recyclerViewTimetables.setAdapter(timetableListAdapter);
                     }
 
-                    TimetableListAdapter timetableListAdapter = new TimetableListAdapter(AdminTimetableActivity.this, timetables);
-                    recyclerViewTimetables.setAdapter(timetableListAdapter);
-                    recyclerViewTimetables.setLayoutManager(new LinearLayoutManager(AdminTimetableActivity.this));
-
                 } else {
+                    Log.d(TAG, "Current data: null");
                     textViewInfo.setText(getResources().getString(R.string.admin_timetable_description_error));
-                    showToast("ERROR OCCURRED WHILE GETTING TIMETABLES.");
+                    showToast("NO TIMETABLES TO SHOW.");
                 }
             }
         });

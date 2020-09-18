@@ -39,8 +39,8 @@
                     android:inputType="text"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
                     android:textColorHint="@color/colorPrimaryDark"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextSubjectCode"
+                    app:layout_constraintStart_toStartOf="@+id/editTextSubjectCode"
                     app:layout_constraintTop_toBottomOf="@+id/editTextSubjectCode" />
 
                 <ProgressBar
@@ -78,14 +78,30 @@
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/edittext_line"
                     android:ems="10"
-                    android:hint="@string/dialog_lec_in_charge_hint"
+                    android:hint="@string/dialog_lec_hint"
                     android:inputType="text"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
                     android:textColorHint="@color/colorPrimaryDark"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextSubjectName"
                     app:layout_constraintHorizontal_bias="0.503"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/editTextSubjectName"
                     app:layout_constraintTop_toBottomOf="@+id/editTextSubjectName" />
+
+                <EditText
+                    android:id="@+id/editTextLocation"
+                    android:layout_width="254dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/edittext_line"
+                    android:ems="10"
+                    android:hint="@string/dialog_venue_hint"
+                    android:inputType="textFilter"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextLecturerInCharge"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/editTextLecturerInCharge"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextLecturerInCharge" />
 
                 <Spinner
                     android:id="@+id/spinnerDay"
@@ -95,10 +111,10 @@
                     android:backgroundTint="@color/colorPrimaryDark"
                     android:entries="@array/day"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextLocation"
                     app:layout_constraintHorizontal_bias="0.503"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextLecturerInCharge" />
+                    app:layout_constraintStart_toStartOf="@+id/editTextLocation"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
 
                 <TimePicker
                     android:id="@+id/startTimePicker"
@@ -126,8 +142,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="@string/textview_start_time"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/spinnerDay"
+                    app:layout_constraintStart_toStartOf="@+id/spinnerDay"
                     app:layout_constraintTop_toBottomOf="@+id/spinnerDay" />
 
                 <TextView

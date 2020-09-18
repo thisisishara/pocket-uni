@@ -73,6 +73,7 @@
     <string name="timetable_title">Timetables</string>
     <string name="admin_timetable_description">Manage all semester timetables quicker. Publish in realtime.</string>
     <string name="admin_timetable_description_error">There aren\'t any timetables available yet.</string>
+    <string name="admin_timetableslot_description_error">There aren\'t any timetables slots available for this timetable yet.</string>
     <string name="std_timetable_description">Get Timetables, Timetable Updates and set Notifications.</string>
     <!--Organizer Deadlines  Activity String Resources-->
     <string name="deadlines_title">Deadlines</string>
@@ -99,7 +100,8 @@
     <string name="dialog_subject_name_hint">Subject Name (Optional)</string>
     <string name="dialog_start_time_hint">Start Time</string>
     <string name="dialog_end_time_hint">End Time</string>
-    <string name="dialog_lec_in_charge_hint">Lecturer In Charge (Optional)</string>
+    <string name="dialog_lec_hint">Lecturer (Optional)</string>
+    <string name="dialog_venue_hint">Venue</string>
     <!--Organizer dialogs add timetable reminder dialog resources-->
     <string name="timetable_reminder_title">Timetable Reminder Settings</string>
     <string name="textview_timetable_timepicker">Remind Me Before:</string>
@@ -127,6 +129,9 @@
     <string name="add_post_confirmation_toast">Post Added</string>
     <string name="add_post_button_text">Add Post</string>
     <string name="cancel_post_button_text">Cancel</string>
+    <string name="timetableslots_error_text">Timetable Error Viewer</string>
+    <string name="headerimage_content_description">HeaderImage</string>
+    <string name="viewtimetable_course">Timetable Details</string>
 
     <!--Messenger String Resources-->
 

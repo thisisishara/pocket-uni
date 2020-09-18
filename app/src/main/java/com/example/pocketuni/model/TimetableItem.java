@@ -2,49 +2,34 @@ package com.example.pocketuni.model;
 
 import com.example.pocketuni.util.DayEnum;
 
+import java.util.Date;
+
 public class TimetableItem {
-    String timetableName;
-    String itemId; //code+time
-    String subjectCode;
-    String subjectName;
-    String startingTime;
+    String day;
+    Date endingDateTime;
     String endingTime;
-    DayEnum day;
+    String itemId; //code+day+time
     String lecturerInCharge;
     String location;
+    Date startingDateTime;
+    String startingTime;
+    String subjectCode;
+    String subjectName;
 
     public TimetableItem() {
     }
 
-    public TimetableItem(String itemId, String subjectCode, String subjectName, String startingTime, String endingTime, DayEnum day, String lecturerInCharge, String location) {
+    public TimetableItem(String day, Date endingDateTime, String endingTime, String itemId, String lecturerInCharge, String location, Date startingDateTime, String startingTime, String subjectCode, String subjectName) {
+        this.day = day;
+        this.endingDateTime = endingDateTime;
+        this.endingTime = endingTime;
         this.itemId = itemId;
+        this.lecturerInCharge = lecturerInCharge;
+        this.location = location;
+        this.startingDateTime = startingDateTime;
+        this.startingTime = startingTime;
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
-        this.startingTime = startingTime;
-        this.endingTime = endingTime;
-        this.day = day;
-        this.lecturerInCharge = lecturerInCharge;
-        this.location=location;
-    }
-
-    public TimetableItem(String timetableName, String itemId, String subjectCode, String subjectName, String startingTime, String endingTime, DayEnum day, String lecturerInCharge, String location) {
-        this.timetableName = timetableName;
-        this.itemId = itemId;
-        this.subjectCode = subjectCode;
-        this.subjectName = subjectName;
-        this.startingTime = startingTime;
-        this.endingTime = endingTime;
-        this.day = day;
-        this.lecturerInCharge = lecturerInCharge;
-        this.location=location;
-    }
-
-    public String getTimetableName() {
-        return timetableName;
-    }
-
-    public void setTimetableName(String timetableName) {
-        this.timetableName = timetableName;
     }
 
     public String getItemId() {
@@ -87,11 +72,11 @@ public class TimetableItem {
         this.endingTime = endingTime;
     }
 
-    public DayEnum getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(DayEnum day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
@@ -109,5 +94,21 @@ public class TimetableItem {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Date getStartingDateTime() {
+        return startingDateTime;
+    }
+
+    public void setStartingDateTime(Date startingDateTime) {
+        this.startingDateTime = startingDateTime;
+    }
+
+    public Date getEndingDateTime() {
+        return endingDateTime;
+    }
+
+    public void setEndingDateTime(Date endingDateTime) {
+        this.endingDateTime = endingDateTime;
     }
 }

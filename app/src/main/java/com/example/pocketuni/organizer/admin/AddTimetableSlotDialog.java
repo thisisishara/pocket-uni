@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pocketuni.R;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static android.widget.Toast.makeText;
@@ -26,9 +27,9 @@ import static android.widget.Toast.makeText;
 public class AddTimetableSlotDialog extends AppCompatDialogFragment {
 
     private Spinner daySpinner;
-    private EditText courseCodeEditText, courseNameEditText,  lecInChargeEditText;
+    private EditText courseCodeEditText, courseNameEditText,  lecInChargeEditText, locationEditText;
     TimePicker startTimePicker, endTimePicker;
-    String courseCode, courseName, lecturerInCharge, day ,startTimeString, endTimeString;
+    String courseCode, courseName, lecturerInCharge, day, location, startTimeString12H, endTimeString12H;
     Date startTime, endTime;
 
     private AddTimetableSlotDialogListener addTimetableSlotDialogListener;
@@ -65,6 +66,7 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
         startTimePicker.setIs24HourView(true);
         endTimePicker = view.findViewById(R.id.endTimePicker);
         endTimePicker.setIs24HourView(true);
+        locationEditText = view.findViewById(R.id.editTextLocation);
 
         return builder.create();
     }
@@ -80,6 +82,17 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
                 courseName = courseNameEditText.getText().toString().trim();
                 lecturerInCharge = lecInChargeEditText.getText().toString().trim();
                 day = daySpinner.getSelectedItem().toString().trim();
+                location = locationEditText.getText().toString().trim();
+
+                if(courseCode.isEmpty()){
+                    showToast("MUST ENTER THE COURSE CODE");
+                    return;
+                }
+
+                if(location.isEmpty()){
+                    showToast("MUST ENTER A VENUE");
+                    return;
+                }
 
                 //getStartAndEndTime
                 int stHour, stMinute, edHour, edMinute;
@@ -97,6 +110,24 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
                     edHour = endTimePicker.getCurrentHour();
                     edMinute = endTimePicker.getCurrentMinute();
                 }
+
+                //setting dates
+                Calendar startTimeCalendar = Calendar.getInstance();
+                Calendar endTimeCalendar = Calendar.getInstance();
+
+                startTimeCalendar.set(Calendar.HOUR_OF_DAY,stHour);
+                startTimeCalendar.set(Calendar.MINUTE,stMinute);
+                startTimeCalendar.set(Calendar.SECOND,0);
+                startTimeCalendar.set(Calendar.MILLISECOND,0);
+                endTimeCalendar.set(Calendar.HOUR_OF_DAY,edHour);
+                endTimeCalendar.set(Calendar.MINUTE,edMinute);
+                endTimeCalendar.set(Calendar.SECOND,0);
+                endTimeCalendar.set(Calendar.MILLISECOND,0);
+
+                startTime = startTimeCalendar.getTime();
+                endTime = endTimeCalendar.getTime();
+
+                //setting time strings 12H
                 if(stHour > 12) {
                     stam_pm = "PM";
                     stHour = stHour - 12;
@@ -115,8 +146,8 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
                     edam_pm="AM";
                 }
 
-                startTimeString = stHour+":"+stMinute+":"+stam_pm;
-                endTimeString = edHour+":"+edMinute+":"+edam_pm;
+                startTimeString12H = stHour+":"+stMinute+":"+stam_pm;
+                endTimeString12H = edHour+":"+edMinute+":"+edam_pm;
                 /*
                 try {
 
@@ -125,7 +156,7 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
                     return;
                 }*/
 
-                    addTimetableSlotDialogListener.getNewTimetableSlotData(courseCode, courseName, lecturerInCharge,day,startTimeString, endTimeString);
+                    addTimetableSlotDialogListener.getNewTimetableSlotData(courseCode, courseName, lecturerInCharge,day, location, startTimeString12H, endTimeString12H, startTime, endTime);
                     dialog.dismiss();
             }
         });
@@ -142,7 +173,7 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
     }
 
     public interface AddTimetableSlotDialogListener {
-        void getNewTimetableSlotData (String courseCode, String courseName,  String lecInCharge, String day, String sTime, String eTime);
+        void getNewTimetableSlotData (String courseCode, String courseName,  String lecInCharge, String day, String location, String sTime, String eTime, Date startTime, Date endTime);
     }
 
     private void showToast (String message) {

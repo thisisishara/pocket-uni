@@ -45,7 +45,7 @@ public class TimetableSlotListAdapter  extends RecyclerView.Adapter<TimetableSlo
         holder.timetableSlotListItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, AdminViewTimetableActivity.class);
+                /*Intent intent = new Intent(context, AdminViewTimetableActivity.class);
                 //intent.putExtra("timetableName", timetables.get(position).getTimetable_name());
                 intent.putExtra("timetableSlotId", timetableItems.get(position).getSubjectCode()+" "+timetableItems.get(position).getDay()+" "+timetableItems.get(position).getStartingTime());
                 intent.putExtra("timetableSlotName", timetableItems.get(position).getSubjectCode() +"\n" + timetableItems.get(position).getStartingTime() + " - " + timetableItems.get(position).getEndingTime());
@@ -56,7 +56,7 @@ public class TimetableSlotListAdapter  extends RecyclerView.Adapter<TimetableSlo
                 intent.putExtra("timetableSlotDay", timetableItems.get(position).getDay());
                 intent.putExtra("timetableSlotLocation", timetableItems.get(position).getLocation());
                 intent.putExtra("timetableSlotLecturer", timetableItems.get(position).getLecturerInCharge());
-                context.startActivity(intent);
+                context.startActivity(intent);*/
             }
         });
     }

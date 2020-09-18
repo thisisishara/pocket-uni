@@ -31,7 +31,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/bg" />
+                    android:src="@drawable/bg"
+                    android:contentDescription="@string/headerimage_content_description" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/timetables_toolbar"
@@ -53,7 +54,8 @@
             app:backgroundTint="@color/floating_button_new"
             app:layout_anchor="@id/timetables_appbar_layout"
             app:layout_anchorGravity="bottom|right|end"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_add"
+            android:focusable="true" />
         
         <androidx.core.widget.NestedScrollView
             android:id="@+id/timetablesNestedScrollView"
@@ -72,7 +74,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Timetable Details"
+                    android:text="@string/viewtimetable_course"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="#388E3C"
+                    android:textIsSelectable="false"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.035"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewTimetableInfoError"
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/timetableslots_error_text"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textColor="@color/color_dp_green"
@@ -81,14 +100,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.035"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTimetableInfo" />
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/timetableViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="130dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -99,11 +120,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewTimetableInfo" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTimetableInfoError" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
