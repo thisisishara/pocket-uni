@@ -36,7 +36,7 @@
     <string-array name="course">
         <item>Software Engineering</item>
         <item>Information Technology</item>
-        <item> Information Systems Engineering</item>
+        <item>Information Systems Engineering</item>
         <item>Computer Systems &amp; Network</item>
         <item>Cyber Security</item>
         <item>Interactive Media</item>
@@ -72,6 +72,7 @@
     <string name="timetable_name_common">{Timetable Name}</string>
     <string name="timetable_title">Timetables</string>
     <string name="admin_timetable_description">Manage all semester timetables quicker. Publish in realtime.</string>
+    <string name="admin_timetable_description_error">There aren\'t any timetables available yet.</string>
     <string name="std_timetable_description">Get Timetables, Timetable Updates and set Notifications.</string>
     <!--Organizer Deadlines  Activity String Resources-->
     <string name="deadlines_title">Deadlines</string>
@@ -88,8 +89,8 @@
     <!--Organizer dialogs add timetable dialog resources-->
     <string name="admin_add_timetable">Add Timetable</string>
     <string name="dialog_batch_number_hint">Batch Number</string>
-    <string name="dialog_batch_number_invalid_error">An Invalid Batch Number has been Entered</string>
-    <string name="dialog_batch_number_empty_error">Batch Number cannot be Empty</string>
+    <string name="dialog_batch_number_invalid_error">INVALID BATCH NUMBER</string>
+    <string name="dialog_batch_number_empty_error">BATCH CANNOT BE EMPTY</string>
     <!--Organizer dialogs add time slot dialog resources-->
     <string name="textview_start_time">Start Time:</string>
     <string name="textview_end_time">End Time:</string>

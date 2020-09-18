@@ -64,23 +64,18 @@ public class AddTimetableDialog extends AppCompatDialogFragment {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String batch = batchEditText.getText().toString().trim();
-                int batchNumber;
-                try {
-                    batchNumber = Integer.parseInt(batch);
-                } catch (NumberFormatException e) {
-                    Toast.makeText(getContext(), R.string.dialog_batch_number_empty_error,Toast.LENGTH_SHORT).show();
+
+                String batchNumber = batchEditText.getText().toString().trim();
+
+                if (batchNumber.trim().isEmpty()) {
+                    Toast.makeText(getContext(), R.string.dialog_batch_number_invalid_error, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (batchNumber <= 0) {
-                    Toast.makeText(getContext(), R.string.dialog_batch_number_invalid_error,Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    String yearSemester = semesterSpinner.getSelectedItem().toString();
-                    String course = courseSpinner.getSelectedItem().toString();
-                    addTimetableDialogListener.getNewTimetableData(yearSemester,course,batchNumber);
-                    dialog.dismiss();
-                }
+
+                String yearSemester = semesterSpinner.getSelectedItem().toString();
+                String course = courseSpinner.getSelectedItem().toString();
+                addTimetableDialogListener.getNewTimetableData(yearSemester, course, batchNumber);
+                dialog.dismiss();
             }
         });
     }
@@ -96,7 +91,7 @@ public class AddTimetableDialog extends AppCompatDialogFragment {
     }
 
     public interface AddTimetableDialogListener {
-        void getNewTimetableData (String yearSemesterSpinner, String courseSpinner, int batch);
+        void getNewTimetableData (String yearSemesterSpinner, String courseSpinner, String batchNumber);
     }
 
     private void showToast (String message) {

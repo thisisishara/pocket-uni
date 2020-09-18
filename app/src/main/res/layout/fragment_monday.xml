@@ -6,5 +6,9 @@
     tools:context=".organizer.weekfragments.MondayFragment">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/monday_slot_list"/>
 
 </FrameLayout>

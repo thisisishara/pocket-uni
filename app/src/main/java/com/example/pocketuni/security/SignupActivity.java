@@ -29,9 +29,9 @@ import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
 
-    public static final String TAG = "TAG";
-    EditText txtEmail, txtPassword, txtConfirmPassword, txtName, txtBbatch;
-    Spinner spinSemester;
+    public static final String TAG = "SIGNUP";
+    EditText txtEmail, txtPassword, txtConfirmPassword, txtName, txtBatch;
+    Spinner spinSemester, spinCourse;
     Button btnSignup;
     TextView btnSignin;
     ProgressBar progressBar;
@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     String userID;
 
-    String email, name, password, confirmPassword, year_semester, year, semester;
+    String email, name, password, confirmPassword, year_semester, year, semester, batch, course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,8 @@ public class SignupActivity extends AppCompatActivity {
         txtPassword = this.findViewById(R.id.editTextPassword);
         txtConfirmPassword = this.findViewById(R.id.editTextConfirmPassword);
         spinSemester = this.findViewById(R.id.spinnerSemester);
-        //batch = this.findViewById(R.id.editTextBatch);
+        spinCourse = this.findViewById(R.id.spinnerCourse);
+        txtBatch = this.findViewById(R.id.editTextBatch);
         btnSignup = this.findViewById(R.id.buttonSignup);
         btnSignin = this.findViewById(R.id.textViewSignin);
         progressBar = this.findViewById(R.id.progressBar);
@@ -73,7 +74,8 @@ public class SignupActivity extends AppCompatActivity {
                 confirmPassword = txtConfirmPassword.getText().toString();
                 name = txtName.getText().toString().trim();
                 year_semester = spinSemester.getSelectedItem().toString().trim();
-
+                batch = txtBatch.getText().toString().trim();
+                course = spinCourse.getSelectedItem().toString().trim();
 
                 //validation
                 if(email.matches(getResources().getString(R.string.email_regex)) == false){
@@ -119,42 +121,58 @@ public class SignupActivity extends AppCompatActivity {
                     showToast("PLEASE SELECT THE ACADEMIC YEAR AND SEMESTER");
                 }
 
+                if (batch.trim().isEmpty()) {
+                    txtBatch.setText("");
+                    showToast("BATCH CANNOT BE EMPTY");
+                    return;
+                } else {
+                    batch = "Y"+year+"S"+semester+"G"+batch;
+                }
+
+                if (course == null){
+                    showToast("PLEASE SELECT YOUR COURSE");
+                }
+
                 //progressbar
                 progressBar.setVisibility(View.VISIBLE);
-
 
                 //registration
                 firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            showToast("ACCOUNT CREATED SUCCESSFULLY");
                             userID = firebaseAuth.getCurrentUser().getUid();
 
                             Map<String, Object> user = new HashMap<>();
                             user.put("name", name);
+                            user.put("email", email);
                             user.put("academic_year", year);
                             user.put("semester", semester);
-                            user.put("batch", "");
+                            user.put("batch", batch);
+                            user.put("course", course);
+                            user.put("userId", userID);
+                            user.put("dp", null);
                             user.put("userType", "STDNT"); //types: ADMIN/STDNT
 
                             DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "User Account details successfully added for " + userID);
-                                }
-                            });
+                            Log.d(TAG, "User Account details successfully added for " + userID);
+
+                            showToast("ACCOUNT CREATED SUCCESSFULLY");
 
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             progressBar.setVisibility(View.INVISIBLE);
+
+                                }
+                            });
                         } else {
-                            showToast("ERROR. " + task.getException().getMessage());
+                            showToast("ERROR OCCURRED. " + task.getException().getMessage());
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
-
             }
         });
 

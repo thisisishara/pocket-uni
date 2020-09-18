@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/timetable_listitem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/floating_button_new"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/timetablename"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="45dp"
+                android:text="TimetableName"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/timetableicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/timetableicon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/timetableicon"
+                android:layout_width="42dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_timetable_listitem" />
+
+            <TextView
+                android:id="@+id/timetablecourse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TimetableCourse"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/timetablename"
+                app:layout_constraintStart_toStartOf="@+id/timetablename"
+                app:layout_constraintTop_toBottomOf="@+id/timetablename" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/timetablenotification"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        android:layout_gravity="right|top"
+        app:layout_constraintEnd_toEndOf="@+id/timetable_listitem"
+        app:layout_constraintTop_toTopOf="@+id/timetable_listitem" />
+
+    <!--app:srcCompat=""-->
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -107,7 +107,7 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:id="@+id/organizer_timeline_icon"
+                                    android:id="@+id/timetableicon"
                                     android:layout_width="37dp"
                                     android:layout_height="31dp"
                                     android:layout_marginStart="16dp"
@@ -117,7 +117,7 @@
                                     app:srcCompat="@drawable/ic_timetable" />
 
                                 <TextView
-                                    android:id="@+id/organizer_timeline_header"
+                                    android:id="@+id/timetablename"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="12dp"
