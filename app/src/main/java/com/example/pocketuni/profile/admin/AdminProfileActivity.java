@@ -22,7 +22,7 @@ public class AdminProfileActivity extends AppCompatActivity {
     private static final int ACTIVITY_NUMBER = 4;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-     FirebaseFirestore firebaseFirestore;
+    FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

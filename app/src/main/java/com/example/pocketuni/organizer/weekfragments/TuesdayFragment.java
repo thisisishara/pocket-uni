@@ -1,11 +1,9 @@
 package com.example.pocketuni.organizer.weekfragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,26 +78,27 @@ public class TuesdayFragment extends Fragment {
                     return;
                 }
 
+                timetableItems.clear();
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                     Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
-
-                    timetableItems.clear();
 
                     for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                         //putting into a list of slots
                         TimetableItem timetableItem = documentSnapshot.toObject(TimetableItem.class);
 
-                        if(timetableItem.getDay().equalsIgnoreCase("Tuesday")){
+                        if(timetableItem.getDay()==2){
                             timetableItems.add(timetableItem);
                         }
 
-                        timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableItems);
+                        timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableName, timetableItems);
                         recyclerViewTimetableSlots.setAdapter(timetableSlotListAdapter);
                     }
 
                 } else {
                     Log.d(TAG, "Current data: null");
-                    showToast("NO TIMETABLE SLOTS.");
+                    timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableName, timetableItems);
+                    recyclerViewTimetableSlots.setAdapter(timetableSlotListAdapter);
+                    //showToast("NO TIMETABLE SLOTS.");
                 }
             }
         });

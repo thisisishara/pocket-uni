@@ -12,38 +12,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
         android:text="@string/gotosignup"
         android:textAlignment="center"
         android:textIsSelectable="false"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSignin"
+        app:layout_constraintStart_toStartOf="@+id/buttonSignin"
         app:layout_constraintTop_toBottomOf="@+id/buttonSignin" />
 
     <EditText
         android:id="@+id/editTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/edittext_line"
         android:ems="10"
         android:hint="@string/username_hint"
         android:inputType="textEmailAddress"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textColorHint="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="236dp"
         android:layout_height="117dp"
+        android:layout_marginTop="180dp"
         android:contentDescription="@string/app_logo_name"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17000002"
         app:srcCompat="@drawable/logotextwhite" />
 
     <EditText
@@ -58,9 +57,9 @@
         android:inputType="textPassword"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textColorHint="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddress"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmailAddress"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
 
     <Button
@@ -69,9 +68,9 @@
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
         android:text="@string/signin"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <ProgressBar
@@ -80,10 +79,9 @@
         android:layout_width="34dp"
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/textViewSignup"
-        app:layout_constraintHorizontal_bias="0.86"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSignin"
         tools:visibility="visible" />
 

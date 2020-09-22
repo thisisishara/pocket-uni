@@ -1,9 +1,9 @@
 package com.example.pocketuni.organizer.admin;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pocketuni.R;
@@ -29,7 +30,7 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
     private Spinner daySpinner;
     private EditText courseCodeEditText, courseNameEditText,  lecInChargeEditText, locationEditText;
     TimePicker startTimePicker, endTimePicker;
-    String courseCode, courseName, lecturerInCharge, day, location, startTimeString12H, endTimeString12H;
+    String courseCode, courseName, lecturerInCharge, day, location, startTimeString12H, endTimeString12H, startTimeString24H, endTimeString24H;
     Date startTime, endTime;
 
     private AddTimetableSlotDialogListener addTimetableSlotDialogListener;
@@ -76,6 +77,7 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
         super.onResume();
         final AlertDialog dialog = (AlertDialog) getDialog();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 courseCode = courseCodeEditText.getText().toString().trim();
@@ -127,10 +129,47 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
                 startTime = startTimeCalendar.getTime();
                 endTime = endTimeCalendar.getTime();
 
+                //setting time strings 24H
+                String st24HourString = null;
+                String ed24HourString = null;
+                String st24MinuteString = null;
+                String ed24MinuteString = null;
+
+                //Zero-fill 12H single number hours
+                if(stHour >= 0 && stHour <10) {
+                    st24HourString = "0"+stHour;
+                } else {
+                    st24HourString = ""+stHour;
+                }
+
+                if(edHour >= 0 && edHour <10) {
+                    ed24HourString = "0"+edHour;
+                } else {
+                    ed24HourString = ""+edHour;
+                }
+
+                //Zero-fill 12H single number minutes
+                if(stMinute >= 0 && stMinute <10) {
+                    st24MinuteString = "0"+stMinute;
+                } else {
+                    st24MinuteString = ""+stMinute;
+                }
+
+                if(edMinute >= 0 && edMinute <10) {
+                    ed24MinuteString = "0"+edMinute;
+                } else {
+                    ed24MinuteString = "" + edMinute;
+                }
+
+
+
                 //setting time strings 12H
                 if(stHour > 12) {
                     stam_pm = "PM";
                     stHour = stHour - 12;
+                }
+                else if(stHour == 12){
+                    stam_pm = "PM";
                 }
                 else
                 {
@@ -141,23 +180,89 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
                     edam_pm = "PM";
                     edHour = edHour - 12;
                 }
+                else if(edHour == 12){
+                    edam_pm = "PM";
+                }
                 else
                 {
                     edam_pm="AM";
                 }
 
-                startTimeString12H = stHour+":"+stMinute+":"+stam_pm;
-                endTimeString12H = edHour+":"+edMinute+":"+edam_pm;
-                /*
-                try {
+                //set 00 to 12
+                if (stHour == 0){
+                    stHour = 12;
+                }
+                if(edHour == 0){
+                    edHour = 12;
+                }
 
-                } catch (NumberFormatException e) {
-                    Toast.makeText(getContext(), R.string.dialog_batch_number_empty_error,Toast.LENGTH_SHORT).show();
-                    return;
-                }*/
+                String stHourString = null;
+                String edHourString = null;
+                String stMinuteString = null;
+                String edMinuteString = null;
 
-                    addTimetableSlotDialogListener.getNewTimetableSlotData(courseCode, courseName, lecturerInCharge,day, location, startTimeString12H, endTimeString12H, startTime, endTime);
-                    dialog.dismiss();
+                //Zero-fill 12H single number hours
+                if(stHour >= 0 && stHour <10) {
+                    stHourString = "0"+stHour;
+                } else {
+                    stHourString = ""+stHour;
+                }
+
+                if(edHour >= 0 && edHour <10) {
+                    edHourString = "0"+edHour;
+                } else {
+                    edHourString = ""+edHour;
+                }
+
+                //Zero-fill 12H single number minutes
+                if(stMinute >= 0 && stMinute <10) {
+                    stMinuteString = "0"+stMinute;
+                } else {
+                    stMinuteString = ""+stMinute;
+                }
+
+                if(edMinute >= 0 && edMinute <10) {
+                    edMinuteString = "0"+edMinute;
+                } else {
+                    edMinuteString = "" + edMinute;
+                }
+
+                int dayInt = 0;
+                switch(day){
+                    case "Monday":
+                        dayInt = 1;
+                        break;
+                    case "Tuesday":
+                        dayInt = 2;
+                        break;
+                    case "Wednesday":
+                        dayInt = 3;
+                        break;
+                    case "Thursday":
+                        dayInt = 4;
+                        break;
+                    case "Friday":
+                        dayInt = 5;
+                        break;
+                    case "Saturday":
+                        dayInt = 6;
+                        break;
+                    case "Sunday":
+                        dayInt = 7;
+                        break;
+                    default:
+                        dayInt = 0;
+                        break;
+                }
+
+                startTimeString12H = stHourString+":"+stMinuteString+":"+stam_pm;
+                endTimeString12H = edHourString+":"+edMinuteString+":"+edam_pm;
+
+                startTimeString24H = st24HourString+":"+st24MinuteString;
+                endTimeString24H = ed24HourString+":"+ed24MinuteString;
+
+                addTimetableSlotDialogListener.getNewTimetableSlotData(courseCode, courseName, lecturerInCharge,dayInt, location, startTimeString24H, endTimeString24H, startTime, endTime);
+                dialog.dismiss();
             }
         });
     }
@@ -173,7 +278,7 @@ public class AddTimetableSlotDialog extends AppCompatDialogFragment {
     }
 
     public interface AddTimetableSlotDialogListener {
-        void getNewTimetableSlotData (String courseCode, String courseName,  String lecInCharge, String day, String location, String sTime, String eTime, Date startTime, Date endTime);
+        void getNewTimetableSlotData (String courseCode, String courseName,  String lecInCharge, int day, String location, String sTime, String eTime, Date startTime, Date endTime);
     }
 
     private void showToast (String message) {

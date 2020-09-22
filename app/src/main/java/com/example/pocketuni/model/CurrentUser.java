@@ -2,11 +2,18 @@ package com.example.pocketuni.model;
 
 import android.media.Image;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CurrentUser {
     private static String name, email, userId, userType, dp;
     private static  String year, semester, batch;
     private static  String course;
     private static  Image profilePicture;
+    private static boolean isRemindersOn = false;
+    private static int remainderMinutes = -1;
+    private static Timetable timetable;
+    private static List<TimetableItem> timetableItems = new ArrayList<TimetableItem>();
 
     public static String getName() {
         return name;
@@ -86,5 +93,37 @@ public class CurrentUser {
 
     public static void setDp(String dp) {
         CurrentUser.dp = dp;
+    }
+
+    public static Timetable getTimetable() {
+        return timetable;
+    }
+
+    public static void setTimetable(Timetable timetable) {
+        CurrentUser.timetable = timetable;
+    }
+
+    public static List<TimetableItem> getTimetableItems() {
+        return timetableItems;
+    }
+
+    public static void setTimetableItems(List<TimetableItem> timetableItems) {
+        CurrentUser.timetableItems = timetableItems;
+    }
+
+    public static boolean isIsRemindersOn() {
+        return CurrentUser.isRemindersOn;
+    }
+
+    public static void setIsRemindersOn(boolean isRemindersOn) {
+        CurrentUser.isRemindersOn = isRemindersOn;
+    }
+
+    public static int getRemainderMinutes() {
+        return remainderMinutes;
+    }
+
+    public static void setRemainderMinutes(int remainderMinutes) {
+        CurrentUser.remainderMinutes = remainderMinutes;
     }
 }

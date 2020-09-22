@@ -6,7 +6,9 @@ public class User {
     private String course;
     private String dp;
     private String email;
+    private boolean isRemindersOn = false;
     private String name;
+    private int remainderMinutes = -1;
     private String semester;
     private String userId;
     private String userType;
@@ -14,18 +16,22 @@ public class User {
     public User(){
     }
 
-    public User(String academic_year, String batch, String course, String dp, String email, String name, String semester, String userId, String userType) {
+    //constructor for students
+    public User(String academic_year, String batch, String course, String dp, String email, boolean isRemindersOn, String name, int remainderMinutes, String semester, String userId, String userType) {
         this.academic_year = academic_year;
         this.batch = batch;
         this.course = course;
         this.dp = dp;
         this.email = email;
+        this.isRemindersOn = isRemindersOn;
         this.name = name;
+        this.remainderMinutes = remainderMinutes;
         this.semester = semester;
         this.userId = userId;
         this.userType = userType;
     }
 
+    //constructor for admin
     public User(String dp, String email, String name, String userId, String userType) {
         this.dp = dp;
         this.email = email;
@@ -104,5 +110,21 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public boolean isRemindersOn() {
+        return isRemindersOn;
+    }
+
+    public void setRemindersOn(boolean remindersOn) {
+        isRemindersOn = remindersOn;
+    }
+
+    public int getRemainderMinutes() {
+        return remainderMinutes;
+    }
+
+    public void setRemainderMinutes(int remainderMinutes) {
+        this.remainderMinutes = remainderMinutes;
     }
 }

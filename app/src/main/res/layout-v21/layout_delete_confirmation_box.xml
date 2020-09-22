@@ -24,26 +24,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/dialogBg"
-                android:paddingBottom="25dp">
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
 
                 <TextView
                     android:id="@+id/textViewBody"
                     android:layout_width="267dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/delete_confirmation_message"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="confirm message\nconfirm message\nconfirm message\nconfirm message"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageViewIcon"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.448" />
 
                 <ImageView
                     android:id="@+id/imageViewIcon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewBody"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewBody"
+                    app:layout_constraintVertical_bias="0.413"
                     app:srcCompat="@drawable/ic_baseline_delete_sweep_24" />
 
 

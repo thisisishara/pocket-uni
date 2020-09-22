@@ -50,7 +50,7 @@
             android:layout_marginEnd="40dp"
             android:clickable="true"
             android:tint="@android:color/white"
-            app:backgroundTint="@color/floating_button_new"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_anchor="@id/timetables_appbar_layout"
             app:layout_anchorGravity="bottom|right|end"
             app:srcCompat="@drawable/ic_add" />
@@ -73,9 +73,11 @@
                     android:layout_centerInParent="true"
                     android:layout_marginTop="48dp"
                     android:text="@string/admin_timetable_description"
-                    android:textSize="20dp"
+                    android:textSize="17dp"
+                    android:paddingStart="15dp"
+                    android:layout_marginEnd="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintHorizontal_bias="0.473"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

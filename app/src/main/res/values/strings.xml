@@ -53,6 +53,21 @@
         <item>Sunday</item>
     </string-array>
 
+    <string-array name="reminderMinutes">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+    </string-array>
+
     <!--Organizer String Resources-->
     <!--IT19069432-->
     <!--Organizer Main Activity String Resources-->
@@ -96,6 +111,7 @@
     <string name="textview_start_time">Start Time:</string>
     <string name="textview_end_time">End Time:</string>
     <string name="dialog_add_slot_title">Add Timetable Slot</string>
+    <string name="dialog_delete_conf_box_title">Are you sure?</string>
     <string name="dialog_subject_code">Subsject Code</string>
     <string name="dialog_subject_name_hint">Subject Name (Optional)</string>
     <string name="dialog_start_time_hint">Start Time</string>
@@ -105,7 +121,7 @@
     <!--Organizer dialogs add timetable reminder dialog resources-->
     <string name="timetable_reminder_title">Timetable Reminder Settings</string>
     <string name="textview_timetable_timepicker">Remind Me Before:</string>
-    <string name="reminder_dialog_description_text">Set Reminders to get timetable reminder notifications. Specify how many hours and minutes before you should be notified. Maximum allowed is 24 Hours.</string>
+    <string name="reminder_dialog_description_text">Reminders let you know the next subject of your course before the number of minutes you specify below. Maximum time you can specify is 60 Minutes.</string>
     <string name="reminder_switch">Enable Reminders</string>
 
 

@@ -80,26 +80,27 @@ public class SundayFragment extends Fragment {
                     return;
                 }
 
+                timetableItems.clear();
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                     Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
-
-                    timetableItems.clear();
 
                     for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                         //putting into a list of slots
                         TimetableItem timetableItem = documentSnapshot.toObject(TimetableItem.class);
 
-                        if(timetableItem.getDay().equalsIgnoreCase("Sunday")){
+                        if(timetableItem.getDay()==7){
                             timetableItems.add(timetableItem);
                         }
 
-                        timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableItems);
+                        timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableName, timetableItems);
                         recyclerViewTimetableSlots.setAdapter(timetableSlotListAdapter);
                     }
 
                 } else {
                     Log.d(TAG, "Current data: null");
-                    showToast("NO TIMETABLE SLOTS.");
+                    timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableName, timetableItems);
+                    recyclerViewTimetableSlots.setAdapter(timetableSlotListAdapter);
+                    //showToast("NO TIMETABLE SLOTS.");
                 }
             }
         });

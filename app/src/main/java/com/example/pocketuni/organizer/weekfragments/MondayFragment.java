@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pocketuni.R;
 import com.example.pocketuni.model.TimetableItem;
 import com.example.pocketuni.organizer.common.TimetableSlotListAdapter;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -79,26 +78,27 @@ public class MondayFragment extends Fragment {
                     return;
                 }
 
-                if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
+                timetableItems.clear();
+                if (queryDocumentSnapshots != null) {
                     Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
-
-                    timetableItems.clear();
 
                     for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                         //putting into a list of slots
                         TimetableItem timetableItem = documentSnapshot.toObject(TimetableItem.class);
 
-                        if(timetableItem.getDay().equalsIgnoreCase("Monday")){
+                        if(timetableItem.getDay() == 1){
                             timetableItems.add(timetableItem);
                         }
 
-                        timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableItems);
+                        timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableName, timetableItems);
                         recyclerViewTimetableSlots.setAdapter(timetableSlotListAdapter);
                     }
 
                 } else {
                     Log.d(TAG, "Current data: null");
                     showToast("NO TIMETABLE SLOTS.");
+                    timetableSlotListAdapter = new TimetableSlotListAdapter(getContext(), timetableName, timetableItems);
+                    recyclerViewTimetableSlots.setAdapter(timetableSlotListAdapter);
                 }
             }
         });

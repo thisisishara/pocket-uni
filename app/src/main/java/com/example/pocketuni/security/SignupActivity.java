@@ -152,18 +152,20 @@ public class SignupActivity extends AppCompatActivity {
                             user.put("course", course);
                             user.put("userId", userID);
                             user.put("dp", null);
-                            user.put("userType", "STDNT"); //types: ADMIN/STDNT
+                            user.put("isRemindersOn", false);
+                            user.put("remainderMinutes", -1);
+                            user.put("userType", "STDNT"); //types: ADMIN/STDNT, by default STDNT since evey user who registers is a Student.
 
                             DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "User Account details successfully added for " + userID);
+                                    Log.d(TAG, "User Account details successfully added for " + userID);
 
-                            showToast("ACCOUNT CREATED SUCCESSFULLY");
+                                    showToast("ACCOUNT CREATED SUCCESSFULLY");
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            progressBar.setVisibility(View.INVISIBLE);
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    progressBar.setVisibility(View.INVISIBLE);
 
                                 }
                             });

@@ -95,6 +95,7 @@
                     android:backgroundTint="@color/edittext_line"
                     android:ems="10"
                     android:hint="@string/dialog_venue_hint"
+                    tools:ignore= "Autofill"
                     android:inputType="textFilter"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
                     android:textColorHint="@color/colorPrimaryDark"

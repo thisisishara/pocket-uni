@@ -12,12 +12,12 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/timetables_appbar_layout"
+            android:id="@+id/std_timetable_appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="250dp">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/timetables_toolbar_layout"
+                android:id="@+id/std_timetable_toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="exitUntilCollapsed|scroll|snap"
@@ -27,14 +27,14 @@
                 app:expandedTitleMarginEnd="64dp">
 
                 <ImageView
-                    android:id="@+id/timetables_background"
+                    android:id="@+id/std_timetable_background"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg" />
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/timetables_toolbar"
+                    android:id="@+id/std_timetable_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:popupTheme="@style/ThemeOverlay.AppCompat"
@@ -50,13 +50,13 @@
             android:layout_marginEnd="40dp"
             android:clickable="true"
             android:tint="@android:color/white"
-            app:backgroundTint="@color/floating_button_new"
-            app:layout_anchor="@id/timetables_appbar_layout"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:layout_anchor="@id/std_timetable_appbar_layout"
             app:layout_anchorGravity="bottom|right|end"
             app:srcCompat="@drawable/ic_reminder" />
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/timetablesNestedScrollView"
+            android:id="@+id/std_timetableNestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
@@ -66,27 +66,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/timetableViewPager"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textViewStdTimetableInfo"
+                    android:layout_width="272dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/viewtimetable_course"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textIsSelectable="false"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.035"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewStdTimetableInfoError"
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/timetableslots_error_text"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
+                    android:textIsSelectable="false"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.035"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStdTimetableInfo" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/stdTimetableViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="130dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/timetableTabLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/stdTimetableTabLayout" />
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/timetableTabLayout"
+                    android:id="@+id/stdTimetableTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="52dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStdTimetableInfoError" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

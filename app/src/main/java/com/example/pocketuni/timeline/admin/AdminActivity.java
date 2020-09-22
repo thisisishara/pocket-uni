@@ -2,6 +2,7 @@ package com.example.pocketuni.timeline.admin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,15 +21,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import javax.annotation.Nullable;
 
 public class AdminActivity extends AppCompatActivity {
-
     private BottomNavigationView bottomNavigationView;
     private Context context = AdminActivity.this;
     private static final int ACTIVITY_NUMBER = 0;
-    FirebaseAuth firebaseAuth;
-    FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firebaseFirestore;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class AdminActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
-        String userID = firebaseAuth.getCurrentUser().getUid();
+        userID = firebaseAuth.getCurrentUser().getUid();
 
         //redirect if an invalid user
         if(firebaseAuth.getCurrentUser() == null){
@@ -49,25 +54,29 @@ public class AdminActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         AdminBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
 
-        //saving current user info
+        //getting current user info
         DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            private static final String TAG = "READ USER DATA";
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            private static final String TAG = "ADMIN_SESSION_TLN";
 
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot user = task.getResult();
-                    if (user.exists()) {
-                        CurrentUser.setEmail(firebaseAuth.getCurrentUser().getEmail());
-                        CurrentUser.setName((String)user.get("name"));
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
 
-                        Log.d(TAG, "DocumentSnapshot data: " + user.getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
+                if (documentSnapshot != null && documentSnapshot.exists()) {
+                    Log.d(TAG, "Current data: " + documentSnapshot.getData());
+
+                    CurrentUser.setEmail(firebaseAuth.getCurrentUser().getEmail());
+                    CurrentUser.setName(("name"));
+                    CurrentUser.setProfilePicture((Image) documentSnapshot.get("profile_pic"));
+                    CurrentUser.setUserType((String) documentSnapshot.get("userType"));
+                    CurrentUser.setUserId((String) userID);
+
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    Log.d(TAG, "Current data: null");
                 }
             }
         });

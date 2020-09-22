@@ -2,9 +2,11 @@ package com.example.pocketuni.organizer.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -210,11 +212,11 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
                     return;
                 }
 
+                timetables.clear();
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                     Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
                     textViewInfo.setText(getResources().getString(R.string.admin_timetable_description));
                     recyclerViewTimetables.setVisibility(View.VISIBLE);
-                    timetables.clear();
 
                     for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                         //putting into a list of slots
@@ -228,6 +230,8 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
                 } else {
                     Log.d(TAG, "Current data: null");
                     textViewInfo.setText(getResources().getString(R.string.admin_timetable_description_error));
+                    timetableListAdapter = new TimetableListAdapter(AdminTimetableActivity.this, timetables);
+                    recyclerViewTimetables.setAdapter(timetableListAdapter);
                     showToast("NO TIMETABLES TO SHOW.");
                 }
             }

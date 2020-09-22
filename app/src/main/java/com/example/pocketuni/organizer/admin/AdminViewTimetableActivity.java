@@ -1,22 +1,17 @@
 package com.example.pocketuni.organizer.admin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.pocketuni.R;
-import com.example.pocketuni.model.Timetable;
-import com.example.pocketuni.model.TimetableItem;
-import com.example.pocketuni.organizer.common.TimetableListAdapter;
 import com.example.pocketuni.organizer.weekfragments.FridayFragment;
 import com.example.pocketuni.organizer.weekfragments.MondayFragment;
 import com.example.pocketuni.organizer.weekfragments.SaturdayFragment;
@@ -33,17 +28,12 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AdminViewTimetableActivity extends AppCompatActivity implements AddTimetableSlotDialog.AddTimetableSlotDialogListener {
@@ -55,15 +45,6 @@ public class AdminViewTimetableActivity extends AppCompatActivity implements Add
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private String timetableName, timetableBatch, timetableInfoText;
-    private TimetableItem timetableSlot;
-    private List<TimetableItem> timetableItems = new ArrayList<TimetableItem>();
-    private List<TimetableItem> timetableItemsMonday = new ArrayList<TimetableItem>();
-    private List<TimetableItem> timetableItemsTuesday = new ArrayList<TimetableItem>();
-    private List<TimetableItem> timetableItemsWednesday = new ArrayList<TimetableItem>();
-    private List<TimetableItem> timetableItemsThursday = new ArrayList<TimetableItem>();
-    private List<TimetableItem> timetableItemsFriday = new ArrayList<TimetableItem>();
-    private List<TimetableItem> timetableItemsSaturday = new ArrayList<TimetableItem>();
-    private List<TimetableItem> timetableItemsSunday = new ArrayList<TimetableItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,15 +97,6 @@ public class AdminViewTimetableActivity extends AppCompatActivity implements Add
 
         viewPager.setAdapter(timetablePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-
-        getAvailableTimetableSlots();
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getAvailableTimetableSlots();
     }
 
     private void showAddTimetableSlotDialog () {
@@ -137,9 +109,10 @@ public class AdminViewTimetableActivity extends AppCompatActivity implements Add
     }
 
     @Override
-    public void getNewTimetableSlotData(String courseCode, String courseName, String lecInCharge, String day, String location, String sTime, String eTime, Date startTime, Date endTime) {
+    public void getNewTimetableSlotData(String courseCode, String courseName, String lecInCharge, int day, String location, String sTime, String eTime, Date startTime, Date endTime) {
+
         final Map<String, Object> newTimetableSlot = new HashMap<>();
-        final String slotId = day + " " + sTime;
+        final String slotId = sTime + " " + day;
         newTimetableSlot.put("itemId", slotId);
         newTimetableSlot.put("subjectCode", courseCode);
         newTimetableSlot.put("subjectName", courseName);
@@ -151,81 +124,39 @@ public class AdminViewTimetableActivity extends AppCompatActivity implements Add
         newTimetableSlot.put("startingDateTime", startTime);
         newTimetableSlot.put("endingDateTime", endTime);
 
-        final DocumentReference documentReference = firebaseFirestore.collection("timetables").document(timetableName).collection("slots").document(slotId);
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        final DocumentReference documentReferenceTimetable = firebaseFirestore.collection("timetables").document(timetableName);
+        documentReferenceTimetable.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            private static final String TAG = "ADD_TIMETABLE_SLOT";
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot document = task.getResult();
-                if(document.exists()){
-                    showToast("TIMETABLE SLOT ALREADY EXISTS.");
-                }
-                else{
-                    documentReference.set(newTimetableSlot).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        private static final String TAG = "ADD_TIMETABLE_SLOT";
-
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    final DocumentReference documentReferenceSlot = documentReferenceTimetable.collection("slots").document(slotId);
+                    documentReferenceSlot.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
-                        public void onSuccess(Void aVoid) {
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                showToast("TIMETABLE SLOT ALREADY EXISTS.");
+                            } else {
+                                documentReferenceSlot.set(newTimetableSlot).addOnSuccessListener(new OnSuccessListener<Void>() {
 
-                            Log.d(TAG, "Timetable slot \"" + timetableName + " " + slotId + "\" created successfully.");
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
 
-                            showToast("TIMETABLE SLOT ADDED SUCCESSFULLY.");
-                            //load new data
-                            getAvailableTimetableSlots();
+                                        Log.d(TAG, "Timetable slot \"" + timetableName + " " + slotId + "\" created successfully.");
+                                        showToast("TIMETABLE SLOT ADDED SUCCESSFULLY.");
+                                    }
+                                });
+                            }
                         }
                     });
                 }
-            }
-        });
-    }
-
-    private void getAvailableTimetableSlots(){
-        /*//show currently available timetables
-        CollectionReference collectionReference = firebaseFirestore.collection("timetables").document(timetableName).collection("slots");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if(!queryDocumentSnapshots.isEmpty()) {
-                    textViewTimetableInfoError.setText("");
-                    for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                        //putting into a list of slots
-                        TimetableItem timetableItem = documentSnapshot.toObject(TimetableItem.class);
-                        timetableItems.add(timetableItem);
-
-                        switch(timetableItem.getDay()){
-                            case "Monday":
-                                timetableItemsMonday.add(timetableItem);
-                                break;
-                            case "Tuesday":
-                                timetableItemsTuesday.add(timetableItem);
-                                break;
-                            case "Wednesday":
-                                timetableItemsWednesday.add(timetableItem);
-                                break;
-                            case "Thursday":
-                                timetableItemsThursday.add(timetableItem);
-                                break;
-                            case "Friday":
-                                timetableItemsFriday.add(timetableItem);
-                                break;
-                            case "Saturday":
-                                timetableItemsSaturday.add(timetableItem);
-                                break;
-                            case "Sunday":
-                                timetableItemsSunday.add(timetableItem);
-                                break;
-                            default:
-                                //do nothing
-                                break;
-                        }
-                    }
-
-                } else {
-                    textViewTimetableInfoError.setText(getResources().getString(R.string.admin_timetableslot_description_error));
-                    showToast("NO TIMETABLE SLOTS.");
+                else{
+                    Log.d(TAG, "Timetable for \"" + timetableInfoText + " " + timetableBatch + "\" is null.");
+                    showToast("TIMETABLE FOR " + timetableInfoText+" "+ timetableBatch + " MAY HAVE BEEN REMOVED.");
+                    finish();
                 }
             }
-        });*/
-
-
+        });
     }
 }

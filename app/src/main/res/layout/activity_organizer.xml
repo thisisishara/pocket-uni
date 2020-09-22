@@ -131,7 +131,7 @@
                             android:layout_height="31dp"
                             android:layout_marginStart="16dp"
                             android:layout_gravity="right|top"
-                            app:srcCompat="@drawable/notifgreen" />
+                            app:srcCompat="@drawable/notifred" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView

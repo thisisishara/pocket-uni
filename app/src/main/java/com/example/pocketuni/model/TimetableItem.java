@@ -5,7 +5,7 @@ import com.example.pocketuni.util.DayEnum;
 import java.util.Date;
 
 public class TimetableItem {
-    String day;
+    int day;
     Date endingDateTime;
     String endingTime;
     String itemId; //code+day+time
@@ -19,7 +19,7 @@ public class TimetableItem {
     public TimetableItem() {
     }
 
-    public TimetableItem(String day, Date endingDateTime, String endingTime, String itemId, String lecturerInCharge, String location, Date startingDateTime, String startingTime, String subjectCode, String subjectName) {
+    public TimetableItem(int day, Date endingDateTime, String endingTime, String itemId, String lecturerInCharge, String location, Date startingDateTime, String startingTime, String subjectCode, String subjectName) {
         this.day = day;
         this.endingDateTime = endingDateTime;
         this.endingTime = endingTime;
@@ -72,11 +72,11 @@ public class TimetableItem {
         this.endingTime = endingTime;
     }
 
-    public String getDay() {
+    public int getDay() {
         return day;
     }
 
-    public void setDay(String day) {
+    public void setDay(int day) {
         this.day = day;
     }
 

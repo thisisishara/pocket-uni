@@ -47,6 +47,8 @@ public class AdminBottomNavigationHelper {
                 }
 
                 if (intent != null) {
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     context.startActivity(intent);
                 }
 

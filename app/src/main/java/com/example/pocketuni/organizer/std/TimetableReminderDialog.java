@@ -21,13 +21,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pocketuni.R;
+import com.example.pocketuni.model.CurrentUser;
 
 import static android.widget.Toast.makeText;
 
-public class TimetableReminderDialog extends AppCompatDialogFragment {
-
-    private TimePicker reminderPicker;
+public class TimetableReminderDialog extends AppCompatDialogFragment{
+    private EditText editTextMinutes;
     private Switch enableReminders;
+
     private TimetableReminderDialogListener timetableReminderDialogListener;
 
     @NonNull
@@ -54,24 +55,28 @@ public class TimetableReminderDialog extends AppCompatDialogFragment {
                     }
                 });
 
-        reminderPicker = view.findViewById(R.id.remindBeforeTimePicker);
+        editTextMinutes = view.findViewById(R.id.editTextMinutes);
         enableReminders = view.findViewById(R.id.switchEnableReminders);
-        reminderPicker.setIs24HourView(true);
+
+        if(CurrentUser.isIsRemindersOn() == true) {
+            enableReminders.setChecked(true);
+            editTextMinutes.setText(CurrentUser.getRemainderMinutes()+"");
+        } else {
+            enableReminders.setChecked(false);
+            editTextMinutes.setEnabled(false);
+        }
 
         enableReminders.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (enableReminders.isChecked() == true) {
-                    showToast("Switch ON");
-                    reminderPicker.setEnabled(false);
+                    showToast("Reminders: ON");
+                    editTextMinutes.setEnabled(true);
                 } else {
-                    showToast("Swith OFF");
-                    reminderPicker.setEnabled(true);
+                    showToast("Reminders: OFF");
+                    editTextMinutes.setEnabled(false);
                 }
             }
         });
-
-        //semesterSpinner = view.findViewById(R.id.spinnerSemester);
-        //batchEditText = view.findViewById(R.id.editTextBatch);
 
         return builder.create();
     }
@@ -84,31 +89,35 @@ public class TimetableReminderDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
 
+                boolean isReminderOn = false;
+                int minutes = -1;
+
                 if (enableReminders.isChecked() == true) {
-                    showToast("Final ON");
-                    reminderPicker.setEnabled(false);
+                    isReminderOn = true;
+
+                    if(editTextMinutes.getText().toString().isEmpty()){
+                        showToast("REMINDER TIME MUST BE SPECIFIED.");
+                        return;
+                    } else {
+                        try {
+                            minutes = Integer.parseInt(editTextMinutes.getText().toString());
+
+                            if(minutes < 1 || minutes >60){
+                                showToast("REMINDER TIME MUST BE BETWEEN 1-60.");
+                                return;
+                            }
+                        } catch (Exception e){
+                            e.printStackTrace();
+                            return;
+                        }
+                    }
                 } else {
-                    showToast("Final OFF");
-                    reminderPicker.setEnabled(true);
+                    isReminderOn = false;
+                    minutes = -1;
                 }
 
-////                String batch = batchEditText.getText().toString().trim();
-////                int batchNumber;
-////                try {
-//                    batchNumber = Integer.parseInt(batch);
-//                } catch (NumberFormatException e) {
-//                    Toast.makeText(getContext(), R.string.dialog_batch_number_empty_error,Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (batchNumber <= 0) {
-//                    Toast.makeText(getContext(), R.string.dialog_batch_number_invalid_error,Toast.LENGTH_SHORT).show();
-//                    return;
-//                } else {
-//                    String yearSemester = semesterSpinner.getSelectedItem().toString();
-//                    String course = courseSpinner.getSelectedItem().toString();
-//                    addTimetableDialogListener.getNewTimetableData(yearSemester,course,batchNumber);
-                    dialog.dismiss();
- //               }
+                timetableReminderDialogListener.getNewTimetableReminderData(isReminderOn, minutes);
+                dialog.dismiss();
             }
         });
     }
@@ -124,7 +133,7 @@ public class TimetableReminderDialog extends AppCompatDialogFragment {
     }
 
     public interface TimetableReminderDialogListener {
-        void getNewTimetableReminderData (String enabledState, String time);
+        void getNewTimetableReminderData (boolean enabledState, int minutes);
     }
 
     private void showToast (String message) {
