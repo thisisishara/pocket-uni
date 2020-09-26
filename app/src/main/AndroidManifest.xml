@@ -12,21 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".organizer.std.ViewTimetableActivity"
-            android:parentActivityName=".organizer.std.OrganizerActivity">
-        </activity>
-        <activity android:name=".organizer.admin.AdminViewTimetableActivity"
-            android:parentActivityName=".organizer.admin.AdminTimetableActivity"/>
-
-        <activity android:name=".organizer.admin.AdminNoticesActivity"
-            android:parentActivityName=".organizer.admin.AdminOrganizerActivity"/>
-
-        <activity android:name=".organizer.admin.AdminDeadlinesActivity"
-            android:parentActivityName=".organizer.admin.AdminOrganizerActivity"/>
-
-        <activity android:name=".organizer.admin.AdminTimetableActivity"
-            android:parentActivityName=".organizer.admin.AdminOrganizerActivity"/>
-
+        <activity android:name=".messenger.common.MessagesActivity"></activity>
+        <activity
+            android:name=".organizer.std.ViewTimetableActivity"
+            android:parentActivityName=".organizer.std.OrganizerActivity"></activity>
+        <activity
+            android:name=".organizer.admin.AdminViewTimetableActivity"
+            android:parentActivityName=".organizer.admin.AdminTimetableActivity" />
+        <activity
+            android:name=".organizer.admin.AdminNoticesActivity"
+            android:parentActivityName=".organizer.admin.AdminOrganizerActivity" />
+        <activity
+            android:name=".organizer.admin.AdminDeadlinesActivity"
+            android:parentActivityName=".organizer.admin.AdminOrganizerActivity" />
+        <activity
+            android:name=".organizer.admin.AdminTimetableActivity"
+            android:parentActivityName=".organizer.admin.AdminOrganizerActivity" />
         <activity android:name=".results.admin.AdminResultsActivity" />
         <activity android:name=".organizer.admin.AdminOrganizerActivity" />
         <activity android:name=".messenger.admin.AdminChatActivity" />
@@ -63,4 +64,5 @@
 
         <receiver android:name=".organizer.std.ReminderBroadcastReceiver" />
     </application>
+
 </manifest>
