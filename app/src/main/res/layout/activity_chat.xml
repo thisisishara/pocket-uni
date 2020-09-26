@@ -99,7 +99,10 @@
 
                             <ImageView
                                 android:id="@+id/infoBoxClose"
-
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
                                 android:clickable="true"
                                 android:contentDescription="userAvatar"
                                 android:focusable="true"
