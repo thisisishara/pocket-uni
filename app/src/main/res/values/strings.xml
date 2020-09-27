@@ -148,6 +148,8 @@
     <string name="timetableslots_error_text">Timetable Error Viewer</string>
     <string name="headerimage_content_description">HeaderImage</string>
     <string name="viewtimetable_course">Timetable Details</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Messenger String Resources-->
 
