@@ -69,5 +69,11 @@ public class Message {
         this.deliveredStatus = deliveredStatus;
     }
 
+    public Boolean getReadStatus() {
+        return readStatus;
+    }
 
+    public void setReadStatus(Boolean readStatus) {
+        this.readStatus = readStatus;
+    }
 }
