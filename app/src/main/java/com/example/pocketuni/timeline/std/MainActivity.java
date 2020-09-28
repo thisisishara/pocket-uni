@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
 
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         NoticeItem yearNotice = documentSnapshot.toObject(NoticeItem.class);
-                        System.out.println(CurrentUser.getYear()+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
                         if (yearNotice.getYear().equalsIgnoreCase(CurrentUser.getYear())) {
                             yearNotices.add(yearNotice);
                         }
@@ -248,6 +247,8 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
 
                     //set UI info
                     yearNoticesEditText.setText(getCurrentAcademicYear() + " NOTICES");
+
+                    getYearNotices();
                 }
                 //set listeners to get realtime updates
                 startListeningToUserChanges();
@@ -306,8 +307,6 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
 
                     //set UI info
                     yearNoticesEditText.setText(getCurrentAcademicYear() + " NOTICES");
-
-                    getYearNotices();
                     Log.w(TAG, "User updated. (LN) : " + CurrentUser.getName());
 
                 } else {
