@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--post card item starts-->
     <androidx.cardview.widget.CardView
-        android:id="@+id/organizer_tile_timetable2"
+        android:id="@+id/userCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -19,23 +21,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserName">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="150dp">
+            android:minHeight="110dp">
 
             <TextView
-                android:id="@+id/itNumberTextView"
-                android:layout_width="189dp"
-                android:layout_height="19dp"
+                android:id="@+id/emailTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:text="@string/default_post_itnumber"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/postedPersonNameTextView"
+                app:layout_constraintEnd_toEndOf="@+id/userNameTextView"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/postedPersonNameTextView"
-                app:layout_constraintTop_toBottomOf="@+id/postedPersonNameTextView" />
+                app:layout_constraintStart_toStartOf="@+id/userNameTextView"
+                app:layout_constraintTop_toBottomOf="@+id/userNameTextView" />
+
+            <TextView
+                android:id="@+id/interestedCountTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="999999999 are Interested"
+                android:textColor="#90A4AE"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/interestedButtonContainer"
+                app:layout_constraintTop_toTopOf="@+id/interestedButtonContainer" />
 
             <TextView
                 android:id="@+id/postTextView"
@@ -44,15 +59,15 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="20dp"
-                android:text="@string/default_post_content"
-                android:textSize="12sp"
+                android:text="for all the 4th year and 2nd year students, this is not that important yet it is very important to lnow that its not important"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itNumberTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/postedTimeTextView" />
 
             <TextView
-                android:id="@+id/postedPersonNameTextView"
+                android:id="@+id/userNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -62,80 +77,90 @@
                 android:text="@string/default_post_owner"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/postedTimeTextView"
+                app:layout_constraintEnd_toStartOf="@+id/closeButtonContainer"
                 app:layout_constraintStart_toEndOf="@+id/profilePictureContainer"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/postedTimeTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/default_post_time"
+                android:textAlignment="textStart"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/emailTextView"
+                app:layout_constraintStart_toStartOf="@+id/emailTextView"
+                app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/profilePictureContainer"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
                 app:cardCornerRadius="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/postedTimeTextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/userNameTextView">
 
                 <ImageView
-                    android:id="@+id/profilePicture"
+                    android:id="@+id/profilePictureImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/circle"
-                    android:backgroundTint="@color/color_dp_red"
-                    android:src="@drawable/avatar"
-                    android:scaleType="centerCrop" />
+                    android:backgroundTint="@color/dialogBg"
+                    android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/commentSection"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="2dp"
-                app:cardBackgroundColor="#00000000"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/closeButtonContainer"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/postTextView">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:backgroundTint="@color/color_dp_red">
 
                 <ImageView
-                    android:id="@+id/commentIcon"
+                    android:id="@+id/closeButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="4dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/bottom_rounded_rectangle" />
+                    android:src="@drawable/ic_close_white"
+                    tools:ignore="VectorDrawableCompat"/>
+            </androidx.cardview.widget.CardView>
 
-                <EditText
-                    android:id="@+id/editTextTextComment"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/interestedButtonContainer"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postTextView"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/interestedButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/white"
-                    android:ems="10"
-                    android:hint="@string/post_comment"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:textSize="15sp" />
-
+                    android:scaleType="center"
+                    android:src="@drawable/ic_flash_white"
+                    tools:ignore="VectorDrawableCompat"
+                    android:background="@color/color_post_not_interested"/>
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-    <!--post card end-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

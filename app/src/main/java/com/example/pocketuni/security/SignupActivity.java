@@ -151,9 +151,10 @@ public class SignupActivity extends AppCompatActivity {
                             user.put("batch", batch);
                             user.put("course", course);
                             user.put("userId", userID);
-                            user.put("dp", null);
+                            user.put("dp", "default");
                             user.put("isRemindersOn", false);
                             user.put("remainderMinutes", -1);
+                            user.put("status","offline");
                             user.put("userType", "STDNT"); //types: ADMIN/STDNT, by default STDNT since evey user who registers is a Student.
 
                             DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);

@@ -129,4 +129,9 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
             timetableDeleteButton = itemView.findViewById(R.id.delete_button);
         }
     }
+
+    public void setTimetables(ArrayList<Timetable> timetableSearchResult){
+        this.timetables = timetableSearchResult;
+        notifyDataSetChanged();
+    }
 }

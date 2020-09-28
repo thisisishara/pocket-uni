@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentUser {
-    private static String name, email, userId, userType, dp;
+    private static String name, email, userId, userType, dp = "default";
     private static  String year, semester, batch;
     private static  String course;
     private static  Image profilePicture;

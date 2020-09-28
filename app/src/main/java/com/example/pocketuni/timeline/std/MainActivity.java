@@ -4,34 +4,33 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pocketuni.R;
+import com.example.pocketuni.messenger.common.UserListAdapter;
+import com.example.pocketuni.model.ChatList;
 import com.example.pocketuni.model.CurrentUser;
+import com.example.pocketuni.model.NoticeItem;
 import com.example.pocketuni.model.Reminder;
-import com.example.pocketuni.model.Timetable;
 import com.example.pocketuni.model.TimetableItem;
-import com.example.pocketuni.organizer.std.OrganizerActivity;
+import com.example.pocketuni.model.User;
 import com.example.pocketuni.organizer.std.ReminderBroadcastReceiver;
-import com.example.pocketuni.results.std.ResultsActivity;
 import com.example.pocketuni.security.SigninActivity;
-import com.example.pocketuni.timeline.AddPostActivity;
 import com.example.pocketuni.timeline.DeletePostDialog;
+import com.example.pocketuni.timeline.common.TimelinePostsViewerAdapter;
 import com.example.pocketuni.util.StdBottomNavigationHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -43,13 +42,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -61,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
     private BottomNavigationView bottomNavigationView;
     private Context context = MainActivity.this;
     private static final int ACTIVITY_NUMBER = 0;
+    private static final int USER_TYPE = 1;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private String userID, timetableName;
@@ -72,6 +69,12 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
     private int reminderCounter = 0, pendingIntents = 0;
     private PendingIntent pendingIntent;
     private AlarmManager alarmManager;
+    private TextView yearNoticesEditText;
+    private RecyclerView generalNoticesRecyclerView, yearNoticesRecyclerView;
+    private TimelinePostsViewerAdapter timelinePostsViewerAdapter;
+    private LinearLayoutManager generalNoticesLinearLayoutManager, yearNoticesLinearLayoutManager;
+    private List<NoticeItem> generalNotices = new ArrayList<NoticeItem>();
+    private List<NoticeItem> yearNotices = new ArrayList<NoticeItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,33 +104,101 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
             }
         });
 
-        //set session info one time
         getUserStatus();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         StdBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
 
-        //delete post dialog
-        TextView deletePostButton = findViewById(R.id.deletePostButton2);
-        deletePostButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DeletePostDialog deletePostDialog = new DeletePostDialog();
-                deletePostDialog.show(getSupportFragmentManager(), "Delete Post");
-            }
-        });
+        yearNoticesEditText = findViewById(R.id.firstYearNoticesEditText);
+        yearNoticesRecyclerView = findViewById(R.id.recyclerViewFirstYearNotices);
+        yearNoticesLinearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        yearNoticesLinearLayoutManager.setStackFromEnd(true);
+        yearNoticesLinearLayoutManager.setReverseLayout(true);
+        yearNoticesLinearLayoutManager.setSmoothScrollbarEnabled(true);
+        yearNoticesRecyclerView.setLayoutManager(yearNoticesLinearLayoutManager);
+        yearNoticesEditText.setText("");
 
-        FloatingActionButton addPostButton = findViewById(R.id.addPostFloatingActionButton);
-        addPostButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), AddPostActivity.class));
-            }
-        });
+        generalNoticesRecyclerView = findViewById(R.id.recyclerViewGeneralNotices);
+        generalNoticesLinearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        generalNoticesLinearLayoutManager.setStackFromEnd(true);
+        generalNoticesLinearLayoutManager.setReverseLayout(true);
+        generalNoticesLinearLayoutManager.setSmoothScrollbarEnabled(true);
+        generalNoticesRecyclerView.setLayoutManager(generalNoticesLinearLayoutManager);
 
+
+        getGeneralNotices();
         //subscribe for notifications
         //FCM SUBSCRIPTION SERVICE
         //subscribeForNotifications();
+    }
+
+    private void getGeneralNotices(){
+        CollectionReference collectionReference = firebaseFirestore.collection("timelineposts");
+        collectionReference.orderBy("noticeDate").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+            @Override
+            public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
+
+                generalNotices.clear();
+                if (queryDocumentSnapshots != null && queryDocumentSnapshots.size() > 0) {
+                    Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
+
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        NoticeItem generalNotice = documentSnapshot.toObject(NoticeItem.class);
+                        if (generalNotice.getYear().equalsIgnoreCase("0")) {
+                            generalNotices.add(generalNotice);
+                        }
+                        timelinePostsViewerAdapter = new TimelinePostsViewerAdapter(MainActivity.this, generalNotices, USER_TYPE);
+                        generalNoticesRecyclerView.setAdapter(timelinePostsViewerAdapter);
+                    }
+                    Log.i(TAG, timelinePostsViewerAdapter.getItemCount() + " general notices were found.");
+
+                } else {
+                    Log.d(TAG, "Current data: null");
+                    timelinePostsViewerAdapter = new TimelinePostsViewerAdapter(MainActivity.this, generalNotices, USER_TYPE);
+                    generalNoticesRecyclerView.setAdapter(timelinePostsViewerAdapter);
+                }
+            }
+        });
+    }
+
+    private void getYearNotices(){
+        CollectionReference collectionReference = firebaseFirestore.collection("timelineposts");
+        collectionReference.orderBy("noticeDate").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+            @Override
+            public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
+
+                yearNotices.clear();
+                if (queryDocumentSnapshots != null && queryDocumentSnapshots.size() > 0) {
+                    Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
+
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        NoticeItem yearNotice = documentSnapshot.toObject(NoticeItem.class);
+                        System.out.println(CurrentUser.getYear()+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+                        if (yearNotice.getYear().equalsIgnoreCase(CurrentUser.getYear())) {
+                            yearNotices.add(yearNotice);
+                        }
+                        timelinePostsViewerAdapter = new TimelinePostsViewerAdapter(MainActivity.this, yearNotices, USER_TYPE);
+                        yearNoticesRecyclerView.setAdapter(timelinePostsViewerAdapter);
+                    }
+                    Log.i(TAG, timelinePostsViewerAdapter.getItemCount() + " year notices were found.");
+
+                } else {
+                    Log.d(TAG, "Current data: null");
+                    timelinePostsViewerAdapter = new TimelinePostsViewerAdapter(MainActivity.this, yearNotices, USER_TYPE);
+                    yearNoticesRecyclerView.setAdapter(timelinePostsViewerAdapter);
+                }
+            }
+        });
     }
 
     //TIMELINE Methods
@@ -137,6 +208,20 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
             Toast.makeText(MainActivity.this,R.string.post_delete_confirmation_toast, Toast.LENGTH_SHORT).show();
         } else {
             showToast("Post Deleting failed");
+        }
+    }
+
+    private String getCurrentAcademicYear(){
+        if(CurrentUser.getYear().toString().equalsIgnoreCase("1")){
+            return "1ST YEAR";
+        } else if(CurrentUser.getYear().toString().equalsIgnoreCase("2")){
+            return "2ND YEAR";
+        } else if(CurrentUser.getYear().toString().equalsIgnoreCase("3")){
+            return "3RD YEAR";
+        } else if(CurrentUser.getYear().toString().equalsIgnoreCase("4")){
+            return "4TH YEAR";
+        } else {
+            return "";
         }
     }
 
@@ -150,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
                     CurrentUser.setName((String) task.getResult().get("name"));
                     CurrentUser.setBatch((String) task.getResult().get("batch"));
                     CurrentUser.setCourse((String) task.getResult().get("course"));
-                    CurrentUser.setProfilePicture((Image) task.getResult().get("profile_pic"));
+                    CurrentUser.setDp((String) task.getResult().get("dp"));
                     CurrentUser.setSemester((String) task.getResult().get("semester"));
                     CurrentUser.setYear((String) task.getResult().get("academic_year"));
                     CurrentUser.setUserType((String) task.getResult().get("userType"));
@@ -160,10 +245,15 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
 
                     //set timetable name
                     timetableName = CurrentUser.getCourse() + " " + CurrentUser.getBatch();
+
+                    //set UI info
+                    yearNoticesEditText.setText(getCurrentAcademicYear() + " NOTICES");
                 }
                 //set listeners to get realtime updates
                 startListeningToUserChanges();
+                startListeningToAdminChanges();
                 getReminderUpdates();
+
                 //startListeningToTimetableChanges(); // not necessary
             }
         });
@@ -188,7 +278,6 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
         });
     }
 
-
     private void startListeningToUserChanges(){
         DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -203,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
                     CurrentUser.setName((String) documentSnapshot.get("name"));
                     CurrentUser.setBatch((String) documentSnapshot.get("batch"));
                     CurrentUser.setCourse((String) documentSnapshot.get("course"));
-                    CurrentUser.setProfilePicture((Image) documentSnapshot.get("profile_pic"));
+                    CurrentUser.setDp((String) documentSnapshot.get("dp"));
                     CurrentUser.setSemester((String) documentSnapshot.get("semester"));
                     CurrentUser.setYear((String) documentSnapshot.get("academic_year"));
                     CurrentUser.setUserType((String) documentSnapshot.get("userType"));
@@ -212,11 +301,35 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
                     CurrentUser.setEmail((String) documentSnapshot.get("email"));
                     CurrentUser.setRemainderMinutes(((Long) documentSnapshot.get("remainderMinutes")).intValue());
                     CurrentUser.setUserId((String) documentSnapshot.get("userId"));
+
                     timetableName = CurrentUser.getCourse() + " " + CurrentUser.getBatch();
+
+                    //set UI info
+                    yearNoticesEditText.setText(getCurrentAcademicYear() + " NOTICES");
+
+                    getYearNotices();
                     Log.w(TAG, "User updated. (LN) : " + CurrentUser.getName());
 
                 } else {
                     Log.w(TAG, "User not found. (LN)");
+                }
+            }
+        });
+    }
+
+    private void startListeningToAdminChanges(){
+        CollectionReference adminChanges = firebaseFirestore.collection("users");
+        adminChanges.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
+
+                if (queryDocumentSnapshots != null && queryDocumentSnapshots.size() > 0) {
+                    getGeneralNotices();
+                    getYearNotices();
                 }
             }
         });
@@ -620,5 +733,25 @@ public class MainActivity extends AppCompatActivity implements DeletePostDialog.
                 }
             }
         });
+    }
+
+    private void updateUserOnlineStatus(String status){
+        HashMap<String,Object> userStatus = new HashMap<String, Object>();
+        userStatus.put("status", status);
+
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        documentReference.update(userStatus);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        updateUserOnlineStatus("offline");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUserOnlineStatus("online");
     }
 }

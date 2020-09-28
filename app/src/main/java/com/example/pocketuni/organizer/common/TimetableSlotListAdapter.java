@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pocketuni.R;
+import com.example.pocketuni.model.CurrentUser;
 import com.example.pocketuni.model.TimetableItem;
 import com.example.pocketuni.organizer.admin.AdminViewTimetableActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -83,21 +84,28 @@ public class TimetableSlotListAdapter  extends RecyclerView.Adapter<TimetableSlo
             }
         });
 
-        holder.timetableDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final DocumentReference documentReference = firebaseFirestore.collection("timetables").document(timetableName).collection("slots").document(timetableItems.get(position).getStartingTime()+ " " + timetableItems.get(position).getDay());
-                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            task.getResult().getReference().delete();
-                            Log.i("TTLADAPT", "Timetable slot has been deleted.");
+        if(CurrentUser.getUserType().equalsIgnoreCase("ADMIN")){
+            holder.timetableDeleteButton.setVisibility(View.VISIBLE);
+
+            holder.timetableDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final DocumentReference documentReference = firebaseFirestore.collection("timetables").document(timetableName).collection("slots").document(timetableItems.get(position).getStartingTime()+ " " + timetableItems.get(position).getDay());
+                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()){
+                                task.getResult().getReference().delete();
+                                Log.i("TTLADAPT", "Timetable slot has been deleted.");
+                            }
                         }
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
+
+        } else {
+            holder.timetableDeleteButton.setVisibility(View.GONE);
+        }
     }
 
     @Override

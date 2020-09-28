@@ -2,31 +2,24 @@ package com.example.pocketuni.organizer.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pocketuni.R;
-import com.example.pocketuni.model.CurrentUser;
 import com.example.pocketuni.model.Timetable;
-import com.example.pocketuni.model.TimetableItem;
+import com.example.pocketuni.model.User;
 import com.example.pocketuni.organizer.common.TimetableListAdapter;
-import com.example.pocketuni.organizer.common.TimetableSlotListAdapter;
 import com.example.pocketuni.security.SigninActivity;
-import com.example.pocketuni.timeline.std.MainActivity;
-import com.example.pocketuni.util.StdBottomNavigationHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -42,11 +35,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -60,20 +50,16 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
     private List<Timetable> timetables = new ArrayList<Timetable>();
     private TimetableListAdapter timetableListAdapter;
     private FirebaseFirestore firebaseFirestore;
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getAvailableTimeTables();
-    }
+    private EditText editTextSeachTimetables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_timetable);
 
-        addTimetable = findViewById(R.id.addTimetablesFloatingActionButton);
+        addTimetable = findViewById(R.id.editProfileFloatingActionButton);
         textViewInfo = findViewById(R.id.textView);
+        editTextSeachTimetables = findViewById(R.id.editTextSearchTimetables);
         recyclerViewTimetables = findViewById(R.id.timetablesRecyclerView);
         recyclerViewTimetables.hasFixedSize();
         recyclerViewTimetables.setLayoutManager(new LinearLayoutManager(AdminTimetableActivity.this));
@@ -96,6 +82,18 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
                 showAddTimetableDialog();
             }
         });
+    }
+
+    private void filterTimetables(String keyword){
+        ArrayList<Timetable> filteredTimetables = new ArrayList<Timetable>();
+
+        for(Timetable timetable: timetables){
+            if(timetable.getTimetable_name().toLowerCase().contains(keyword.toLowerCase().trim())){
+                filteredTimetables.add(timetable);
+            }
+        }
+
+        timetableListAdapter.setTimetables(filteredTimetables);
     }
 
     private void showAddTimetableDialog () {
@@ -213,6 +211,8 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
                 }
 
                 timetables.clear();
+                editTextSeachTimetables.setText("");
+
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                     Log.d(TAG, "Current data: " + queryDocumentSnapshots.getDocumentChanges());
                     textViewInfo.setText(getResources().getString(R.string.admin_timetable_description));
@@ -234,7 +234,46 @@ public class AdminTimetableActivity extends AppCompatActivity implements AddTime
                     recyclerViewTimetables.setAdapter(timetableListAdapter);
                     showToast("NO TIMETABLES TO SHOW.");
                 }
+
+
+
+                editTextSeachTimetables.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                        filterTimetables(editable.toString());
+                    }
+                });
             }
         });
+    }
+
+    private void updateUserOnlineStatus(String status){
+        HashMap<String,Object> userStatus = new HashMap<String, Object>();
+        userStatus.put("status", status);
+
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        documentReference.update(userStatus);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        updateUserOnlineStatus("offline");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUserOnlineStatus("online");
     }
 }

@@ -142,12 +142,20 @@
     <string name="dialog_delete">Delete</string>
     <string name="delete_confirmation_message">Are you sure you want to delete this post?\n You cannot recover a deleted post.</string>
     <string name="post_delete_confirmation_toast">Post Deleted</string>
-    <string name="add_post_confirmation_toast">Post Added</string>
+    <string name="add_post_confirmation_toast">POST ADDED.</string>
     <string name="add_post_button_text">Add Post</string>
     <string name="cancel_post_button_text">Cancel</string>
     <string name="timetableslots_error_text">Timetable Error Viewer</string>
     <string name="headerimage_content_description">HeaderImage</string>
     <string name="viewtimetable_course">Timetable Details</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="postAudience">
+        <item>General</item>
+        <item>1st Year</item>
+        <item>2nd Year</item>
+        <item>3rd Year</item>
+        <item>4th Year</item>
+    </string-array>
 
     <!--Messenger String Resources-->
 

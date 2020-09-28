@@ -1,23 +1,24 @@
 package com.example.pocketuni.model;
 
 public class User {
-    private String academic_year;
-    private String batch;
-    private String course;
-    private String dp;
-    private String email;
+    private String academic_year = "0";
+    private String batch = "0";
+    private String course = "N/A";
+    private String dp = "default";
+    private String email = "N/A";
     private boolean isRemindersOn = false;
-    private String name;
+    private String name = "N/A";
     private int remainderMinutes = -1;
-    private String semester;
-    private String userId;
-    private String userType;
+    private String semester = "0";
+    private String status = "offline";
+    private String userId = "N/A";
+    private String userType = "N/A";
 
     public User(){
     }
 
     //constructor for students
-    public User(String academic_year, String batch, String course, String dp, String email, boolean isRemindersOn, String name, int remainderMinutes, String semester, String userId, String userType) {
+    public User(String academic_year, String batch, String course, String dp, String email, boolean isRemindersOn, String name, int remainderMinutes, String semester, String status, String userId, String userType) {
         this.academic_year = academic_year;
         this.batch = batch;
         this.course = course;
@@ -27,6 +28,7 @@ public class User {
         this.name = name;
         this.remainderMinutes = remainderMinutes;
         this.semester = semester;
+        this.status = status;
         this.userId = userId;
         this.userType = userType;
     }
@@ -126,5 +128,13 @@ public class User {
 
     public void setRemainderMinutes(int remainderMinutes) {
         this.remainderMinutes = remainderMinutes;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

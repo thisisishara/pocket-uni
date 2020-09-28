@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,27 +16,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".organizer.std.ViewTimetableActivity"
-            android:parentActivityName=".organizer.std.OrganizerActivity">
-        </activity>
-        <activity android:name=".organizer.admin.AdminViewTimetableActivity"
-            android:parentActivityName=".organizer.admin.AdminTimetableActivity"/>
-
-        <activity android:name=".organizer.admin.AdminNoticesActivity"
-            android:parentActivityName=".organizer.admin.AdminOrganizerActivity"/>
-
-        <activity android:name=".organizer.admin.AdminDeadlinesActivity"
-            android:parentActivityName=".organizer.admin.AdminOrganizerActivity"/>
-
-        <activity android:name=".organizer.admin.AdminTimetableActivity"
-            android:parentActivityName=".organizer.admin.AdminOrganizerActivity"/>
-
+        <activity android:name=".profile.common.EditProfileActivity"></activity>
+        <activity android:name=".messenger.common.MessagesActivity" />
+        <activity
+            android:name=".organizer.std.ViewTimetableActivity"
+            android:parentActivityName=".organizer.std.OrganizerActivity" />
+        <activity
+            android:name=".organizer.admin.AdminViewTimetableActivity"
+            android:parentActivityName=".organizer.admin.AdminTimetableActivity" />
+        <activity
+            android:name=".organizer.admin.AdminNoticesActivity"
+            android:parentActivityName=".organizer.admin.AdminOrganizerActivity" />
+        <activity
+            android:name=".organizer.admin.AdminDeadlinesActivity"
+            android:parentActivityName=".organizer.admin.AdminOrganizerActivity" />
+        <activity
+            android:name=".organizer.admin.AdminTimetableActivity"
+            android:parentActivityName=".organizer.admin.AdminOrganizerActivity" />
         <activity android:name=".results.admin.AdminResultsActivity" />
         <activity android:name=".organizer.admin.AdminOrganizerActivity" />
         <activity android:name=".messenger.admin.AdminChatActivity" />
         <activity android:name=".profile.admin.AdminProfileActivity" />
         <activity android:name=".timeline.admin.AdminActivity" />
-        <activity android:name=".timeline.AddPostActivity" />
+        <activity android:name=".timeline.AddPostActivity"
+            android:parentActivityName=".timeline.admin.AdminActivity">
+        </activity>
         <activity android:name=".organizer.std.OrganizerActivity" />
         <activity android:name=".results.std.ResultsActivity" />
         <activity android:name=".messenger.std.ChatActivity" />
@@ -63,4 +71,5 @@
 
         <receiver android:name=".organizer.std.ReminderBroadcastReceiver" />
     </application>
+
 </manifest>
