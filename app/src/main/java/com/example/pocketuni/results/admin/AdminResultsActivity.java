@@ -71,6 +71,11 @@ public class AdminResultsActivity extends AppCompatActivity {
         documentReference.update(userStatus);
     }
 
+    public void openDialog() {
+        DialogBox dialogBox = new DialogBox();
+        dialogBox.show(getSupportFragmentManager(), "dialog box");
+    }
+
     @Override
     protected void onPause() {
         super.onPause();

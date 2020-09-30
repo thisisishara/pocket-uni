@@ -208,6 +208,18 @@
     <!--Results Added Activity String Resources-->
     <string name="results_added_header">Results Added</string>
 
+    <!--Results Dialog Box Activity String Resources-->
+    <string-array name="semester_in_letters">
+        <item>Year One Semester One</item>
+        <item>Year One Semester Two</item>
+        <item>Year Two Semester One</item>
+        <item>Year Two Semester Two</item>
+        <item>Year Three Semester One</item>
+        <item>Year Three Semester Two</item>
+        <item>Year Four Semester One</item>
+        <item>Year Four Semester Two</item>
+    </string-array>
+
     <!--Profile String Resources-->
 
 
