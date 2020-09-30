@@ -205,6 +205,9 @@
         <item>Software Process Modeling</item>
     </string-array>
 
+    <!--Results Added Activity String Resources-->
+    <string name="results_added_header">Results Added</string>
+
     <!--Profile String Resources-->
 
 

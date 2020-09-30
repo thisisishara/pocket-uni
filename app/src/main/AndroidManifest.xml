@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".results.admin.AdminResultsAdd"></activity>
+        <activity android:name=".results.admin.AdminResultsDisplay"></activity>
+        <activity android:name=".results.admin.AdminResultsAdd" />
         <activity android:name=".profile.common.EditProfileActivity" />
         <activity android:name=".messenger.common.MessagesActivity" />
         <activity
@@ -41,7 +42,7 @@
         <activity android:name=".timeline.admin.AdminActivity" />
         <activity
             android:name=".timeline.AddPostActivity"
-            android:parentActivityName=".timeline.admin.AdminActivity"></activity>
+            android:parentActivityName=".timeline.admin.AdminActivity" />
         <activity android:name=".organizer.std.OrganizerActivity" />
         <activity android:name=".results.std.ResultsActivity" />
         <activity android:name=".messenger.std.ChatActivity" />

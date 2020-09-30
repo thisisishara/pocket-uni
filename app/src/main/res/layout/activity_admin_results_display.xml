@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkbg"
+    tools:context=".results.admin.AdminResultsDisplay">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        >
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="56dp">
+
+                <EditText
+                    android:id="@+id/studentRegistrationNumberDisplay"
+                    android:layout_width="300dp"
+                    android:layout_height="56dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp"
+                    android:digits="IT0123456789"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="10"
+                    android:textAllCaps="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="800dp"
+                    android:text="Admin Results Stuff"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="408dp"
+                    android:layout_height="56dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="@string/results_added_header"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerGradeDisplay"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="24dp"
+                    android:entries="@array/grades"
+                    android:prompt="@string/grade_prompt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerModuleDisplay" />
+
+                <Spinner
+                    android:id="@+id/spinnerModuleDisplay"
+                    android:layout_width="300dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="56dp"
+                    android:entries="@array/modules"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/studentRegistrationNumberDisplay" />
+
+                <Button
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="102dp"
+                    android:layout_height="54dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="32dp"
+                    android:text="Update"
+                    app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+                    app:layout_constraintHorizontal_bias="0.669"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerPeriodDisplay" />
+
+                <EditText
+                    android:id="@+id/caMarksDisplay"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:ems="10"
+                    android:hint="CA Marks"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+
+                    app:layout_constraintBaseline_toBaselineOf="@+id/spinnerGradeDisplay"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.153"
+                    app:layout_constraintStart_toEndOf="@+id/spinnerGradeDisplay" />
+
+                <Spinner
+                    android:id="@+id/spinnerPeriodDisplay"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="21dp"
+                    android:entries="@array/ca_period_array"
+                    android:prompt="@string/ca_period_prompt"
+                    app:layout_constraintEnd_toStartOf="@+id/spinnerYearDisplay"
+                    app:layout_constraintHorizontal_bias="0.923"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerGradeDisplay"
+                    tools:ignore="MissingConstraints" />
+
+                <Spinner
+                    android:id="@+id/spinnerYearDisplay"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:entries="@array/ca_period_array"
+                    android:prompt="@string/ca_period_prompt"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/spinnerPeriodDisplay"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.792"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="98dp"
+                    android:layout_height="54dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="88dp"
+                    android:text="Delete"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/btnUpdate"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <Button
+                    android:id="@+id/btnAddNewEntry"
+                    android:layout_width="241dp"
+                    android:layout_height="51dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="230dp"
+                    android:text="Add New Entry"
+                    app:layout_constraintBottom_toTopOf="@+id/textView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.488"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDelete" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        //bottom navigation
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/menu" />
+
+    </FrameLayout>
+
+</RelativeLayout>
