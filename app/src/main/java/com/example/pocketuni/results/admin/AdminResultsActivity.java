@@ -1,10 +1,12 @@
 package com.example.pocketuni.results.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.pocketuni.R;
 import com.example.pocketuni.security.SigninActivity;
@@ -22,12 +24,16 @@ public class AdminResultsActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private Context context = AdminResultsActivity.this;
     private static final int ACTIVITY_NUMBER = 3;
+    CardView addResults, updateResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(0,0);
         setContentView(R.layout.activity_admin_results);
+
+        addResults = findViewById(R.id.results_tile_add);
+        updateResults = findViewById(R.id.results_tile_update);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -37,6 +43,21 @@ public class AdminResultsActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), SigninActivity.class));
             finish();
         }
+
+        addResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminResultsAdd.class);
+                startActivity(intent);
+            }
+        });
+
+        updateResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         AdminBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);

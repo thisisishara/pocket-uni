@@ -160,6 +160,12 @@
     <!--Messenger String Resources-->
 
     <!--Exams/Results String Resources-->
+    <!--IT19064932-->
+    <!--Results Main Activity String Resources-->
+    <string name="results_title">Results</string>
+    <string name="admin_results_description">Add, Edit and Update Students results in a instant.</string>
+    <string name="results_add_header">Add Results</string>
+    <string name="results_update_header">Update Results</string>
 
     <!--Profile String Resources-->
 
