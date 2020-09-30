@@ -167,6 +167,44 @@
     <string name="results_add_header">Add Results</string>
     <string name="results_update_header">Update Results</string>
 
+    <!--Results Add Activity String Resources-->
+    <string name="ca_period_prompt">Choose CA Period</string>
+    <string-array name="ca_period_array">
+        <item>Jan-Jun</item>
+        <item>Jun-Dec</item>
+    </string-array>
+    <string name="grade_prompt">Choose Grade</string>
+    <string-array name="grades">
+        <item>A+</item>
+        <item>A</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B</item>
+        <item>B-</item>
+        <item>C+</item>
+        <item>C</item>
+        <item>C-</item>
+        <item>D+</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
+    <string-array name="modules">
+        <item>Communication Skills</item>
+        <item>Computer Networks</item>
+        <item>Database Management Systems</item>
+        <item>English for Academic Purposes</item>
+        <item>Information Systems and Data Modeling</item>
+        <item>Internet and Web Technologies</item>
+        <item>Introduction to Computer Systems</item>
+        <item>Introduction to Programming</item>
+        <item>Mathematics for Computing</item>
+        <item>Object Oriented Concepts</item>
+        <item>Object Oriented Programming</item>
+        <item>Operating Systems and System Administration</item>
+        <item>Software Engineering</item>
+        <item>Software Process Modeling</item>
+    </string-array>
+
     <!--Profile String Resources-->
 
 
