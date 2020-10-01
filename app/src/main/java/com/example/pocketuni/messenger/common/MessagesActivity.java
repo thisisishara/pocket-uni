@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.pocketuni.R;
 import com.example.pocketuni.model.Message;
+import com.example.pocketuni.organizer.std.TimetableReminderDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,12 +50,13 @@ public class MessagesActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private Intent intent;
     private EditText newMessageEditText;
-    private CardView sendButtonCardView;
+    private CardView sendButtonCardView, dpContainer;
     private String sender, receiver;
     private MessageViewerAdapter messageViewerAdapter;
     private RecyclerView messagesRecyclerView;
     private LinearLayoutManager linearLayoutManager;
     private List<Message> messages = new ArrayList<Message>();
+    private int sent = 0, received = 0;
     private static final String TAG = "USR_MSG_ACT";
 
     @Override
@@ -69,6 +71,7 @@ public class MessagesActivity extends AppCompatActivity {
         usernameTextView = findViewById(R.id.userNameTextView);
         emailTextView = findViewById(R.id.emailTextView);
         dpImageView = findViewById(R.id.profilePictureImageView);
+        dpContainer = findViewById(R.id.profilePictureContainer);
         statusImageView = findViewById(R.id.userStatus);
         sendButtonCardView = findViewById(R.id.sendBtn);
         newMessageEditText = findViewById(R.id.sendMsgTextBox);
@@ -111,13 +114,38 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String newMessage = newMessageEditText.getText().toString().trim();
-                if (!newMessage.equalsIgnoreCase("")) {
+                if (!isMessageEmpty(newMessage)) {
                     sendMessage(newMessage);
                 } else {
                     showToast("TYPE A MESSAGE FIRST.");
                 }
 
 
+            }
+        });
+
+        dpContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sent = 0;
+                received = 0;
+                if(messages.size()>0) {
+                    for (Message msg : messages){
+                        if (msg.getSenderId().equalsIgnoreCase(firebaseAuth.getCurrentUser().getUid())) {
+                            sent++;
+                        } else {
+                            received++;
+                        }
+                    }
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("sent", sent);
+                    bundle.putInt("received", received);
+
+                    ChatInfoDialog chatInfoDialog = new ChatInfoDialog();
+                    chatInfoDialog.setArguments(bundle);
+                    chatInfoDialog.show(getSupportFragmentManager(), "Chat Info Dialog");
+                }
             }
         });
     }
@@ -134,7 +162,7 @@ public class MessagesActivity extends AppCompatActivity {
 
                 if (documentSnapshot != null) {
                     String status = (String) documentSnapshot.get("status");
-                    if(status.equalsIgnoreCase("online")){
+                    if(checkIsOnline(status) == true){
                         statusImageView.setImageDrawable(getResources().getDrawable(R.drawable.notifblue));
                     } else {
                         statusImageView.setImageDrawable(getResources().getDrawable(R.drawable.notifred));
@@ -297,5 +325,21 @@ public class MessagesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updateUserOnlineStatus("online");
+    }
+
+    public boolean checkIsOnline(String status){
+        if(status.equalsIgnoreCase("online")){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isMessageEmpty(String message){
+        if(message == null || message.equalsIgnoreCase("")){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

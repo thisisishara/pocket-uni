@@ -30,6 +30,10 @@ public class MessageViewerAdapter extends RecyclerView.Adapter<MessageViewerAdap
     private static final int MSG_RIGHT = 1;
     private static final int MSG_LEFT = 0;
 
+    public MessageViewerAdapter(){
+
+    }
+
     public MessageViewerAdapter(Context context, List<Message> messages){
         this.context = context;
         this.messages = messages;
@@ -57,12 +61,17 @@ public class MessageViewerAdapter extends RecyclerView.Adapter<MessageViewerAdap
 
         if(message.getSentDate() != null) {
             Date sentDate = message.getSentDate();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' hh:mm aaa");
-            String sentDateString = dateFormat.format(sentDate);
+
+            String sentDateString = getFormattedDateString(sentDate);
             holder.messageDateTime.setText(sentDateString);
         } else {
             holder.messageDateTime.setVisibility(View.GONE);
         }
+    }
+
+    public String getFormattedDateString(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' hh:mm aaa");
+        return dateFormat.format(date);
     }
 
     @Override
