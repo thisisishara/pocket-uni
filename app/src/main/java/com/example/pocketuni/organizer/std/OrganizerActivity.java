@@ -3,32 +3,21 @@ package com.example.pocketuni.organizer.std;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.CorrectionInfo;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.pocketuni.model.CurrentUser;
-import com.example.pocketuni.model.TimetableItem;
-import com.example.pocketuni.organizer.admin.AdminDeadlinesActivity;
-import com.example.pocketuni.organizer.admin.AdminNoticesActivity;
-import com.example.pocketuni.organizer.admin.AdminTimetableActivity;
-import com.example.pocketuni.organizer.admin.AdminViewTimetableActivity;
-import com.example.pocketuni.organizer.common.TimetableSlotListAdapter;
 import com.example.pocketuni.util.StdBottomNavigationHelper;
 import com.example.pocketuni.R;
 import com.example.pocketuni.security.SigninActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +27,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
@@ -62,7 +52,7 @@ public class OrganizerActivity extends AppCompatActivity {
         overridePendingTransition(0,0);
         setContentView(R.layout.activity_organizer);
 
-        timetables = findViewById(R.id.organizer_tile_timetable);
+        timetables = findViewById(R.id.infoBox);
         timetableNotificationIcon = findViewById(R.id.timetablenotification);
         deadlines = findViewById(R.id.organizer_tile_deadlines);
         notices = findViewById(R.id.organizer_tile_notices);
@@ -101,6 +91,7 @@ public class OrganizerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent intent = new Intent(getApplicationContext(), AdminDeadlinesActivity.class);
                 //startActivity(intent);
+                showToast("THIS FEATURE IS NOT AVAILABLE YET.");
             }
         });
 
@@ -109,6 +100,7 @@ public class OrganizerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent intent = new Intent(getApplicationContext(), AdminNoticesActivity.class);
                 //startActivity(intent);
+                showToast("THIS FEATURE IS NOT AVAILABLE YET.");
             }
         });
 
@@ -232,5 +224,25 @@ public class OrganizerActivity extends AppCompatActivity {
 
     private void showToast (String message) {
         Toast.makeText(OrganizerActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateUserOnlineStatus(String status){
+        HashMap<String,Object> userStatus = new HashMap<String, Object>();
+        userStatus.put("status", status);
+
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        documentReference.update(userStatus);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        updateUserOnlineStatus("offline");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUserOnlineStatus("online");
     }
 }

@@ -79,8 +79,6 @@ public class ViewTimetableActivity extends AppCompatActivity implements Timetabl
     private int reminderCounter = 0;
     private String TAG = "STD_TTL_VTTL";
 
-    String message; //temp
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,14 +130,14 @@ public class ViewTimetableActivity extends AppCompatActivity implements Timetabl
         timetableReminderDialog.show(getSupportFragmentManager(), "Add Timetable Reminder Dialog");
     }
 
-    private void showToast (String message) {
-        Toast.makeText(ViewTimetableActivity.this, message, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void getNewTimetableReminderData(boolean enabledState, int minutes) {
         updateReminderSettingsOfCurrentUser(enabledState, minutes);
         updateAllRemindersOfCurrentUser(enabledState, minutes);
+    }
+
+    private void showToast (String message) {
+        Toast.makeText(ViewTimetableActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void addNewReminders(final int minutes){
@@ -523,5 +521,25 @@ public class ViewTimetableActivity extends AppCompatActivity implements Timetabl
                 Log.i(TAG, "new reminder settings updated successfully. (VTTL)");
             }
         });
+    }
+
+    private void updateUserOnlineStatus(String status){
+        HashMap<String,Object> userStatus = new HashMap<String, Object>();
+        userStatus.put("status", status);
+
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        documentReference.update(userStatus);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        updateUserOnlineStatus("offline");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUserOnlineStatus("online");
     }
 }

@@ -142,18 +142,83 @@
     <string name="dialog_delete">Delete</string>
     <string name="delete_confirmation_message">Are you sure you want to delete this post?\n You cannot recover a deleted post.</string>
     <string name="post_delete_confirmation_toast">Post Deleted</string>
-    <string name="add_post_confirmation_toast">Post Added</string>
+    <string name="add_post_confirmation_toast">POST ADDED.</string>
     <string name="add_post_button_text">Add Post</string>
     <string name="cancel_post_button_text">Cancel</string>
     <string name="timetableslots_error_text">Timetable Error Viewer</string>
     <string name="headerimage_content_description">HeaderImage</string>
     <string name="viewtimetable_course">Timetable Details</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="postAudience">
+        <item>General</item>
+        <item>1st Year</item>
+        <item>2nd Year</item>
+        <item>3rd Year</item>
+        <item>4th Year</item>
+    </string-array>
 
     <!--Messenger String Resources-->
 
     <!--Exams/Results String Resources-->
+    <!--IT19064932-->
+    <!--Results Main Activity String Resources-->
+    <string name="results_title">Results</string>
+    <string name="admin_results_description">Add, Edit and Update Students results in a instant.</string>
+    <string name="results_add_header">Add Results</string>
+    <string name="results_update_header">Update Results</string>
+
+    <!--Results Add Activity String Resources-->
+    <string name="ca_period_prompt">Choose CA Period</string>
+    <string-array name="ca_period_array">
+        <item>Jan-Jun</item>
+        <item>Jun-Dec</item>
+    </string-array>
+    <string name="grade_prompt">Choose Grade</string>
+    <string-array name="grades">
+        <item>A+</item>
+        <item>A</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B</item>
+        <item>B-</item>
+        <item>C+</item>
+        <item>C</item>
+        <item>C-</item>
+        <item>D+</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
+    <string-array name="modules">
+        <item>Communication Skills</item>
+        <item>Computer Networks</item>
+        <item>Database Management Systems</item>
+        <item>English for Academic Purposes</item>
+        <item>Information Systems and Data Modeling</item>
+        <item>Internet and Web Technologies</item>
+        <item>Introduction to Computer Systems</item>
+        <item>Introduction to Programming</item>
+        <item>Mathematics for Computing</item>
+        <item>Object Oriented Concepts</item>
+        <item>Object Oriented Programming</item>
+        <item>Operating Systems and System Administration</item>
+        <item>Software Engineering</item>
+        <item>Software Process Modeling</item>
+    </string-array>
+
+    <!--Results Added Activity String Resources-->
+    <string name="results_added_header">Results Added</string>
+
+    <!--Results Dialog Box Activity String Resources-->
+    <string-array name="semester_in_letters">
+        <item>Year One Semester One</item>
+        <item>Year One Semester Two</item>
+        <item>Year Two Semester One</item>
+        <item>Year Two Semester Two</item>
+        <item>Year Three Semester One</item>
+        <item>Year Three Semester Two</item>
+        <item>Year Four Semester One</item>
+        <item>Year Four Semester Two</item>
+    </string-array>
 
     <!--Profile String Resources-->
 

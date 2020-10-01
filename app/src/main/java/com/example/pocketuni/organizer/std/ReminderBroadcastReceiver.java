@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.core.app.NotificationCompat;
+
 import com.example.pocketuni.R;
 
 public class ReminderBroadcastReceiver extends BroadcastReceiver {
@@ -47,6 +49,8 @@ public class ReminderBroadcastReceiver extends BroadcastReceiver {
                     .setContentText(body)
                     .setSmallIcon(R.drawable.notif_small)
                     .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.notif_big))
+                    .setStyle(new Notification.BigTextStyle()
+                            .bigText(body))
                     .setAutoCancel(true)
                     .build();
 

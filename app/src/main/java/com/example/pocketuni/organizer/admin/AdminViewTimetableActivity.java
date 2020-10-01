@@ -60,7 +60,7 @@ public class AdminViewTimetableActivity extends AppCompatActivity implements Add
             finish();
         }
 
-        collapsingToolbarLayout = findViewById(R.id.timetables_toolbar_layout);
+        collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
         timetableInfo = findViewById(R.id.textViewTimetableInfo);
         textViewTimetableInfoError = findViewById(R.id.textViewTimetableInfoError);
 
@@ -158,5 +158,25 @@ public class AdminViewTimetableActivity extends AppCompatActivity implements Add
                 }
             }
         });
+    }
+
+    private void updateUserOnlineStatus(String status){
+        HashMap<String,Object> userStatus = new HashMap<String, Object>();
+        userStatus.put("status", status);
+
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+        documentReference.update(userStatus);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        updateUserOnlineStatus("offline");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUserOnlineStatus("online");
     }
 }

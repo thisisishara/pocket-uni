@@ -24,6 +24,8 @@
     <color name="color_dp_green">#7CB342</color>
     <color name="color_post_delete">#F44336</color>
     <color name="color_post_Edit">#FFF</color>
+    <color name="color_post_not_interested">#455A64</color>
+    <color name="color_post_interested">#F44336</color>
     <color name="floating_button_timeline">#1E88E5</color>
 
 

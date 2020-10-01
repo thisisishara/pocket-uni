@@ -8,48 +8,205 @@
     tools:context=".profile.admin.AdminProfileActivity">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/container"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="56dp"
-            android:fillViewport="true">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/toolbar_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/profileImageContainer"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/circle"
+                        app:cardCornerRadius="60dp"
+                        android:backgroundTint="@color/card_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_anchorGravity="bottom|center"
+                        app:layout_constraintBottom_toBottomOf="@+id/toolbar_background"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <ImageView
+                            android:id="@+id/profileImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/circle"
+                            android:backgroundTint="@color/card_dark"
+                            android:src="@drawable/avatar"
+                            android:scaleType="centerCrop" />
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/editProfileFloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:clickable="true"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/floating_button_new"
+                app:layout_anchor="@id/appbar_layout"
+                app:layout_anchorGravity="bottom|right|end"
+                app:maxImageSize="40dp"
+                app:srcCompat="@drawable/ic_edit_white" />
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="56dp">
+                android:layout_marginBottom="56dp"
+                android:fillViewport="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="92dp"
-                    android:layout_marginTop="196dp"
-                    android:text="Admin Profile Stuff"
-                    android:textSize="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/buttonSignOut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="384dp"
-                    android:text="Sign out"
-                    android:onClick="signout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.829"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <EditText
+                        android:id="@+id/editTextUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="44dp"
+                        android:layout_marginTop="52dp"
+                        android:layout_marginEnd="44dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Name"
+                        android:inputType="textPersonName"
+                        android:text="Name"
+                        android:textColor="@color/white"
+                        android:textColorHighlight="@color/colorPrimary"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                    <EditText
+                        android:id="@+id/editTextEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="44dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="44dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Email Address"
+                        android:inputType="textPersonName"
+                        android:text="Email Address"
+                        android:textColor="@color/white"
+                        android:textColorHighlight="@color/colorPrimary"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/profileTile2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="64dp"
+                        android:layout_marginTop="32dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@color/darkbg"
+                        app:cardCornerRadius="28dp"
+                        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextEmail">
+
+                        <ImageView
+                            android:id="@+id/profileTileIcon2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/ic_inbox_white"
+                            android:backgroundTint="@color/white"
+                            android:scaleType="centerCrop" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/profileTile3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="62dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@color/darkbg"
+                        app:cardCornerRadius="28dp"
+                        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextEmail">
+
+                        <ImageView
+                            android:id="@+id/profileTileIcon3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/ic_posts_white"
+                            android:backgroundTint="@color/white"
+                            android:scaleType="centerCrop" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/inboxCount"
+                        android:layout_width="64dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="99999999"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="@+id/profileTile2"
+                        app:layout_constraintStart_toStartOf="@+id/profileTile2"
+                        app:layout_constraintTop_toBottomOf="@+id/profileTile2" />
+
+                    <TextView
+                        android:id="@+id/postCount"
+                        android:layout_width="64dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="99999999"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="@+id/profileTile3"
+                        app:layout_constraintStart_toStartOf="@+id/profileTile3"
+                        app:layout_constraintTop_toBottomOf="@+id/profileTile3" />
+
+                    <Button
+                        android:id="@+id/signOutButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="182dp"
+                        android:onClick="signout"
+                        android:text="Sign out"
+                        android:theme="@style/ButtonTheme"
+                        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+                        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         //bottom navigation
         <com.google.android.material.bottomnavigation.BottomNavigationView

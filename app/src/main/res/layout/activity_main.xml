@@ -7,384 +7,141 @@
     android:background="@color/darkbg"
     tools:context=".timeline.std.MainActivity">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:backgroundTint="@color/card_dark"
+            android:layout_height="250dp">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/timetables_appbar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
-
-                <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/timeline_toolbar_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_scrollFlags="exitUntilCollapsed|scroll|snap"
-                    app:contentScrim="?attr/colorPrimary"
-                    app:title="@string/timeline_title"
-
-                    app:expandedTitleMarginStart="48dp"
-                    app:expandedTitleMarginEnd="64dp">
-
-                    <ImageView
-                        android:id="@+id/timeline_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/girl3" />
-
-                    <ImageView
-                        android:id="@+id/timeline_background_gradient"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/darkgradient" />
-
-                    <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/timetables_toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat"
-                        app:layout_collapseMode="pin"/>
-
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/addPostFloatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:tint="@android:color/white"
-                app:backgroundTint="@color/floating_button_timeline"
-                app:srcCompat="@drawable/ic_add"
-                android:layout_gravity="end|bottom"
-                android:layout_marginBottom="100dp"
-                android:layout_marginEnd="40dp"/>
-
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nestedScrollView2"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/timeline_toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="56dp"
-                android:fillViewport="true"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                app:layout_scrollFlags="exitUntilCollapsed|scroll|snap"
+                app:contentScrim="?attr/colorPrimary"
+                app:title="@string/timeline_title"
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginEnd="64dp">
+
+                <ImageView
+                    android:id="@+id/timeline_background"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="126dp">
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/studygirl" />
+
+                <ImageView
+                    android:id="@+id/timeline_background_gradient"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/darkgradient" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat"
+                    app:layout_collapseMode="pin"/>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
-                    <!--post card item starts-->
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/organizer_tile_timetable2"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/card_dark"
-                        app:cardCornerRadius="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/itNumberTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="68dp"
-                                android:text="@string/default_post_itnumber"
-                                android:textSize="14sp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/postedPersonNameTextView" />
-
-                            <TextView
-                                android:id="@+id/itNumberTextView2"
-                                android:layout_width="0dp"
-                                android:layout_height="82dp"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="80dp"
-                                android:layout_marginEnd="20dp"
-                                android:text="@string/default_post_content"
-                                android:textSize="12sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.0"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/postedPersonNameTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="12dp"
-                                android:layout_marginTop="14dp"
-                                android:paddingEnd="20dp"
-                                android:text="@string/default_post_owner"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="18sp"
-                                app:layout_constraintStart_toEndOf="@+id/profilePictureContainer"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/postedTimeTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:text="@string/default_post_time"
-                                android:textSize="12sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/profilePictureContainer"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:background="@drawable/circle"
-                                app:cardCornerRadius="50dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <ImageView
-                                    android:id="@+id/profilePicture"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/circle"
-                                    android:backgroundTint="@color/color_dp_red"
-                                    android:src="@drawable/avatar"
-                                    android:scaleType="centerCrop" />
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/commentSection"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                app:cardBackgroundColor="#00000000"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent">
-
-                                <ImageView
-                                    android:id="@+id/commentIcon"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/bottom_rounded_rectangle" />
-
-                                <EditText
-                                    android:id="@+id/editTextTextComment"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:backgroundTint="@color/white"
-                                    android:ems="10"
-                                    android:hint="@string/post_comment"
-                                    android:inputType="text"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/gray"
-                                    android:textSize="15sp" />
-
-                            </androidx.cardview.widget.CardView>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-                    <!--post card end-->
-
-
-                    <!--copy-->
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/organizer_tile_timetable22"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/card_dark"
-                        app:cardCornerRadius="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/organizer_tile_timetable2">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/itNumberTextView2222"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="68dp"
-                                android:text="@string/default_post_itnumber"
-                                android:textSize="14sp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/postedPersonNameTextView2" />
-
-                            <TextView
-                                android:id="@+id/itNumberTextView222"
-                                android:layout_width="0dp"
-                                android:layout_height="82dp"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="80dp"
-                                android:layout_marginEnd="20dp"
-                                android:text="@string/default_post_content"
-                                android:textSize="12sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.0"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/postedPersonNameTextView2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="12dp"
-                                android:layout_marginTop="14dp"
-                                android:paddingEnd="20dp"
-                                android:text="@string/default_username"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="18sp"
-                                app:layout_constraintStart_toEndOf="@+id/profilePictureContainer2"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/postedTimeTextView2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:text="@string/default_post_time"
-                                android:textSize="12sp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/deletePostButton2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="20dp"
-                                android:layout_marginBottom="9dp"
-                                android:clickable="true"
-                                android:text="@string/post_delete"
-                                android:textColor="@color/color_post_delete"
-                                android:textSize="14sp"
-                                app:layout_constraintBottom_toTopOf="@+id/commentSection2"
-                                app:layout_constraintEnd_toEndOf="parent" />
-
-                            <TextView
-                                android:id="@+id/deletePostButton3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="5dp"
-                                android:layout_marginBottom="9dp"
-                                android:clickable="true"
-                                android:text="@string/post_edit"
-                                android:textColor="@color/color_post_Edit"
-                                android:textSize="14sp"
-                                app:layout_constraintBottom_toTopOf="@+id/commentSection2"
-                                app:layout_constraintEnd_toStartOf="@+id/deletePostButton2" />
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/profilePictureContainer2"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:background="@drawable/circle"
-                                app:cardCornerRadius="50dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <ImageView
-                                    android:id="@+id/profilePicture2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/circle"
-                                    android:backgroundTint="@color/color_dp_red"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/avatar" />
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/commentSection2"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                app:cardBackgroundColor="#00000000"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent">
-
-                                <ImageView
-                                    android:id="@+id/commentIcon2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/bottom_rounded_rectangle" />
-
-                                <EditText
-                                    android:id="@+id/editTextTextPersonName22"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:backgroundTint="@color/white"
-                                    android:ems="10"
-                                    android:hint="@string/post_comment"
-                                    android:inputType="text"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/gray"
-                                    android:textSize="15sp" />
-
-                            </androidx.cardview.widget.CardView>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-                    <!--post card end-->
-
-                    <EditText
-                        android:id="@+id/editTextTextPersonName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:ems="10"
-                        android:hint="@string/timeline_search"
-                        android:inputType="textPersonName"
-                        android:textColorHighlight="@color/colorPrimary"
-                        android:textColorHint="@android:color/darker_gray"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.core.widget.NestedScrollView>
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        //bottom navigation
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView2"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
-            app:menu="@menu/menu" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="126dp">
+
+                <!--EditText
+                    android:id="@+id/editTextSearchBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:ems="10"
+                    android:hint="@string/timeline_search"
+                    android:inputType="textPersonName"
+                    android:textColorHighlight="@color/colorPrimary"
+                    android:textColorHint="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" /-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewGeneralNotices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/generalNoticesTitle" />
+
+                <TextView
+                    android:id="@+id/generalNoticesTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="General Notices"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/firstYearNoticesEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="{YEAR} NOTICES"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewGeneralNotices" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewFirstYearNotices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/firstYearNoticesEditText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    //bottom navigation
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/menu" />
 
 </RelativeLayout>

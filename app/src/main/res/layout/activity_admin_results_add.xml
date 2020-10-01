@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkbg"
+    tools:context=".results.admin.AdminResultsAdd">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        >
+
+        //bottom navigation
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="56dp">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="800dp"
+                    android:text="Admin Results Stuff"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="408dp"
+                    android:layout_height="56dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="Add Results"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/studentRegistrationNumberAdd"
+                    android:layout_width="300dp"
+                    android:layout_height="56dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="52dp"
+                    android:maxLength="10"
+                    android:inputType="textCapCharacters"
+                    android:textAllCaps="true"
+                    android:hint=" Student Registration Number"
+                    android:digits="IT0123456789"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <EditText
+                    android:id="@+id/caMarksAdd"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:hint="CA Marks"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.153"
+                    app:layout_constraintStart_toEndOf="@+id/spinnerGradeAdd"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerModuleAdd" />
+
+                <Spinner
+                    android:id="@+id/spinnerPeriodAdd"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="21dp"
+                    android:entries="@array/ca_period_array"
+                    android:prompt="@string/ca_period_prompt"
+                    app:layout_constraintEnd_toStartOf="@+id/spinnerYearAdd"
+                    app:layout_constraintHorizontal_bias="0.923"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerGradeAdd"
+                    tools:ignore="MissingConstraints" />
+
+                <Spinner
+                    android:id="@+id/spinnerYearAdd"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:entries="@array/ca_period_array"
+                    android:prompt="@string/ca_period_prompt"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/spinnerPeriodAdd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.792"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <Button
+                    android:id="@+id/btnReset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="304dp"
+                    android:text="Reset"
+                    app:layout_constraintBottom_toTopOf="@+id/textView4"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
+                    app:layout_constraintHorizontal_bias="0.597"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerPeriodAdd"
+                    app:layout_constraintVertical_bias="0.513" />
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="96dp"
+                    android:text="Submit"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/btnReset"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerGradeAdd"
+                    android:layout_width="140dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginTop="24dp"
+                    android:entries="@array/grades"
+                    android:prompt="@string/grade_prompt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerModuleAdd" />
+
+                <Spinner
+                    android:id="@+id/spinnerModuleAdd"
+                    android:layout_width="300dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:entries="@array/modules"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/studentRegistrationNumberAdd" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/menu" />
+
+    </FrameLayout>
+
+</RelativeLayout>
