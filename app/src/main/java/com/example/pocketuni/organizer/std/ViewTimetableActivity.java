@@ -183,7 +183,7 @@ public class ViewTimetableActivity extends AppCompatActivity implements Timetabl
                         System.out.println("NRLS"+newReminderList.size());
                     }
 
-                    if (newReminderList.size() > 0) {
+                    if (isGreaterThanZero(newReminderList.size()) == true) {
                         pendingIntents = newReminderList.size();
                         Log.i(TAG,pendingIntents +  " pending reminders found.");
 
@@ -208,34 +208,7 @@ public class ViewTimetableActivity extends AppCompatActivity implements Timetabl
                                         reminderDateCalender.set(Calendar.YEAR, today.get(Calendar.YEAR));
                                         reminderDateCalender.set(Calendar.MONTH, today.get(Calendar.MONTH));
 
-                                        String dayLongNameOfReminder;
-
-                                        switch(newReminder.getDay()){
-                                            case 1:
-                                                dayLongNameOfReminder = "Monday";
-                                                break;
-                                            case 2:
-                                                dayLongNameOfReminder = "Tuesday";
-                                                break;
-                                            case 3:
-                                                dayLongNameOfReminder = "Wednesday";
-                                                break;
-                                            case 4:
-                                                dayLongNameOfReminder = "Thursday";
-                                                break;
-                                            case 5:
-                                                dayLongNameOfReminder = "Friday";
-                                                break;
-                                            case 6:
-                                                dayLongNameOfReminder = "Saturday";
-                                                break;
-                                            case 7:
-                                                dayLongNameOfReminder = "Sunday";
-                                                break;
-                                            default:
-                                                dayLongNameOfReminder = "N/A";
-                                                break;
-                                        }
+                                        String dayLongNameOfReminder = getDayLongNameOfDate(newReminder.getDay());
 
                                         if (dayLongNameOfToday.equalsIgnoreCase(dayLongNameOfReminder) == false){
                                             if (dayLongNameOfToday.equalsIgnoreCase("Monday")){
@@ -541,5 +514,46 @@ public class ViewTimetableActivity extends AppCompatActivity implements Timetabl
     protected void onResume() {
         super.onResume();
         updateUserOnlineStatus("online");
+    }
+
+    public boolean isGreaterThanZero(int size){
+        if(size > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getDayLongNameOfDate(int dateNumber){
+        String dayLongNameOfDate = null;
+
+        switch(dateNumber){
+            case 1:
+                dayLongNameOfDate = "Monday";
+                break;
+            case 2:
+                dayLongNameOfDate = "Tuesday";
+                break;
+            case 3:
+                dayLongNameOfDate = "Wednesday";
+                break;
+            case 4:
+                dayLongNameOfDate = "Thursday";
+                break;
+            case 5:
+                dayLongNameOfDate = "Friday";
+                break;
+            case 6:
+                dayLongNameOfDate = "Saturday";
+                break;
+            case 7:
+                dayLongNameOfDate = "Sunday";
+                break;
+            default:
+                dayLongNameOfDate = "N/A";
+                break;
+        }
+
+        return dayLongNameOfDate;
     }
 }

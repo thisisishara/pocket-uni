@@ -18,9 +18,6 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pocketuni.R;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import static android.widget.Toast.makeText;
 
 public class DeleteTimetableDialog extends AppCompatDialogFragment {
@@ -37,7 +34,7 @@ public class DeleteTimetableDialog extends AppCompatDialogFragment {
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.layout_delete_confirmation_box, null);
-        body = view.findViewById(R.id.textViewBody);
+        body = view.findViewById(R.id.textViewChatInfo);
 
         builder.setView(view)
                 .setTitle("Deleting Timetable")

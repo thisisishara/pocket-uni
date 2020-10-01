@@ -18,9 +18,6 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pocketuni.R;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import static android.widget.Toast.makeText;
 
 public class DeleteTimetableSlotDialog extends AppCompatDialogFragment {
@@ -37,7 +34,7 @@ public class DeleteTimetableSlotDialog extends AppCompatDialogFragment {
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.layout_delete_confirmation_box, null);
-        body = view.findViewById(R.id.textViewBody);
+        body = view.findViewById(R.id.textViewChatInfo);
         body.setText("The selected timetable slot will be permanently deleted.");
 
         builder.setView(view)

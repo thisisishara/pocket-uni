@@ -73,21 +73,8 @@ public class AddPostActivity extends AppCompatActivity {
                 //save data to firebase firestore
                 Calendar postedDateTimeCalender = Calendar.getInstance();
                 Date postedDateTime = postedDateTimeCalender.getTime();
-                String audience = "";
-
-                if (audienceSpinner.getSelectedItem().toString().equalsIgnoreCase("General")){
-                    audience = "0";
-                } else if (audienceSpinner.getSelectedItem().toString().equalsIgnoreCase("1st Year")){
-                    audience = "1";
-                } else if (audienceSpinner.getSelectedItem().toString().equalsIgnoreCase("2nd Year")){
-                    audience = "2";
-                } else if (audienceSpinner.getSelectedItem().toString().equalsIgnoreCase("3rd Year")){
-                    audience = "3";
-                } else if (audienceSpinner.getSelectedItem().toString().equalsIgnoreCase("4th Year")){
-                    audience = "4";
-                } else {
-                    //do nothing
-                }
+                String readAudienceSpinnerString = audienceSpinner.getSelectedItem().toString();
+                String audience = getAudience(readAudienceSpinnerString);
 
                 HashMap<String, Object> newPost = new HashMap<String, Object>();
                 newPost.put ("noticeId", userID+""+postedDateTime.toString());
@@ -123,6 +110,26 @@ public class AddPostActivity extends AppCompatActivity {
                 finishActivity();
             }
         });
+    }
+
+    public String getAudience(String audienceString) {
+        String audience = "";
+
+        if (audienceString.equalsIgnoreCase("General")){
+            audience = "0";
+        } else if (audienceString.equalsIgnoreCase("1st Year")){
+            audience = "1";
+        } else if (audienceString.equalsIgnoreCase("2nd Year")){
+            audience = "2";
+        } else if (audienceString.equalsIgnoreCase("3rd Year")){
+            audience = "3";
+        } else if (audienceString.equalsIgnoreCase("4th Year")){
+            audience = "4";
+        } else {
+            //do nothing
+        }
+
+        return audience;
     }
 
     private void finishActivity(){

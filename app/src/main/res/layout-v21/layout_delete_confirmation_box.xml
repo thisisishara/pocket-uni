@@ -28,7 +28,7 @@
                 android:paddingBottom="20dp">
 
                 <TextView
-                    android:id="@+id/textViewBody"
+                    android:id="@+id/textViewChatInfo"
                     android:layout_width="267dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -45,9 +45,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewBody"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewChatInfo"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textViewBody"
+                    app:layout_constraintTop_toTopOf="@+id/textViewChatInfo"
                     app:layout_constraintVertical_bias="0.413"
                     app:srcCompat="@drawable/ic_baseline_delete_sweep_24" />
 

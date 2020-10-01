@@ -35,7 +35,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/switchEnableReminders"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewBody" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewChatInfo" />
 
                 <TextView
                     android:id="@+id/textViewRemindBefore2"
@@ -56,14 +56,14 @@
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="28dp"
                     android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewBody"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewChatInfo"
                     app:layout_constraintHorizontal_bias="0.909"
                     app:layout_constraintStart_toEndOf="@+id/switchEnableReminders"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewBody"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewChatInfo"
                     tools:visibility="invisible" />
 
                 <TextView
-                    android:id="@+id/textViewBody"
+                    android:id="@+id/textViewChatInfo"
                     android:layout_width="304dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -82,8 +82,8 @@
                     android:text="@string/reminder_switch"
                     android:textColor="@color/white"
                     android:theme="@style/SwitchTheme"
-                    app:layout_constraintStart_toStartOf="@+id/textViewBody"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewBody" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewChatInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewChatInfo" />
 
                 <EditText
                     android:id="@+id/editTextMinutes"

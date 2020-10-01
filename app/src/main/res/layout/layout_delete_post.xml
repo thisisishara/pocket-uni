@@ -27,7 +27,7 @@
                 android:paddingBottom="25dp">
 
                 <TextView
-                    android:id="@+id/textViewBody"
+                    android:id="@+id/textViewChatInfo"
                     android:layout_width="267dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
