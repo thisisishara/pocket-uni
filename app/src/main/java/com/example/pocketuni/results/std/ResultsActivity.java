@@ -12,15 +12,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pocketuni.model.CurrentUser;
 import com.example.pocketuni.model.Result;
+import com.example.pocketuni.results.admin.AdminResultsDisplay;
+import com.example.pocketuni.results.admin.CustomAdapter;
+import com.example.pocketuni.results.admin.ListActivity;
 import com.example.pocketuni.util.StdBottomNavigationHelper;
 import com.example.pocketuni.R;
 import com.example.pocketuni.security.SigninActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -35,8 +43,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class ResultsActivity extends AppCompatActivity {
     private List<Result> resultListSemesters = new ArrayList<>();
@@ -85,29 +96,10 @@ public class ResultsActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         getUserStatus();
+        //getYearAndSemesters();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         StdBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
-    }
-
-    private void updateUserOnlineStatus(String status){
-        HashMap<String,Object> userStatus = new HashMap<String, Object>();
-        userStatus.put("status", status);
-
-        DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
-        documentReference.update(userStatus);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        updateUserOnlineStatus("offline");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updateUserOnlineStatus("online");
     }
 
     private void getUserStatus(){
@@ -213,8 +205,11 @@ public class ResultsActivity extends AppCompatActivity {
         String email = CurrentUser.getEmail();
 
         resultList.clear();
+        int count = 0;
 
         for(int mainCount=1; mainCount<9; mainCount++) {
+            count++;
+            final int stepCount = count;
 
             String yearAndSem = "Year One Semester One";
 
@@ -245,22 +240,20 @@ public class ResultsActivity extends AppCompatActivity {
                     break;
             }
 
-            final int count = mainCount;
-
             CollectionReference collectionReference = firebaseFirestore.collection("Students").document(email).collection("Results").document(yearAndSem).collection("Modules");
             collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
                         if (task.getResult() != null) {
-                            Log.d(TAG, "Current module data: [" + count +"] : " + "" + task.getResult().getDocumentChanges());
+                            Log.d(TAG, "Current module data: [" + stepCount +"] : " + "" + task.getResult().getDocumentChanges());
 
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 Result newResult = documentSnapshot.toObject(Result.class);
                                 resultList.add(newResult);
                             }
 
-                            if(count == 8){
+                            if(stepCount == 8){
                                 processData();
                             }
 
@@ -276,6 +269,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     private void processData() {
         double gradePoint = 0.0;
+        Log.i("AAA", resultList.size()+"");
 
         for (Result result : resultList) {
             gradePoint += getGradePoint(result.getGrades());
@@ -284,7 +278,7 @@ public class ResultsActivity extends AppCompatActivity {
             // showToast("NO RESULTS");
         } else {
             textViewGPA.setText(String.format("%.2f",gradePoint/resultList.size()));
-            Log.i(TAG, gradePoint/resultList.size()+"");
+            Log.i("AAA", gradePoint + "/" + resultList.size()+" :" +gradePoint/resultList.size()+"");
         }
     }
 

@@ -49,6 +49,7 @@ public class DialogBox extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String sRegNum = regNum.getText().toString().trim();
                         String sYearSem = yearSem.getSelectedItem().toString().trim();
+                        //searchData(sRegNum);
                         Intent intent = new Intent(getActivity(), ListActivity.class);
                         intent.putExtra("DialogRegNum", sRegNum);
                         intent.putExtra("DialogYearSem", sYearSem);

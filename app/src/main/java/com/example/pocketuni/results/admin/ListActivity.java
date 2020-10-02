@@ -52,7 +52,7 @@ public class ListActivity extends AppCompatActivity {
 
         String email = DialogRegNum+"@my.sliit.lk";
 
-        db.collection("Students").document(DialogRegNum).collection("Results").document(DialogYearSem).collection("Modules")
+        db.collection("Students").document(email).collection("Results").document(DialogYearSem).collection("Modules")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

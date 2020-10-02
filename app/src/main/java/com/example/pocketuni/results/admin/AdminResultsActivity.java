@@ -19,17 +19,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 
 public class AdminResultsActivity extends AppCompatActivity {
-    private FirebaseFirestore firebaseFirestore;
-    private FirebaseAuth firebaseAuth;
     private BottomNavigationView bottomNavigationView;
     private Context context = AdminResultsActivity.this;
     private static final int ACTIVITY_NUMBER = 3;
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firebaseFirestore;
     CardView addResults, updateResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
         setContentView(R.layout.activity_admin_results);
 
         addResults = findViewById(R.id.results_tile_add);
@@ -39,10 +39,13 @@ public class AdminResultsActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         //redirect if already logged in
-        if(firebaseAuth.getCurrentUser() == null){
+        if (firebaseAuth.getCurrentUser() == null) {
             startActivity(new Intent(getApplicationContext(), SigninActivity.class));
             finish();
         }
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        AdminBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
 
         addResults.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,9 +61,11 @@ public class AdminResultsActivity extends AppCompatActivity {
                 openDialog();
             }
         });
+    }
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        AdminBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
+    public void openDialog() {
+        DialogBox dialogBox = new DialogBox();
+        dialogBox.show(getSupportFragmentManager(), "dialog box");
     }
 
     private void updateUserOnlineStatus(String status){
@@ -69,11 +74,6 @@ public class AdminResultsActivity extends AppCompatActivity {
 
         DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid());
         documentReference.update(userStatus);
-    }
-
-    public void openDialog() {
-        DialogBox dialogBox = new DialogBox();
-        dialogBox.show(getSupportFragmentManager(), "dialog box");
     }
 
     @Override

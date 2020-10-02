@@ -3,6 +3,7 @@ package com.example.pocketuni.results.admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -79,7 +80,6 @@ public class AdminResultsDisplay extends AppCompatActivity {
             finish();
         }
 
-        //Firestore
         db = FirebaseFirestore.getInstance();
 
         //get extras from add activity
@@ -159,12 +159,9 @@ public class AdminResultsDisplay extends AppCompatActivity {
         AdminBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
     }
 
-    private void showToast (String message) {
-        Toast.makeText(AdminResultsDisplay.this, message, Toast.LENGTH_SHORT).show();
-    }
-
     public void deleteData(){
-        String email = regNumberD.getText().toString().trim()+"@my.sliit.lk";
+        String regNum = regNumberD.getText().toString().trim();
+        String email = regNum+"@my.sliit.lk";
         String yearSem = getYearAndSemester(spinnerModule.getSelectedItem().toString().trim());
         String module = spinnerModule.getSelectedItem().toString().trim();
 
@@ -185,8 +182,15 @@ public class AdminResultsDisplay extends AppCompatActivity {
             Intent intent = new Intent(AdminResultsDisplay.this, AdminResultsActivity.class);
             startActivity(intent);
         } else if(mode.equals("1")){
-            showData();
+            Intent intent = new Intent(AdminResultsDisplay.this, ListActivity.class);
+            intent.putExtra("DialogRegNum", regNum);
+            intent.putExtra("DialogYearSem", yearSem);
+            startActivity(intent);
         }
+    }
+
+    private void showToast (String message) {
+        Toast.makeText(AdminResultsDisplay.this, message, Toast.LENGTH_SHORT).show();
     }
 
     private int getSpinnerModule(String module){
@@ -234,13 +238,15 @@ public class AdminResultsDisplay extends AppCompatActivity {
     }
 
     private int getSpinnerYear(String year){
-        int yearCounter = 1999, var = 0;
+        int yearCounter = 1999;
+        int var = 0;
         for (int i=0; i <= Calendar.getInstance().get(Calendar.YEAR)-1999;){
-            String yearS = Integer.toString(yearCounter);
+            String yearS = String.valueOf(yearCounter);
             if (year.equals(yearS)){
                 var = i;
             }
             i++;
+            yearCounter++;
         }
         return var;
     }
@@ -274,7 +280,6 @@ public class AdminResultsDisplay extends AppCompatActivity {
         }
         return var;
     }
-
 
     private String getYearAndSemester(String module){
         StringBuilder yearAndSemester = new StringBuilder("");

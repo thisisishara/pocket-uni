@@ -44,7 +44,7 @@ public class AdminResultsAdd extends AppCompatActivity {
     private Spinner spinnerPeriod, spinnerYear, spinnerGrade, spinnerModule;
     Button btnSubmit, btnClear;
     EditText regNumber, caMarks;
-    private String sRegNumber, sCAMarks, sGetPeriod, sGetYear, sGetGrade, sGetModule;
+    private String sRegNumber, sCAMarks, sPeriod, sGetPeriod, sYear, sGetYear, sGetGrade, sGradePoint, sLetterGrade, sGetModule, sModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,18 @@ public class AdminResultsAdd extends AppCompatActivity {
 
         //Firestore
         db = FirebaseFirestore.getInstance();
+
+        //Generate years from 1999 to date for spinner
+        ArrayList<String> years = new ArrayList<String>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 1999; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
+
+        spinnerYear = (Spinner)findViewById(R.id.spinnerYearAdd);
+        spinnerYear.setAdapter(adapter);
+        //End generating years
 
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,21 +118,10 @@ public class AdminResultsAdd extends AppCompatActivity {
                 intent.putExtra("grades", sGetGrade);
                 intent.putExtra("period", sGetPeriod);
                 intent.putExtra("year", sGetYear);
+                intent.putExtra("mode", mode);
                 startActivity(intent);
             }
         });
-
-        //Generate years from 1999 to date for spinner
-        ArrayList<String> years = new ArrayList<String>();
-        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 1999; i <= thisYear; i++) {
-            years.add(Integer.toString(i));
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
-
-        spinnerYear = (Spinner)findViewById(R.id.spinnerYearAdd);
-        spinnerYear.setAdapter(adapter);
-        //End generating years
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         AdminBottomNavigationHelper.enableNavigation(context, bottomNavigationView, ACTIVITY_NUMBER);
@@ -173,7 +174,130 @@ public class AdminResultsAdd extends AppCompatActivity {
         Toast.makeText(AdminResultsAdd.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private String getYearAndSemester(String module){
+    private void getGrade() {
+        switch (sGetGrade) {
+            case "A+":
+                sLetterGrade = "A+";
+                sGradePoint = "4.0";
+                break;
+            case "A":
+                sLetterGrade = "A";
+                sGradePoint = "4.0";
+                break;
+            case "A-":
+                sLetterGrade = "A-";
+                sGradePoint = "3.7";
+                break;
+            case "B+":
+                sLetterGrade = "B+";
+                sGradePoint = "3.3";
+                break;
+            case "B":
+                sLetterGrade = "B";
+                sGradePoint = "3.0";
+                break;
+            case "B-":
+                sLetterGrade = "B-";
+                sGradePoint = "2.7";
+                break;
+            case "C+":
+                sLetterGrade = "C+";
+                sGradePoint = "2.3";
+                break;
+            case "C":
+                sLetterGrade = "C";
+                sGradePoint = "2.0";
+                break;
+            case "C-":
+                sLetterGrade = "C-";
+                sGradePoint = "1.7";
+                break;
+            case "D+":
+                sLetterGrade = "D+";
+                sGradePoint = "1.3";
+                break;
+            case "D":
+                sLetterGrade = "D";
+                sGradePoint = "1.0";
+                break;
+            case "E":
+                sLetterGrade = "E";
+                sGradePoint = "0.0";
+                break;
+            default:
+                sLetterGrade = "N/A";
+                sGradePoint = "N/A";
+                break;
+        }
+    }
+
+    private void getPeriod() {
+        switch (sGetPeriod) {
+            case "Jan-Jun":
+                sPeriod = "Jan-Jun";
+                break;
+            case "Jun-Jan":
+                sPeriod = "Jun-Dec";
+                break;
+            default:
+                sLetterGrade = "N/A";
+                sGradePoint = "N/A";
+                break;
+        }
+    }
+
+    private void getModule() {
+        switch (sGetModule) {
+            case "Introduction to Programming":
+                sModule = "Introduction to Programming";
+                break;
+            case "Introduction to Computer Systems":
+                sModule = "Introduction to Computer Systems";
+                break;
+            case "Mathematics for Computing":
+                sModule = "Mathematics for Computing";
+                break;
+            case "Communication Skills":
+                sModule = "Communication Skills";
+                break;
+            case "Object Oriented Concepts":
+                sModule = "Object Oriented Concepts";
+                break;
+            case "Software Process Modeling":
+                sModule = "Software Process Modeling";
+                break;
+            case "English for Academic Purposes":
+                sModule = "English for Academic Purposes";
+                break;
+            case "Information Systems & Data Modeling":
+                sModule = "Information Systems & Data Modeling";
+                break;
+            case "Internet & Web Technologies":
+                sModule = "Internet & Web Technologies";
+                break;
+            case "Software Engineering":
+                sModule = "Software Engineering";
+                break;
+            case "Object Oriented Programming":
+                sModule = "Object Oriented Programming";
+                break;
+            case "Database Management Systems":
+                sModule = "Database Management Systems";
+                break;
+            case "Computer Networks":
+                sModule = "Computer Networks";
+                break;
+            case "Operating Systems and System Administration":
+                sModule = "Operating Systems and System Administration";
+                break;
+            default:
+                sLetterGrade = "N/A";
+                sGradePoint = "N/A";
+                break;
+        }
+    }
+
+    public String getYearAndSemester(String module){
         StringBuilder yearAndSemester = new StringBuilder("");
         if (module.equals("Introduction to Programming") || module.equals("Introduction to Computer Systems") || module.equals("Mathematics for Computing") || module.equals("Communication Skills")){
             yearAndSemester.append("Year One Semester One");
