@@ -24,16 +24,119 @@
                 android:layout_height="match_parent"
                 android:paddingBottom="56dp">
 
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="92dp"
-                    android:layout_marginTop="196dp"
-                    android:text="Results Stuff"
-                    android:textSize="20dp"
+                    android:id="@+id/view"
+                    android:layout_width="116dp"
+                    android:layout_height="95dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/cumulative_credits"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/view2"
+                    android:layout_width="116dp"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="bottom|center"
+                    android:text="@string/cumulative_gpa"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:paddingBottom="5dp"
+                    app:layout_constraintEnd_toStartOf="@+id/view3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/view"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/view3"
+                    android:layout_width="116dp"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/cumulative_grade_points"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RelativeLayout
+                    android:layout_width="412dp"
+                    android:layout_height="582dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view2">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="28dp"/>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="539dp"
+                        android:layout_below="@+id/tabLayout"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="-33dp" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/editTextNumberDecimal"
+                    android:layout_width="116dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textSize="27dp"
+                    android:text="51"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/textViewCumulativeGPA"
+                    android:layout_width="116dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="148dp"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textSize="27dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/editTextNumberDecimal4"
+                    android:layout_width="116dp"
+                    android:layout_height="53dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textSize="27dp"
+                    android:text="160.1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.945"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.022"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

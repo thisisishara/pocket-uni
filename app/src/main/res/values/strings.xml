@@ -220,6 +220,11 @@
         <item>Year Four Semester Two</item>
     </string-array>
 
+    <!-- Students Results Display Activity String Values-->
+    <string name="cumulative_credits">Cumulative \nCredits</string>
+    <string name="cumulative_grade_points">Cumulative \nGrade Points</string>
+    <string name="cumulative_gpa">Cumulative \nGPA</string>
+
     <!--Profile String Resources-->
 
 
