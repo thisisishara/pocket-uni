@@ -35,7 +35,6 @@
         <activity
             android:name=".organizer.admin.AdminTimetableActivity"
             android:parentActivityName=".organizer.admin.AdminOrganizerActivity" />
-        <activity android:name=".results.admin.ListActivity"></activity>
         <activity android:name=".results.admin.AdminResultsActivity" />
         <activity android:name=".organizer.admin.AdminOrganizerActivity" />
         <activity android:name=".messenger.admin.AdminChatActivity" />
@@ -62,6 +61,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".results.admin.ListActivity">
         </activity>
 
         <receiver android:name=".organizer.std.ReminderBroadcastReceiver" />

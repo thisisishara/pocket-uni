@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pocketuni.R;
 import com.example.pocketuni.model.Timetable;
 import com.example.pocketuni.organizer.admin.AdminViewTimetableActivity;
+import com.example.pocketuni.organizer.std.OrganizerActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -101,6 +103,7 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
                         if(task.isSuccessful()){
                             task.getResult().getReference().delete();
                             Log.i("TTADAPT", "Timetable has been deleted.");
+                            showToast("TIMETABLE HAS BEEN DELETED.");
                         }
                     }
                 });
@@ -133,5 +136,9 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
     public void setTimetables(ArrayList<Timetable> timetableSearchResult){
         this.timetables = timetableSearchResult;
         notifyDataSetChanged();
+    }
+
+    private void showToast (String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }

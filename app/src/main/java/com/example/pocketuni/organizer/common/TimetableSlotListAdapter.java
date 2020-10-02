@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -17,6 +18,7 @@ import com.example.pocketuni.R;
 import com.example.pocketuni.model.CurrentUser;
 import com.example.pocketuni.model.TimetableItem;
 import com.example.pocketuni.organizer.admin.AdminViewTimetableActivity;
+import com.example.pocketuni.organizer.std.OrganizerActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -96,6 +98,7 @@ public class TimetableSlotListAdapter  extends RecyclerView.Adapter<TimetableSlo
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if(task.isSuccessful()){
                                 task.getResult().getReference().delete();
+                                showToast("TIMETABLE SLOT HAS BEEN DELETED.");
                                 Log.i("TTLADAPT", "Timetable slot has been deleted.");
                             }
                         }
@@ -128,5 +131,9 @@ public class TimetableSlotListAdapter  extends RecyclerView.Adapter<TimetableSlo
             timetableSlotListItem = itemView.findViewById(R.id.timetableslot_listitem);
             timetableDeleteButton = itemView.findViewById(R.id.delete_button);
         }
+    }
+
+    private void showToast (String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }

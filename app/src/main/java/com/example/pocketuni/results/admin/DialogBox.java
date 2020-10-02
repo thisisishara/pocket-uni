@@ -47,7 +47,7 @@ public class DialogBox extends AppCompatDialogFragment {
                 .setPositiveButton("Search", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String sRegNum = regNum.getText().toString().trim();
+                        String sRegNum = regNum.getText().toString().toLowerCase().trim();
                         String sYearSem = yearSem.getSelectedItem().toString().trim();
                         //searchData(sRegNum);
                         Intent intent = new Intent(getActivity(), ListActivity.class);
