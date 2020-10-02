@@ -193,7 +193,7 @@ public class AdminResultsDisplay extends AppCompatActivity {
         Toast.makeText(AdminResultsDisplay.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private int getSpinnerModule(String module){
+    public int getSpinnerModule(String module){
         int var = 0;
         if (module.equals("Communication Skills")){
             var = 0;
@@ -227,7 +227,7 @@ public class AdminResultsDisplay extends AppCompatActivity {
         return var;
     }
 
-    private int getSpinnerPeriod(String period){
+    public int getSpinnerPeriod(String period){
         int var = 0;
         if (period.equals("Jan-Jun")){
             var = 0;
@@ -237,7 +237,7 @@ public class AdminResultsDisplay extends AppCompatActivity {
         return var;
     }
 
-    private int getSpinnerYear(String year){
+    public int getSpinnerYear(String year){
         int yearCounter = 1999;
         int var = 0;
         for (int i=0; i <= Calendar.getInstance().get(Calendar.YEAR)-1999;){
@@ -251,7 +251,7 @@ public class AdminResultsDisplay extends AppCompatActivity {
         return var;
     }
 
-    private int getSpinnerGrade(String grade){
+    public int getSpinnerGrade(String grade){
         int var = 0;
         if (grade.equals("A+")){
             var = 0;
