@@ -18,12 +18,18 @@ import com.example.pocketuni.model.Result;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
+    Class<ListActivity> adminResultsDisplay;
     ListActivity listActivity;
     List<Result> resultList;
     Context context;
 
     public CustomAdapter(ListActivity listActivity, List<Result> resultList) {
         this.listActivity = listActivity;
+        this.resultList = resultList;
+    }
+
+    public CustomAdapter(Class<ListActivity> adminResultsDisplay, List<Result> resultList) {
+        this.adminResultsDisplay = adminResultsDisplay;
         this.resultList = resultList;
     }
 
@@ -37,12 +43,16 @@ public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
         viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                /*String ca = resultList.get(position).getCaMarks();
-                String grade = resultList.get(position).getGrades();
-                String year = resultList.get(position).getYear();
-                Toast.makeText(listActivity, "Item clicked "+ ca + " " + grade + " " + year , Toast.LENGTH_SHORT).show();*/
+                String mode = "1";
 
                 Intent intent = new Intent(view.getContext(), AdminResultsDisplay.class);
+                intent.putExtra("regNum1", resultList.get(position).getRegNum());
+                intent.putExtra("module1", resultList.get(position).getModule());
+                intent.putExtra("caMarks1", resultList.get(position).getCaMarks());
+                intent.putExtra("grades1", resultList.get(position).getGrades());
+                intent.putExtra("period1", resultList.get(position).getPeriod());
+                intent.putExtra("year1", resultList.get(position).getYear());
+                intent.putExtra("mode", mode);
                 view.getContext().startActivity(intent);
             }
 

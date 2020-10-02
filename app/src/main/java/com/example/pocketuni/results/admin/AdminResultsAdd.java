@@ -23,7 +23,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,11 +39,12 @@ public class AdminResultsAdd extends AppCompatActivity {
     private static final int ACTIVITY_NUMBER = 3;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore db;
+    private String mode = "0";
 
     private Spinner spinnerPeriod, spinnerYear, spinnerGrade, spinnerModule;
     Button btnSubmit, btnClear;
     EditText regNumber, caMarks;
-    private String sRegNumber, sCAMarks, sPeriod, sGetPeriod, sYear, sGetYear, sGetGrade, sGradePoint, sLetterGrade, sGetModule, sModule;
+    private String sRegNumber, sCAMarks, sGetPeriod, sGetYear, sGetGrade, sGetModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,20 +107,6 @@ public class AdminResultsAdd extends AppCompatActivity {
                 intent.putExtra("period", sGetPeriod);
                 intent.putExtra("year", sGetYear);
                 startActivity(intent);
-
-                /*new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(AdminResultsAdd.this, AdminResultsDisplay.class);
-                        intent.putExtra("regNum", sRegNumber);
-                        intent.putExtra("module", sGetModule);
-                        intent.putExtra("caMarks", sCAMarks);
-                        intent.putExtra("grades", sGetGrade);
-                        intent.putExtra("period", sGetPeriod);
-                        intent.putExtra("year", sGetYear);
-                        startActivity(intent);
-                    }
-                }, 1000);*/
             }
         });
 
@@ -138,8 +127,8 @@ public class AdminResultsAdd extends AppCompatActivity {
 
     }
 
-    private void uploadData(String sRegNumber, String sGetModule, String sCAMarks, String sGetGrade, String sGetPeriod, String sGetYear, String yearAndSem) {
-        Map<String, Object> doc = new HashMap<>();
+    private void uploadData(String sRegNumber, final String sGetModule, String sCAMarks, String sGetGrade, String sGetPeriod, String sGetYear, final String yearAndSem) {
+        final Map<String, Object> doc = new HashMap<>();
         doc.put("regNum", sRegNumber);
         doc.put("module", sGetModule);
         doc.put("caMarks", sCAMarks);
@@ -147,144 +136,41 @@ public class AdminResultsAdd extends AppCompatActivity {
         doc.put("period", sGetPeriod);
         doc.put("year", sGetYear);
 
-        db.collection("Students").document(sRegNumber).collection("Results").document(yearAndSem).collection("Modules").document(sGetModule).set(doc).addOnCompleteListener(new OnCompleteListener<Void>() {
+        String email = sRegNumber+"@my.sliit.lk";
+
+        final CollectionReference collectionReference = db.collection("Students").document(email).collection("Results");
+        collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                showToast("Data Added Successfully");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                showToast(e.getMessage());
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    final CollectionReference collectionReferenceModules = collectionReference.document(yearAndSem).collection("Modules");
+                    collectionReferenceModules.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()) {
+                                collectionReferenceModules.document(sGetModule).set(doc).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        showToast("Data Added Successfully");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(e.getMessage());
+                                    }
+
+                                });
+                            }
+                        }
+                    });
+                }
             }
         });
+
     }
 
     private void showToast (String message) {
         Toast.makeText(AdminResultsAdd.this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void getGrade() {
-        switch (sGetGrade) {
-            case "A+":
-                sLetterGrade = "A+";
-                sGradePoint = "4.0";
-                break;
-            case "A":
-                sLetterGrade = "A";
-                sGradePoint = "4.0";
-                break;
-            case "A-":
-                sLetterGrade = "A-";
-                sGradePoint = "3.7";
-                break;
-            case "B+":
-                sLetterGrade = "B+";
-                sGradePoint = "3.3";
-                break;
-            case "B":
-                sLetterGrade = "B";
-                sGradePoint = "3.0";
-                break;
-            case "B-":
-                sLetterGrade = "B-";
-                sGradePoint = "2.7";
-                break;
-            case "C+":
-                sLetterGrade = "C+";
-                sGradePoint = "2.3";
-                break;
-            case "C":
-                sLetterGrade = "C";
-                sGradePoint = "2.0";
-                break;
-            case "C-":
-                sLetterGrade = "C-";
-                sGradePoint = "1.7";
-                break;
-            case "D+":
-                sLetterGrade = "D+";
-                sGradePoint = "1.3";
-                break;
-            case "D":
-                sLetterGrade = "D";
-                sGradePoint = "1.0";
-                break;
-            case "E":
-                sLetterGrade = "E";
-                sGradePoint = "0.0";
-                break;
-            default:
-                sLetterGrade = "N/A";
-                sGradePoint = "N/A";
-                break;
-        }
-    }
-
-    private void getPeriod() {
-        switch (sGetPeriod) {
-            case "Jan-Jun":
-                sPeriod = "Jan-Jun";
-                break;
-            case "Jun-Jan":
-                sPeriod = "Jun-Dec";
-                break;
-            default:
-                sLetterGrade = "N/A";
-                sGradePoint = "N/A";
-                break;
-        }
-    }
-
-    private void getModule() {
-        switch (sGetModule) {
-            case "Introduction to Programming":
-                sModule = "Introduction to Programming";
-                break;
-            case "Introduction to Computer Systems":
-                sModule = "Introduction to Computer Systems";
-                break;
-            case "Mathematics for Computing":
-                sModule = "Mathematics for Computing";
-                break;
-            case "Communication Skills":
-                sModule = "Communication Skills";
-                break;
-            case "Object Oriented Concepts":
-                sModule = "Object Oriented Concepts";
-                break;
-            case "Software Process Modeling":
-                sModule = "Software Process Modeling";
-                break;
-            case "English for Academic Purposes":
-                sModule = "English for Academic Purposes";
-                break;
-            case "Information Systems & Data Modeling":
-                sModule = "Information Systems & Data Modeling";
-                break;
-            case "Internet & Web Technologies":
-                sModule = "Internet & Web Technologies";
-                break;
-            case "Software Engineering":
-                sModule = "Software Engineering";
-                break;
-            case "Object Oriented Programming":
-                sModule = "Object Oriented Programming";
-                break;
-            case "Database Management Systems":
-                sModule = "Database Management Systems";
-                break;
-            case "Computer Networks":
-                sModule = "Computer Networks";
-                break;
-            case "Operating Systems and System Administration":
-                sModule = "Operating Systems and System Administration";
-                break;
-            default:
-                sLetterGrade = "N/A";
-                sGradePoint = "N/A";
-                break;
-        }
     }
 
     private String getYearAndSemester(String module){
@@ -298,21 +184,4 @@ public class AdminResultsAdd extends AppCompatActivity {
         }
         return yearAndSemester.toString();
     }
-
-    /*private void addListenerOnSpinnerItemSelection() {
-        spinnerDate = (Spinner) findViewById(R.id.spinnerDate);
-        //spinnerDate.setOnItemSelectedListener(new CustomeOnItemSelectedListener());
-    }
-
-    private void addListenerOnButton() {
-        spinnerDate = (Spinner) findViewById(R.id.spinnerDate);
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AdminResultsAdd.this, AdminResultsDisplay.class));
-            }
-        });
-    }*/
 }

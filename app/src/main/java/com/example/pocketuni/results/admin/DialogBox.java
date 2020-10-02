@@ -49,7 +49,6 @@ public class DialogBox extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String sRegNum = regNum.getText().toString().trim();
                         String sYearSem = yearSem.getSelectedItem().toString().trim();
-                        //searchData(sRegNum);
                         Intent intent = new Intent(getActivity(), ListActivity.class);
                         intent.putExtra("DialogRegNum", sRegNum);
                         intent.putExtra("DialogYearSem", sYearSem);
@@ -61,26 +60,6 @@ public class DialogBox extends AppCompatDialogFragment {
 
         return builder.create();
     }
-
-    /*private void searchData(final String RegNum) {
-        db.collection("Students").whereEqualTo("regNum", RegNum.toUpperCase())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        showToast("Match found");
-                        /*Intent intent = new Intent(getActivity(), ListActivity.class);
-                        intent.putExtra("DialogRegNum", RegNum);
-                        startActivity(intent);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showToast("Invalid Student Registration Number");
-                    }
-                });
-    }*/
 
     private void showToast (String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();

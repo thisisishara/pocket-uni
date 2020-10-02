@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
-
     List<Result> resultList = new ArrayList<>();
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -50,6 +49,8 @@ public class ListActivity extends AppCompatActivity {
     private void showData() {
         String DialogRegNum = getIntent().getStringExtra("DialogRegNum");
         String DialogYearSem = getIntent().getStringExtra("DialogYearSem");
+
+        String email = DialogRegNum+"@my.sliit.lk";
 
         db.collection("Students").document(DialogRegNum).collection("Results").document(DialogYearSem).collection("Modules")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
