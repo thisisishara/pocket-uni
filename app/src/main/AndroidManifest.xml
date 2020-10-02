@@ -63,13 +63,9 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".organizer.std.FirebaseReminderService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+        <activity
+            android:name=".results.admin.ListActivity">
+        </activity>
 
         <receiver android:name=".organizer.std.ReminderBroadcastReceiver" />
     </application>
