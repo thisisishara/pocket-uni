@@ -191,9 +191,6 @@ public class ResultsActivity extends AppCompatActivity {
             return titles.get(position);
         }
 
-        /*public CharSequence getPageTitle(int position){
-            return titles.get(position);
-        }*/
     }
 
     private void calculateAndViewCumulativeGPA(){
@@ -282,7 +279,7 @@ public class ResultsActivity extends AppCompatActivity {
         }
     }
 
-    private double getGradePoint(String grade){
+    public double getGradePoint(String grade){
         double gradePoint = 0.0;
 
         if(grade.equals("A+")){
