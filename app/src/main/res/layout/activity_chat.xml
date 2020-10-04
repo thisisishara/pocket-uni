@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:popupTheme="@style/ThemeOverlay.AppCompat"
-                    app:title="Messenger">
+                    app:title="@string/messenger">
 
                 </androidx.appcompat.widget.Toolbar>
 
@@ -121,7 +121,7 @@
                                 android:layout_marginEnd="8dp"
                                 android:layout_marginBottom="16dp"
                                 android:gravity="start"
-                                android:text="To start a chat, Go to the Users Tab and select a user first."
+                                android:text="@string/infoText"
                                 android:textSize="17sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/infoBoxClose"

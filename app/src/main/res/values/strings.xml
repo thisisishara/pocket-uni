@@ -158,6 +158,14 @@
     </string-array>
 
     <!--Messenger String Resources-->
+    <!--IT19075754-->
+    <!--Admin/chat String Resources-->
+    <string name="messenger">Messenger</string>
+    <string name="infoText">To start a chat, Go to the Users Tab and select a user first.</string>
+    <string name="emailTextView">message body</string>
+    <string name="messageDateTimeTextView">2020.09.23 10:20 AM</string>
+    <string name="textViewChatInfo">Inbox: 2\nOutbox: 4\nTotal Messages: 6</string>
+
 
     <!--Exams/Results String Resources-->
     <!--IT19064932-->
@@ -224,6 +232,7 @@
     <string name="cumulative_credits">Cumulative \nCredits</string>
     <string name="cumulative_grade_points">Cumulative \nGrade Points</string>
     <string name="cumulative_gpa">Cumulative \nGPA</string>
+    <string name="adminMessenger">Messenger</string>
 
     <!--Profile String Resources-->
 

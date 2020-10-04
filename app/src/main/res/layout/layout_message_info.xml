@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:text="Inbox: 2\nOutbox: 4\nTotal Messages: 6"
+                    android:text="@string/textViewChatInfo"
                     app:layout_constraintStart_toEndOf="@+id/imageViewIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
